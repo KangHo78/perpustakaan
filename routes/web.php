@@ -15,11 +15,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/buku_katalog', 'buku_katalogController@buku_katalog')->name('buku_katalog');
 
 Route::get('/latihan_crud', 'latihan_crudController@index')->name('latihan_crud');
 Route::get('/latihan_crud_create', 'latihan_crudController@create')->name('latihan_crud_create');
@@ -27,4 +29,6 @@ Route::get('/latihan_crud_save', 'latihan_crudController@save')->name('latihan_c
 Route::get('/latihan_crud_edit', 'latihan_crudController@edit')->name('latihan_crud_edit');
 Route::get('/latihan_crud_update', 'latihan_crudController@update')->name('latihan_crud_update');
 Route::get('/latihan_crud_hapus', 'latihan_crudController@hapus')->name('latihan_crud_hapus');
+
+
 

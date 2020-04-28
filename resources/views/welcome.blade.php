@@ -8,10 +8,10 @@
 				<div class="row">
 					<div class="col-lg-6">
 						<div class="hs-text">
-							<h2><span>Music</span> for everyone.</h2>
+							<h2><span>KILLING</span> HEMINGWAY.</h2>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. </p>
-							<a href="#" class="site-btn">Download Now</a>
-							<a href="#" class="site-btn sb-c2">Start free trial</a>
+							<a href="#" class="site-btn">Pinjam</a>
+							<a href="#" class="site-btn sb-c2">lihat katalog</a>
 						</div>
 					</div>
 					<div class="col-lg-6">
@@ -27,10 +27,10 @@
 				<div class="row">
 					<div class="col-lg-6">
 						<div class="hs-text">
-							<h2><span>Listen </span> to new music.</h2>
+							<h2><span>KILLING</span> HEMINGWAY.</h2>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. </p>
-							<a href="#" class="site-btn">Download Now</a>
-							<a href="#" class="site-btn sb-c2">Start free trial</a>
+							<a href="#" class="site-btn">Pinjam</a>
+							<a href="#" class="site-btn sb-c2">lihat katalog</a>
 						</div>
 					</div>
 					<div class="col-lg-6">
@@ -48,7 +48,7 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<div class="section-title">
-					<h2>Unlimited Access to 100K tracks</h2>
+					<h2>Unlimited Access to 100K buku</h2>
 				</div>
 			</div>
 			<div class="col-lg-6">
@@ -99,7 +99,7 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<div class="section-title">
-					<h2>Our Concept & artists</h2>
+					<h2>Best-seller Book</h2>
 				</div>
 			</div>
 			<div class="col-lg-6">
@@ -110,25 +110,25 @@
 			<div class="col-lg-3 col-sm-6">
 				<div class="concept-item">
 					<img src="{{ asset('assets/img/concept/1.jpg') }}" alt="">
-					<h5>Soul Music</h5>
+					<h5>MOMENTUM</h5>
 				</div>
 			</div>
 			<div class="col-lg-3 col-sm-6">
 				<div class="concept-item">
 					<img src="{{ asset('assets/img/concept/2.jpg') }}" alt="">
-					<h5>Live Concerts</h5>
+					<h5>THE BOY</h5>
 				</div>
 			</div>
 			<div class="col-lg-3 col-sm-6">
 				<div class="concept-item">
 					<img src="{{ asset('assets/img/concept/3.jpg') }}" alt="">
-					<h5>Dj Sets</h5>
+					<h5>PATHWAY TO LOVE</h5>
 				</div>
 			</div>
 			<div class="col-lg-3 col-sm-6">
 				<div class="concept-item">
 					<img src="{{ asset('assets/img/concept/4.jpg') }}" alt="">
-					<h5>Live Streems</h5>
+					<h5>CATCHER IN THE RYE</h5>
 				</div>
 			</div>
 		</div>
@@ -163,7 +163,7 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<div class="section-title">
-					<h2>Why go Premium</h2>
+					<h2>Our Team</h2>
 				</div>
 			</div>
 			<div class="col-lg-6">
@@ -171,34 +171,44 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-lg-3 col-sm-6">
+			<div class="col-lg-4 col-sm-6">
 				<div class="premium-item">
-					<img src="{{ asset('assets/img/premium/1.jpg') }}" alt="">
-					<h4>No ad interruptions </h4>
-					<p>Consectetur adipiscing elit</p>
+					<img src="{{ asset('assets/img/premium/5.jpg') }}" alt="">
+					<h4>RAVI</h4>
+					<p>SANG GAY ABADI</p>
 				</div>
 			</div>
-			<div class="col-lg-3 col-sm-6">
+			<div class="col-lg-4 col-sm-6">
 				<div class="premium-item">
-					<img src="{{ asset('assets/img/premium/2.jpg') }}" alt="">
-					<h4>High Quality</h4>
-					<p>Ectetur adipiscing elit</p>
+					<img src="{{ asset('assets/img/premium/5.jpg') }}" alt="">
+					<h4>AXL</h4>
+					<p>-</p>
 				</div>
 			</div>
-			<div class="col-lg-3 col-sm-6">
+			<div class="col-lg-4 col-sm-6">
 				<div class="premium-item">
-					<img src="{{ asset('assets/img/premium/3.jpg') }}" alt="">
-					<h4>Listen Offline</h4>
-					<p>Sed do eiusmod tempor </p>
+					<img src="{{ asset('assets/img/premium/5.jpg') }}" alt="">
+					<h4>ROZAQ</h4>
+					<p>-</p>
 				</div>
 			</div>
-			<div class="col-lg-3 col-sm-6">
+			<div class="col-lg-2 col-sm-6">
+			</div>
+			<div class="col-lg-4 col-sm-6">
 				<div class="premium-item">
-					<img src="{{ asset('assets/img/premium/4.jpg') }}" alt="">
-					<h4>Download Music</h4>
-					<p>Adipiscing elit</p>
+					<img src="{{ asset('assets/img/premium/5.jpg') }}" alt="">
+					<h4>HANIF</h4>
+					<p>-</p>
 				</div>
 			</div>
+			<div class="col-lg-4 col-sm-6">
+				<div class="premium-item">
+					<img src="{{ asset('assets/img/premium/5.jpg') }}" alt="">
+					<h4>RIJAL</h4>
+					<p>WONG GATEL</p>
+				</div>
+			</div>
+
 		</div>
 	</div>
 </section>

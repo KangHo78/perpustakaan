@@ -22,13 +22,17 @@
             <a href="#" class="hr-btn">Help</a>
             <span>|</span>
             <div class="user-panel">
+            @if (Auth::user() != null)
+                <a href="{{ route('register') }}" class="register">Hy, {{ Auth::user()->name }}</a>
+            @else
                 <a href="{{ route('login') }}" class="login">Login</a>
                 <a href="{{ route('register') }}" class="register">Create an account</a>
+            @endif
             </div> 
         </div>
         <ul class="main-menu">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="#">About</a></li>
+            <li><a href="{{ route('welcome') }}">Home</a></li>
+            <li><a href="{{ route('buku_katalog') }}">Katalog</a></li>
             <li><a href="#">Pages</a>
                 <ul class="sub-menu">
                     <li><a href="category.html">Category</a></li>
