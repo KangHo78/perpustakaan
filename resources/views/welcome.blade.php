@@ -69,7 +69,7 @@
 					<div class="hi-icon">
 						<img src="{{ asset('assets/img/icons/brain.png') }}" alt="">
 					</div>
-					<h4>Create an account</h4>
+					<h4>Buat akun</h4>
 					<p>Lorem ipsum dolor sit amet, consectetur adipi-scing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum sus-pendisse ultrices gravida. </p>
 				</div>
 			</div>
@@ -78,7 +78,7 @@
 					<div class="hi-icon">
 						<img src="{{ asset('assets/img/icons/pointer.png') }}" alt="">
 					</div>
-					<h4>Choose a plan</h4>
+					<h4>Pilih buku</h4>
 					<p>Donec in sodales dui, a blandit nunc. Pellen-tesque id eros venenatis, sollicitudin neque sodales, vehicula nibh. Nam massa odio, portti-tor vitae efficitur non. </p>
 				</div>
 			</div>
@@ -87,7 +87,7 @@
 					<div class="hi-icon">
 						<img src="{{ asset('assets/img/icons/smartphone.png') }}" alt="">
 					</div>
-					<h4>Download Music</h4>
+					<h4>Sewa</h4>
 					<p>Ablandit nunc. Pellentesque id eros venenatis, sollicitudin neque sodales, vehicula nibh. Nam massa odio, porttitor vitae efficitur non, ultric-ies volutpat tellus. </p>
 				</div>
 			</div>
@@ -139,20 +139,19 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<div class="sub-text">
-					<h2>Subscription from $15/month</h2>
-					<h3>Start a free trial now</h3>
+					<h2>Fitur yang ditawarkan</h2>
+					<h3>Coba sewa sekarang</h3>
 					<p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 					<a href="#" class="site-btn">Try it now</a>
 				</div>
 			</div>
 			<div class="col-lg-6">
 				<ul class="sub-list">
-					<li><img src="{{ asset('assets/img/icons/check-icon') }}.png" alt="">Play any track</li>
-					<li><img src="{{ asset('assets/img/icons/check-icon') }}.png" alt="">Listen offline</li>
-					<li><img src="{{ asset('assets/img/icons/check-icon') }}.png" alt="">No ad interruptions</li>
-					<li><img src="{{ asset('assets/img/icons/check-icon') }}.png" alt="">Unlimited skips</li>
-					<li><img src="{{ asset('assets/img/icons/check-icon') }}.png" alt="">High quality audio</li>
-					<li><img src="{{ asset('assets/img/icons/check-icon') }}.png" alt="">Shuffle play</li>
+					<li><img src="{{ asset('assets/img/icons/check-icon') }}.png" alt="">Crot di dalam</li>
+					<li><img src="{{ asset('assets/img/icons/check-icon') }}.png" alt="">Include Hotel</li>
+					<li><img src="{{ asset('assets/img/icons/check-icon') }}.png" alt="">Full service</li>
+					<li><img src="{{ asset('assets/img/icons/check-icon') }}.png" alt="">LT lebih murah</li>
+					<li><img src="{{ asset('assets/img/icons/check-icon') }}.png" alt="">5x main bonus 1x service</li>
 				</ul>
 			</div>
 		</div>
