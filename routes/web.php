@@ -16,12 +16,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
+Route::get('/buku_katalog', 'buku_katalogController@buku_katalog')->name('buku_katalog');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/buku_katalog', 'buku_katalogController@buku_katalog')->name('buku_katalog');
 
 Route::get('/latihan_crud', 'latihan_crudController@index')->name('latihan_crud');
 Route::get('/latihan_crud_create', 'latihan_crudController@create')->name('latihan_crud_create');
