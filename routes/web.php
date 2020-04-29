@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
-Route::get('/buku_katalog', 'buku_katalogController@buku_katalog')->name('buku_katalog');
+Route::get('/catalog', 'buku_katalogController@buku_katalog')->name('buku_katalog');
 
 Auth::routes();
 

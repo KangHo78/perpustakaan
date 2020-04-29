@@ -35,6 +35,9 @@
                     </div>
                 </div>
             </form>
+            <p>If you don't have an account, click <a href="{{ route('register') }}">here</a> to start creating new
+                account.
+            </p>
         </div>
     </div>
 </section>

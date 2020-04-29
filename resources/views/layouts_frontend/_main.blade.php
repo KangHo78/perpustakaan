@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 
 <head>
-    <title>Perpustakaan Dryas</title>
+    <title>Dryas Library</title>
     <meta charset="UTF-8">
-    <meta name="description" content="SolMusic HTML Template">
-    <meta name="keywords" content="music, html">
+    <meta name="description" content="Dryas Library">
+    <meta name="keywords" content="library, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{{ asset('assets/img/favicon.ico') }}" rel="shortcut icon" />
     @include('layouts_frontend._css')

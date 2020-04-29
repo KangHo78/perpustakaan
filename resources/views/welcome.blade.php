@@ -8,15 +8,15 @@
 				<div class="row">
 					<div class="col-lg-6">
 						<div class="hs-text">
-							<h2><span>KILLING</span> HEMINGWAY.</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. </p>
-							<a href="#" class="site-btn">Pinjam</a>
-							<a href="#" class="site-btn sb-c2">lihat katalog</a>
+							<h2><span>Read</span> and Feel.</h2>
+							<p>Explore up to 100,000 more book titles that are available online and offline and
+								immediately feel the pleasure when reading it.</p>
+							<a href="{{ route('buku_katalog') }}" class="site-btn">See Catalog</a>
 						</div>
 					</div>
 					<div class="col-lg-6">
 						<div class="hr-img">
-							<img src="{{ asset('assets/img/hero-bg.png') }}" alt="">
+							<img src="{{ asset('assets/img/undraw_book_lover_mkck.svg') }}" alt="">
 						</div>
 					</div>
 				</div>
@@ -28,9 +28,10 @@
 					<div class="col-lg-6">
 						<div class="hs-text">
 							<h2><span>KILLING</span> HEMINGWAY.</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. </p>
-							<a href="#" class="site-btn">Pinjam</a>
-							<a href="#" class="site-btn sb-c2">lihat katalog</a>
+							<p>Brian D. Meeks's book, which is the most popular book, is currently hired by some young
+								teenagers to fill their free time wherever they are.</p>
+							<a href="#" class="site-btn">Borrow</a>
+							<a href="{{ route('buku_katalog') }}" class="site-btn sb-c2">See Catalog</a>
 						</div>
 					</div>
 					<div class="col-lg-6">
@@ -48,12 +49,16 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<div class="section-title">
-					<h2>Unlimited Access to 100K buku</h2>
+					<h2>Unlimited Access to 100K books</h2>
 				</div>
 			</div>
 			<div class="col-lg-6">
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.</p>
-				<a href="#" class="site-btn">Try it now</a>
+				<p>Start reading now and enjoy thousands to millions of unlimited titles and you can rent it whenever
+					you want, with a total collection of up to 250,000 and will continue to be updated with the times.
+					And also get a free library member card when registering, book rental can be up to 21 days, this is
+					quite satisfying for you who love to read.
+				</p>
+				<a href="{{ route('register') }}" class="site-btn">Try it now</a>
 			</div>
 		</div>
 	</div>
@@ -69,8 +74,9 @@
 					<div class="hi-icon">
 						<img src="{{ asset('assets/img/icons/brain.png') }}" alt="">
 					</div>
-					<h4>Buat akun</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipi-scing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum sus-pendisse ultrices gravida. </p>
+					<h4>Create an account</h4>
+					<p>Create an account faster without going to the library online, just making use of your internet
+						connection and your device.</p>
 				</div>
 			</div>
 			<div class="col-md-4">
@@ -78,8 +84,9 @@
 					<div class="hi-icon">
 						<img src="{{ asset('assets/img/icons/pointer.png') }}" alt="">
 					</div>
-					<h4>Pilih buku</h4>
-					<p>Donec in sodales dui, a blandit nunc. Pellen-tesque id eros venenatis, sollicitudin neque sodales, vehicula nibh. Nam massa odio, portti-tor vitae efficitur non. </p>
+					<h4>Select a books</h4>
+					<p>Choose the book you want, whatever it is, whenever it is, and wherever it is, you can do it
+						easily.</p>
 				</div>
 			</div>
 			<div class="col-md-4">
@@ -87,8 +94,8 @@
 					<div class="hi-icon">
 						<img src="{{ asset('assets/img/icons/smartphone.png') }}" alt="">
 					</div>
-					<h4>Sewa</h4>
-					<p>Ablandit nunc. Pellentesque id eros venenatis, sollicitudin neque sodales, vehicula nibh. Nam massa odio, porttitor vitae efficitur non, ultric-ies volutpat tellus. </p>
+					<h4>Rent</h4>
+					<p>Rent books that you like repeatedly even every day, up to 5 books in a row.</p>
 				</div>
 			</div>
 		</div>
@@ -99,11 +106,14 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<div class="section-title">
-					<h2>Best-seller Book</h2>
+					<h2>Best-seller Books</h2>
 				</div>
 			</div>
 			<div class="col-lg-6">
-				<p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+				<p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis
+					ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+					et dolore magna aliqua.</p>
 			</div>
 		</div>
 		<div class="row">
@@ -139,19 +149,24 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<div class="sub-text">
-					<h2>Fitur yang ditawarkan</h2>
-					<h3>Coba sewa sekarang</h3>
-					<p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					<a href="#" class="site-btn">Try it now</a>
+					<h2>Features offered</h2>
+					<h3>Try renting now</h3>
+					<p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+						Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel
+						facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+						incididunt ut labore et dolore magna aliqua.</p>
+					<a href="{{ route('register') }}" class="site-btn">Try it now</a>
 				</div>
 			</div>
 			<div class="col-lg-6">
 				<ul class="sub-list">
-					<li><img src="{{ asset('assets/img/icons/check-icon') }}.png" alt="">Crot di dalam</li>
-					<li><img src="{{ asset('assets/img/icons/check-icon') }}.png" alt="">Include Hotel</li>
-					<li><img src="{{ asset('assets/img/icons/check-icon') }}.png" alt="">Full service</li>
-					<li><img src="{{ asset('assets/img/icons/check-icon') }}.png" alt="">LT lebih murah</li>
-					<li><img src="{{ asset('assets/img/icons/check-icon') }}.png" alt="">5x main bonus 1x service</li>
+					<li><img src="{{ asset('assets/img/icons/check-icon') }}.png" alt="">Duration of Loans Up to 21 Days
+					</li>
+					<li><img src="{{ asset('assets/img/icons/check-icon') }}.png" alt="">Full access to reading online
+					</li>
+					<li><img src="{{ asset('assets/img/icons/check-icon') }}.png" alt="">Borrow Now Up to 5 books</li>
+					<li><img src="{{ asset('assets/img/icons/check-icon') }}.png" alt="">Free Library Membership Card
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -166,15 +181,18 @@
 				</div>
 			</div>
 			<div class="col-lg-6">
-				<p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+				<p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis
+					ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+					et dolore magna aliqua.</p>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-lg-4 col-sm-6">
 				<div class="premium-item">
-					<img src="{{ asset('assets/img/premium/5.jpg') }}" alt="">
-					<h4>RAVI</h4>
-					<p>SANG GAY ABADI</p>
+					<img src="{{ asset('assets/img/avatar/rdp77.png') }}" alt="">
+					<h4>Moh Ravi Dwi Putra</h4>
+					<p>Cogans Abadi</p>
 				</div>
 			</div>
 			<div class="col-lg-4 col-sm-6">
@@ -212,4 +230,3 @@
 	</div>
 </section>
 @endsection
-

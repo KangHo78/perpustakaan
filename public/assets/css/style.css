@@ -359,7 +359,7 @@ Hero section
 
 .hs-item h2 {
     color: #fff;
-    font-size: 70px;
+    font-size: 60px;
     margin-bottom: 25px;
     line-height: 0.9;
     position: relative;
@@ -553,7 +553,7 @@ Subscription section
 .sub-list {
     list-style: none;
     background: #1c294a;
-    padding: 70px 15px 50px 155px;
+    padding: 70px 15px 50px 100px;
     border-radius: 42px;
 }
 
