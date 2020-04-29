@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Force HTTPS For Heroku
+if (env('APP_ENV') === 'production') {
+    URL::forceSchema('https');
+}
+
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
@@ -29,6 +34,3 @@ Route::get('/latihan_crud_save', 'latihan_crudController@save')->name('latihan_c
 Route::get('/latihan_crud_edit', 'latihan_crudController@edit')->name('latihan_crud_edit');
 Route::get('/latihan_crud_update', 'latihan_crudController@update')->name('latihan_crud_update');
 Route::get('/latihan_crud_hapus', 'latihan_crudController@hapus')->name('latihan_crud_hapus');
-
-
-
