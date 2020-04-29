@@ -13,11 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Force HTTPS For Heroku
-if (env('APP_ENV') === 'production') {
-    URL::forceSchema('https');
-}
-
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
