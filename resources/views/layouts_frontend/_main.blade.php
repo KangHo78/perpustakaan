@@ -17,7 +17,7 @@
     </div>
     <!-- Header section -->
     <header class="header-section clearfix">
-        <a href="index.html" class="site-logo">
+        <a href="{{ route('welcome') }}" class="site-logo">
             <img src="{{ asset('assets/img/logo.png') }}" alt="">
         </a>
         <div class="header-right">
