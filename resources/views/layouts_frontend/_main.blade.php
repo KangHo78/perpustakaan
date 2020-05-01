@@ -35,21 +35,15 @@
             <li><a href="{{ route('welcome') }}">Home</a></li>
             <li><a href="{{ route('buku_katalog') }}">Catalog</a></li>
             <li><a href="javascript:void(0)">About</a></li>
-            <li><a href="javascript:void(0)">Our Team</a></li>
+            <li><a href="{{ route('team') }}">Our Team</a></li>
         </ul>
     </header>
     @yield('content')
     <footer class="footer-section">
-
-
-
-
         <div class="copyright">
             This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i>
             by Five Team
         </div>
-
-
     </footer>
     @include('layouts_frontend._script')
 </body>

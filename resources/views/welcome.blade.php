@@ -194,14 +194,14 @@
 			</div>
 			<div class="col-lg-4 col-sm-6">
 				<div class="premium-item">
-					<img src="{{ asset('assets/img/premium/5.jpg') }}" alt="">
+					<img src="{{ asset('assets/img/avatar/axl.jpg') }}" alt="">
 					<h4>AXL</h4>
 					<p>-</p>
 				</div>
 			</div>
 			<div class="col-lg-4 col-sm-6">
 				<div class="premium-item">
-					<img src="{{ asset('assets/img/premium/5.jpg') }}" alt="">
+					<img src="{{ asset('assets/img/avatar/axl.jpg') }}" alt="">
 					<h4>ROZAQ</h4>
 					<p>-</p>
 				</div>
@@ -210,14 +210,14 @@
 			</div>
 			<div class="col-lg-4 col-sm-6">
 				<div class="premium-item">
-					<img src="{{ asset('assets/img/premium/5.jpg') }}" alt="">
+					<img src="{{ asset('assets/img/avatar/axl.jpg') }}" alt="">
 					<h4>HANIF</h4>
 					<p>-</p>
 				</div>
 			</div>
 			<div class="col-lg-4 col-sm-6">
 				<div class="premium-item">
-					<img src="{{ asset('assets/img/premium/5.jpg') }}" alt="">
+					<img src="{{ asset('assets/img/avatar/axl.jpg') }}" alt="">
 					<h4>RIJAL</h4>
 					<p>WONG GATEL</p>
 				</div>
