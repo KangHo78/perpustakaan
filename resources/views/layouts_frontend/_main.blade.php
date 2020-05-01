@@ -34,27 +34,15 @@
         <ul class="main-menu">
             <li><a href="{{ route('welcome') }}">Home</a></li>
             <li><a href="{{ route('buku_katalog') }}">Catalog</a></li>
-            <li><a href="javascript:void(0)">About</a></li>
-            <li><a href="javascript:void(0)">Our Team</a></li>
+            <li><a href="{{ route('about') }}">About</a></li>
+            <li><a href="{{ route('team') }}">Our Team</a></li>
         </ul>
     </header>
     @yield('content')
     <footer class="footer-section">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-xl-6">
-                    <img src="{{ asset('assets/img/logo.png') }}" alt="">
-                    <div class="copyright">
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        Copyright &copy;<script>
-                            document.write(new Date().getFullYear());
-                        </script> All rights reserved | This template is made with <i class="fa fa-heart-o"
-                            aria-hidden="true"></i> by Five Team
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    </div>
-                </div>
-            </div>
+        <div class="copyright">
+            This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i>
+            by Five Team
         </div>
     </footer>
     @include('layouts_frontend._script')

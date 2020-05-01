@@ -110,10 +110,9 @@
 				</div>
 			</div>
 			<div class="col-lg-6">
-				<p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis
-					ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-					et dolore magna aliqua.</p>
+				<p>We also have Best-seller books that are made by well-known journalists and are currently booming. All
+					of these books are valid for the past 1 year, so you don't need to worry about this best-seller
+					books data because this data is truly original based on user surveys.</p>
 			</div>
 		</div>
 		<div class="row">
@@ -151,10 +150,9 @@
 				<div class="sub-text">
 					<h2>Features offered</h2>
 					<h3>Try renting now</h3>
-					<p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-						Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel
-						facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-						incididunt ut labore et dolore magna aliqua.</p>
+					<p>To satisfy readers in the Dryas Library we want to give some advantages to our library that are
+						not in other libraries, or even yet. For that we want to show this feature as well as pamper you
+						as a book enthusiast.</p>
 					<a href="{{ route('register') }}" class="site-btn">Try it now</a>
 				</div>
 			</div>
@@ -181,10 +179,9 @@
 				</div>
 			</div>
 			<div class="col-lg-6">
-				<p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis
-					ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-					et dolore magna aliqua.</p>
+				<p>In this case the website cannot stand alone without the developer contributing fully and
+					wholeheartedly developing this website. Therefore the following are the developers who contributed
+					to building this Dryas library website.</p>
 			</div>
 		</div>
 		<div class="row">
@@ -197,14 +194,14 @@
 			</div>
 			<div class="col-lg-4 col-sm-6">
 				<div class="premium-item">
-					<img src="{{ asset('assets/img/premium/5.jpg') }}" alt="">
+					<img src="{{ asset('assets/img/avatar/axl.jpg') }}" alt="">
 					<h4>AXL</h4>
 					<p>-</p>
 				</div>
 			</div>
 			<div class="col-lg-4 col-sm-6">
 				<div class="premium-item">
-					<img src="{{ asset('assets/img/premium/5.jpg') }}" alt="">
+					<img src="{{ asset('assets/img/avatar/axl.jpg') }}" alt="">
 					<h4>ROZAQ</h4>
 					<p>-</p>
 				</div>
@@ -213,14 +210,14 @@
 			</div>
 			<div class="col-lg-4 col-sm-6">
 				<div class="premium-item">
-					<img src="{{ asset('assets/img/premium/5.jpg') }}" alt="">
+					<img src="{{ asset('assets/img/avatar/axl.jpg') }}" alt="">
 					<h4>HANIF</h4>
 					<p>-</p>
 				</div>
 			</div>
 			<div class="col-lg-4 col-sm-6">
 				<div class="premium-item">
-					<img src="{{ asset('assets/img/premium/5.jpg') }}" alt="">
+					<img src="{{ asset('assets/img/avatar/axl.jpg') }}" alt="">
 					<h4>RIJAL</h4>
 					<p>WONG GATEL</p>
 				</div>
