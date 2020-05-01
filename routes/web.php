@@ -36,3 +36,10 @@ Route::get('/user_save', 'userController@save')->name('user_save');
 Route::get('/user_edit', 'userController@edit')->name('user_edit');
 Route::get('/user_update', 'userController@update')->name('user_update');
 Route::get('/user_delete', 'userController@delete')->name('user_delete');
+
+Route::get('/previleges_index', 'previlegesController@index')->name('previleges_index');
+Route::get('/previleges_create', 'previlegesController@create')->name('previleges_create');
+Route::get('/previleges_save', 'previlegesController@save')->name('previleges_save');
+Route::get('/previleges_edit', 'previlegesController@edit')->name('previleges_edit');
+Route::get('/previleges_update', 'previlegesController@update')->name('previleges_update');
+Route::get('/previleges_delete', 'previlegesController@delete')->name('previleges_delete');

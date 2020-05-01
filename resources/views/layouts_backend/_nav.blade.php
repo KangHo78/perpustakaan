@@ -34,23 +34,15 @@
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Profile
-                  <span class="float-right text-sm"><i class="fas fa-users-cog"></i></span>
-                </h3>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
+            <a class="dropdown-item" style="background-color: white" href="{{ route('logout') }}">
+            <i class="fa fa-user m-r-5 m-l-5"></i> Profile</a>
           <div class="dropdown-divider"></div>
-          
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">Sign Out &nbsp;&nbsp;
-          <i class="text-danger fas fa-sign-out-alt"></i></a>
+            <a class="dropdown-item" style="background-color: white" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+            <i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+            </form>
         </div>
       </li>
       <!-- Notifications Dropdown Menu -->

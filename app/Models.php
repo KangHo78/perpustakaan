@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 use App\User;
+use App\previleges;
 
 class models extends model
 {
@@ -13,5 +14,12 @@ class models extends model
       $user = new User(); 
 
       return $user;
+    }
+
+    public function previleges()
+    {
+      $previleges = new previleges(); 
+
+      return $previleges;
     }
 }
