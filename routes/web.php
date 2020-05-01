@@ -19,6 +19,9 @@ Route::get('/', function () {
 Route::get('/team', function () {
     return view('frontend_view.team');
 })->name('team');
+Route::get('/about', function () {
+    return view('frontend_view.about');
+})->name('about');
 Route::get('/catalog', 'buku_katalogController@buku_katalog')->name('buku_katalog');
 
 Auth::routes();

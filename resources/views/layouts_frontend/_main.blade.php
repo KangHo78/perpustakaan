@@ -34,7 +34,7 @@
         <ul class="main-menu">
             <li><a href="{{ route('welcome') }}">Home</a></li>
             <li><a href="{{ route('buku_katalog') }}">Catalog</a></li>
-            <li><a href="javascript:void(0)">About</a></li>
+            <li><a href="{{ route('about') }}">About</a></li>
             <li><a href="{{ route('team') }}">Our Team</a></li>
         </ul>
     </header>
