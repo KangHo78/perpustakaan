@@ -593,6 +593,7 @@ Responsive
 .footer-section {
     background: #0a183d;
     padding: 20px 20px;
+    bottom: 0;
 }
 
 .footer-widget {
