@@ -29,3 +29,10 @@ Route::get('/latihan_crud_save', 'latihan_crudController@save')->name('latihan_c
 Route::get('/latihan_crud_edit', 'latihan_crudController@edit')->name('latihan_crud_edit');
 Route::get('/latihan_crud_update', 'latihan_crudController@update')->name('latihan_crud_update');
 Route::get('/latihan_crud_hapus', 'latihan_crudController@hapus')->name('latihan_crud_hapus');
+
+Route::get('/user_index', 'userController@index')->name('user_index');
+Route::get('/user_create', 'userController@create')->name('user_create');
+Route::get('/user_save', 'userController@save')->name('user_save');
+Route::get('/user_edit', 'userController@edit')->name('user_edit');
+Route::get('/user_update', 'userController@update')->name('user_update');
+Route::get('/user_delete', 'userController@delete')->name('user_delete');
