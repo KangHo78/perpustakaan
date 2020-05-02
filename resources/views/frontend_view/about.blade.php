@@ -9,7 +9,6 @@
         <section class="songs-details-section">
             <div class="container-fluid">
                 <div class="song-details-box">
-                    <h3>Tujuan</h3>
                     <p class="mb-3">
                         Dengan dibuatnya perpustakaan dryas berbasis laravel ini untuk menempuh mata kuliah
                         <strong>Pengembangan Teknologi Web</strong> yang dibimbing oleh Bapak <strong>Hermanto,
