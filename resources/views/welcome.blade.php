@@ -63,7 +63,7 @@
 		</div>
 	</div>
 </section>
-<section class="how-section spad set-bg" data-setbg="img/how-to-bg.jpg">
+<section class="how-section spad">
 	<div class="container text-white">
 		<div class="section-title">
 			<h2>How it works</h2>

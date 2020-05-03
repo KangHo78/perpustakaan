@@ -227,6 +227,14 @@ Header section
     padding: 44px 15px;
 }
 
+.site-logo h4 {
+    color: #ffffff;
+}
+
+.site-logo h4 span {
+    color: #fc0254;
+}
+
 .header-right {
     float: right;
     padding: 44px 0;

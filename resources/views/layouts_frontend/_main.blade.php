@@ -18,7 +18,7 @@
     <!-- Header section -->
     <header class="header-section clearfix">
         <a href="{{ route('welcome') }}" class="site-logo">
-            <img src="{{ asset('assets/img/logo.png') }}" alt="">
+            <h4><span>Dryas</span> Library</h4>
         </a>
         <div class="header-right">
             <div class="user-panel">
