@@ -23,7 +23,7 @@
         <div class="header-right">
             <div class="user-panel">
                 @if (Auth::user() != null)
-                <a href="{{ route('register') }}" class="register">Hy, {{ Auth::user()->name }}</a>
+                <a href="{{ route('home') }}" class="register">Hy, {{ Auth::user()->name }}</a>
                 @else
                 <a href="{{ route('login') }}" class="login">Login</a>
                 <span>|</span>
