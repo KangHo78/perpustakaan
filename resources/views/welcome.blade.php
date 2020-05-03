@@ -16,7 +16,7 @@
 					</div>
 					<div class="col-lg-6">
 						<div class="hr-img">
-							<img src="{{ asset('assets/img/undraw_book_lover_mkck.svg') }}" alt="">
+							<img src="{{ asset('assets/img/draw/undraw_book_lover_mkck.svg') }}" alt="">
 						</div>
 					</div>
 				</div>
@@ -36,7 +36,7 @@
 					</div>
 					<div class="col-lg-6">
 						<div class="hr-img">
-							<img src="{{ asset('assets/img/hero-bg.png') }}" alt="">
+							<img src="{{ asset('assets/img/books/hero-bg.png') }}" alt="">
 						</div>
 					</div>
 				</div>
@@ -118,25 +118,25 @@
 		<div class="row">
 			<div class="col-lg-3 col-sm-6">
 				<div class="concept-item">
-					<img src="{{ asset('assets/img/concept/1.jpg') }}" alt="">
+					<img src="{{ asset('assets/img/books/1.jpg') }}" alt="">
 					<h5>MOMENTUM</h5>
 				</div>
 			</div>
 			<div class="col-lg-3 col-sm-6">
 				<div class="concept-item">
-					<img src="{{ asset('assets/img/concept/2.jpg') }}" alt="">
+					<img src="{{ asset('assets/img/books/2.jpg') }}" alt="">
 					<h5>THE BOY</h5>
 				</div>
 			</div>
 			<div class="col-lg-3 col-sm-6">
 				<div class="concept-item">
-					<img src="{{ asset('assets/img/concept/3.jpg') }}" alt="">
+					<img src="{{ asset('assets/img/books/3.jpg') }}" alt="">
 					<h5>PATHWAY TO LOVE</h5>
 				</div>
 			</div>
 			<div class="col-lg-3 col-sm-6">
 				<div class="concept-item">
-					<img src="{{ asset('assets/img/concept/4.jpg') }}" alt="">
+					<img src="{{ asset('assets/img/books/4.jpg') }}" alt="">
 					<h5>CATCHER IN THE RYE</h5>
 				</div>
 			</div>

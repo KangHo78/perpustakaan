@@ -9,7 +9,7 @@
 		<div class="row">
 			<div class="col-xl-3 col-sm-6">
 				<div class="similar-song">
-					<img class="ss-thumb" src="{{ asset('assets/img/playlist/1.jpg') }}" alt="">
+					<img class="ss-thumb" src="{{ asset('assets/img/books/1.jpg') }}" alt="">
 					<h4>MOMENTUM</h4>
 					<p>A book of Azriel in <b>Category</b></p>
 					<div class="single_player">
@@ -28,7 +28,7 @@
 			</div>
 			<div class="col-xl-3 col-sm-6">
 				<div class="similar-song">
-					<img class="ss-thumb" src="{{ asset('assets/img/playlist/2.jpg') }}" alt="">
+					<img class="ss-thumb" src="{{ asset('assets/img/books/2.jpg') }}" alt="">
 					<h4>THE BOY</h4>
 					<p>A book of Azriel in <b>Category</b></p>
 					<div class="single_player">
@@ -47,7 +47,7 @@
 			</div>
 			<div class="col-xl-3 col-sm-6">
 				<div class="similar-song">
-					<img class="ss-thumb" src="{{ asset('assets/img/playlist/3.jpg') }}" alt="">
+					<img class="ss-thumb" src="{{ asset('assets/img/books/3.jpg') }}" alt="">
 					<h4>PATHWAY TO LOVE</h4>
 					<p>A book of Azriel in <b>Category</b></p>
 					<div class="single_player">
@@ -66,7 +66,7 @@
 			</div>
 			<div class="col-xl-3 col-sm-6">
 				<div class="similar-song">
-					<img class="ss-thumb" src="{{ asset('assets/img/playlist/4.jpg') }}" alt="">
+					<img class="ss-thumb" src="{{ asset('assets/img/books/4.jpg') }}" alt="">
 					<h4>CATCHER IN THE RYE</h4>
 					<p>A book of Azriel in <b>Category</b></p>
 					<div class="single_player">
