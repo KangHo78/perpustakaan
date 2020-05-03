@@ -1,7 +1,8 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
-  <a href="index3.html" class="brand-link">
-    <span class="brand-text font-weight-bold text-center">Dryas Library</span>
+  <a href="javascript:void(0)" class="brand-link">
+    <i class="fa fa-book ml-4 mr-2"></i>
+    <span class="brand-text font-weight-light text-monospace">Dryas Library</span>
   </a>
 
   <!-- Sidebar -->
