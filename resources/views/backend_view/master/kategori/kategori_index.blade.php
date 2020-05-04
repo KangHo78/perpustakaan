@@ -5,14 +5,14 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Master previleges</h1>
+                    <h1 class="m-0 text-dark">Master kategori</h1>
                 </div>
                 <!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                         <li class="breadcrumb-item">Master</li>
-                        <li class="breadcrumb-item active">previleges</li>
+                        <li class="breadcrumb-item active">kategori</li>
                     </ol>
                 </div>
                 <!-- /.col -->
@@ -20,7 +20,7 @@
 
         <div class="card card-info">
               <div class="card-header">
-                <h3 class="card-title">Index previleges</h3>
+                <h3 class="card-title">Index kategori</h3>
                 <div style="float:right">
                     <button class="btn btn-sm btn-warning" onclick="tambah()"><i class="fas fa-plus"></i> Tambah </button>
                 </div>
@@ -41,10 +41,10 @@
                             @foreach ($data as $index => $element)
                             <tr>
                                 <td>{{ $index+1 }}</td>
-                                <td>{{ $element->mp_name }}</td>
+                                <td>{{ $element->mk_name }}</td>
                                 <td>
-                                    <button class="btn btn-sm btn-warning" onclick="edit('{{ $element->mp_id }}')"><i class="fas fa-pencil-o"></i> Edit</button>
-                                    <button class="btn btn-sm btn-danger" onclick="hapus('{{ $element->mp_id }}')"><i class="fas fa-trash"></i> Hapus</button>
+                                    <button class="btn btn-sm btn-warning" onclick="edit('{{ $element->mk_id }}')"><i class="fas fa-pencil-o"></i> Edit</button>
+                                    <button class="btn btn-sm btn-danger" onclick="hapus('{{ $element->mk_id }}')"><i class="fas fa-trash"></i> Hapus</button>
                                 </td>
                             </tr>
                             @endforeach
@@ -63,14 +63,14 @@
 
 <script type="text/javascript">
     function tambah(argument) {
-        location.href = '{{ route('previleges_create') }}';
+        location.href = '{{ route('kategori_create') }}';
     }
 
     function edit(argument) {
-        location.href = '{{ url('/') }}' + '/previleges_edit?&id=' + argument;
+        location.href = '{{ url('/') }}' + '/kategori_edit?&id=' + argument;
     }
 
     function hapus(argument) {
-        location.href = '{{ url('/') }}' + '/previleges_hapus?&id=' + argument;
+        location.href = '{{ url('/') }}' + '/kategori_hapus?&id=' + argument;
     }
 </script>

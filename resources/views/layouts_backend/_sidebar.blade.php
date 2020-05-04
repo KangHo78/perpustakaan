@@ -98,25 +98,25 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/mailbox/compose.html" class="nav-link">
+              <a href="{{ route('kategori_index') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Kategori</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/mailbox/read-mail.html" class="nav-link">
+              <a href="{{ route('pengarang_index') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Pengarang</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/mailbox/read-mail.html" class="nav-link">
+              <a href="{{ route('penerbit_index') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Penerbit</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/mailbox/read-mail.html" class="nav-link">
+              <a href="{{ route('rak_buku_index') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Rak buku</p>
               </a>

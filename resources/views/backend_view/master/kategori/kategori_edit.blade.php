@@ -29,8 +29,8 @@
             <div class="card-body">
              <form class="form-save">
                <label> name </label>
-               <input type="text" class="form-control" name="name" value="{{ $data->mp_name }}">
-               <input type="hidden" class="form-control" name="id" value="{{ $data->mp_id }}">
+               <input type="text" class="form-control" name="name" value="{{ $data->mk_name }}">
+               <input type="hidden" class="form-control" name="id" value="{{ $data->mk_id }}">
                <br>
                <button class="btn btn-sm btn-info" type="button" onclick="save()"> 
                   <i class="fas fa-save"></i> Save 
@@ -45,13 +45,13 @@
   function save(argument) {
       
     $.ajax({
-      url:'{{ route('previleges_update') }}',
+      url:'{{ route('kategori_update') }}',
       data:$('.form-save').serialize(),
       type:'get',
       success:function(data){
         if (data.status == 'sukses') {
           alert('data sudah disimpan.')
-          location.href = '{{ route('previleges_index') }}';
+          location.href = '{{ route('kategori_index') }}';
         }
       }
 

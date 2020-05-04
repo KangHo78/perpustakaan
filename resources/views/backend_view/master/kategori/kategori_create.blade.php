@@ -44,13 +44,13 @@
   function save(argument) {
       
     $.ajax({
-      url:'{{ route('previleges_save') }}',
+      url:'{{ route('kategori_save') }}',
       data:$('.form-save').serialize(),
       type:'get',
       success:function(data){
         if (data.status == 'sukses') {
           alert('data sudah disimpan.')
-          location.href = '{{ route('previleges_index') }}';
+          location.href = '{{ route('kategori_index') }}';
         }
       }
 
