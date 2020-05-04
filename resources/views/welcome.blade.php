@@ -16,7 +16,7 @@
 					</div>
 					<div class="col-lg-6">
 						<div class="hr-img">
-							<img src="{{ asset('assets/img/undraw_book_lover_mkck.svg') }}" alt="">
+							<img src="{{ asset('assets/img/draw/undraw_book_lover_mkck.svg') }}" alt="">
 						</div>
 					</div>
 				</div>
@@ -36,7 +36,7 @@
 					</div>
 					<div class="col-lg-6">
 						<div class="hr-img">
-							<img src="{{ asset('assets/img/hero-bg.png') }}" alt="">
+							<img src="{{ asset('assets/img/books/hero-bg.png') }}" alt="">
 						</div>
 					</div>
 				</div>
@@ -63,7 +63,7 @@
 		</div>
 	</div>
 </section>
-<section class="how-section spad set-bg" data-setbg="img/how-to-bg.jpg">
+<section class="how-section spad">
 	<div class="container text-white">
 		<div class="section-title">
 			<h2>How it works</h2>
@@ -118,25 +118,25 @@
 		<div class="row">
 			<div class="col-lg-3 col-sm-6">
 				<div class="concept-item">
-					<img src="{{ asset('assets/img/concept/1.jpg') }}" alt="">
+					<img src="{{ asset('assets/img/books/1.jpg') }}" alt="">
 					<h5>MOMENTUM</h5>
 				</div>
 			</div>
 			<div class="col-lg-3 col-sm-6">
 				<div class="concept-item">
-					<img src="{{ asset('assets/img/concept/2.jpg') }}" alt="">
+					<img src="{{ asset('assets/img/books/2.jpg') }}" alt="">
 					<h5>THE BOY</h5>
 				</div>
 			</div>
 			<div class="col-lg-3 col-sm-6">
 				<div class="concept-item">
-					<img src="{{ asset('assets/img/concept/3.jpg') }}" alt="">
+					<img src="{{ asset('assets/img/books/3.jpg') }}" alt="">
 					<h5>PATHWAY TO LOVE</h5>
 				</div>
 			</div>
 			<div class="col-lg-3 col-sm-6">
 				<div class="concept-item">
-					<img src="{{ asset('assets/img/concept/4.jpg') }}" alt="">
+					<img src="{{ asset('assets/img/books/4.jpg') }}" alt="">
 					<h5>CATCHER IN THE RYE</h5>
 				</div>
 			</div>
@@ -167,62 +167,6 @@
 					</li>
 				</ul>
 			</div>
-		</div>
-	</div>
-</section>
-<section class="premium-section spad">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-6">
-				<div class="section-title">
-					<h2>Our Team</h2>
-				</div>
-			</div>
-			<div class="col-lg-6">
-				<p>In this case the website cannot stand alone without the developer contributing fully and
-					wholeheartedly developing this website. Therefore the following are the developers who contributed
-					to building this Dryas library website.</p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-4 col-sm-6">
-				<div class="premium-item">
-					<img src="{{ asset('assets/img/avatar/rdp77.png') }}" alt="">
-					<h4>Moh Ravi Dwi Putra</h4>
-					<p>Cogans Abadi</p>
-				</div>
-			</div>
-			<div class="col-lg-4 col-sm-6">
-				<div class="premium-item">
-					<img src="{{ asset('assets/img/avatar/axl.jpg') }}" alt="">
-					<h4>AXL</h4>
-					<p>-</p>
-				</div>
-			</div>
-			<div class="col-lg-4 col-sm-6">
-				<div class="premium-item">
-					<img src="{{ asset('assets/img/avatar/axl.jpg') }}" alt="">
-					<h4>ROZAQ</h4>
-					<p>-</p>
-				</div>
-			</div>
-			<div class="col-lg-2 col-sm-6">
-			</div>
-			<div class="col-lg-4 col-sm-6">
-				<div class="premium-item">
-					<img src="{{ asset('assets/img/avatar/axl.jpg') }}" alt="">
-					<h4>HANIF</h4>
-					<p>-</p>
-				</div>
-			</div>
-			<div class="col-lg-4 col-sm-6">
-				<div class="premium-item">
-					<img src="{{ asset('assets/img/avatar/axl.jpg') }}" alt="">
-					<h4>RIJAL</h4>
-					<p>WONG GATEL</p>
-				</div>
-			</div>
-
 		</div>
 	</div>
 </section>

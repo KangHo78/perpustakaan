@@ -11,5 +11,20 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-   .sass('resources/sass/app.scss', 'public/css');
+mix.styles([
+        'resources/css/frontend/bootstrap.min.css',
+        'resources/css/frontend/font-awesome.min.css',
+        'resources/css/frontend/owl.carousel.min.css',
+        'resources/css/frontend/slicknav.min.css',
+        'resources/css/frontend/style.css',
+    ],
+    'public/css/front.css');
+
+mix.scripts([
+        'resources/js/frontend/jquery-3.2.1.min.js',
+        'resources/js/frontend/bootstrap.min.js',
+        'resources/js/frontend/jquery.slicknav.min.js',
+        'resources/js/frontend/owl.carousel.min.js',
+        'resources/js/frontend/main.js',
+    ],
+    'public/js/front.js');

@@ -16,7 +16,8 @@
 <script src="{{ asset('assets_backend/plugins/moment/moment.min.js') }}"></script>
 <script src="{{ asset('assets_backend/plugins/daterangepicker/daterangepicker.js') }}"></script>
 <!-- Tempusdominus Bootstrap 4 -->
-<script src="{{ asset('assets_backend/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+<script src="{{ asset('assets_backend/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}">
+</script>
 <!-- Summernote -->
 <script src="{{ asset('assets_backend/plugins/summernote/summernote-bs4.min.js') }}"></script>
 <!-- overlayScrollbars -->
@@ -32,10 +33,6 @@
 <script src="{{ asset('assets_backend/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('assets_backend/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
 <script src="{{ asset('assets_backend/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
-<!-- AdminLTE App -->
-<script src="{{ asset('assets_backend/dist/js/adminlte.min.js') }}"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="{{ asset('assets_backend/dist/js/demo.js') }}"></script>
 <!-- page script -->
 <script>
   $(function () {
