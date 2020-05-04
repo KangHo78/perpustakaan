@@ -49,3 +49,26 @@ Route::get('/previleges_save', 'previlegesController@save')->name('previleges_sa
 Route::get('/previleges_edit', 'previlegesController@edit')->name('previleges_edit');
 Route::get('/previleges_update', 'previlegesController@update')->name('previleges_update');
 Route::get('/previleges_delete', 'previlegesController@delete')->name('previleges_delete');
+
+Route::get('/kategori_index', 'kategoriController@index')->name('kategori_index');
+Route::get('/kategori_create', 'kategoriController@create')->name('kategori_create');
+Route::get('/kategori_save', 'kategoriController@save')->name('kategori_save');
+Route::get('/kategori_edit', 'kategoriController@edit')->name('kategori_edit');
+Route::get('/kategori_update', 'kategoriController@update')->name('kategori_update');
+Route::get('/kategori_delete', 'kategoriController@delete')->name('kategori_delete');
+
+Route::get('/pengarang_index', 'pengarangController@index')->name('pengarang_index');
+Route::get('/pengarang_create', 'pengarangController@create')->name('pengarang_create');
+Route::get('/pengarang_save', 'pengarangController@save')->name('pengarang_save');
+Route::get('/pengarang_edit', 'pengarangController@edit')->name('pengarang_edit');
+Route::get('/pengarang_update', 'pengarangController@update')->name('pengarang_update');
+Route::get('/pengarang_delete', 'pengarangController@delete')->name('pengarang_delete');
+
+Route::get('/penerbit_index', 'penerbitController@index')->name('penerbit_index');
+Route::get('/penerbit_create', 'penerbitController@create')->name('penerbit_create');
+Route::get('/penerbit_save', 'penerbitController@save')->name('penerbit_save');
+Route::get('/penerbit_edit', 'penerbitController@edit')->name('penerbit_edit');
+Route::get('/penerbit_update', 'penerbitController@update')->name('penerbit_update');
+Route::get('/penerbit_delete', 'penerbitController@delete')->name('penerbit_delete');
+
+
