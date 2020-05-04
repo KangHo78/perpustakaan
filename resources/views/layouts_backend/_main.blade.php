@@ -18,7 +18,7 @@
     @yield('content')
 
     <footer class="main-footer">
-      <strong>Copyright &copy; 2020 <a href="http://adminlte.io">DRYAS</a>.</strong>
+      <strong>Copyright &copy; 2020 <a href="javascript:void(0)">DRYAS</a>.</strong>
       All rights reserved.
       <div class="float-right d-none d-sm-inline-block">
         <b>Version</b> 1.0
