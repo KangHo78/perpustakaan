@@ -6,7 +6,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Dashboard Dryas Library</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="{{ asset('assets/img/favicon.ico') }}" rel="shortcut icon" />
+  <!-- Icon -->
+  <link href="{{ asset('assets/favicon.ico') }}" rel="shortcut icon" type='image/x-icon' />
+  <link href='{{ asset('assets/favicon-32x32.png') }}' rel='icon' sizes='32x32' />
+  <link href='{{ asset('assets/android-icon-192x192.png') }}' rel='icon' sizes='192x192' />
+  <link href='{{ asset('assets/apple-icon-180x180.png') }}' rel='apple-touch-icon' sizes='180x180' />
+  <meta content='{{ asset('assets/apple-icon-114x114.png') }}' name='msapplication-TileImage' />
   @include('layouts_backend._css')
 </head>
 
