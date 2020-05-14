@@ -32,7 +32,7 @@
             </div>
             <div class="col-lg-4 col-sm-6">
                 <div class="premium-item">
-                    <img src="{{ asset('assets/img/avatar/axl.jpg') }}" alt="">
+                    <img src="{{ asset('assets/img/avatar/default.svg') }}" alt="">
                     <h4>Abdul Rozaq N</h4>
                     <p>1461800196</p>
                 </div>
@@ -41,14 +41,14 @@
             </div>
             <div class="col-lg-4 col-sm-6">
                 <div class="premium-item">
-                    <img src="{{ asset('assets/img/avatar/axl.jpg') }}" alt="">
+                    <img src="{{ asset('assets/img/avatar/default.svg') }}" alt="">
                     <h4>Abdurrahman Hanif</h4>
                     <p>1461800175</p>
                 </div>
             </div>
             <div class="col-lg-4 col-sm-6">
                 <div class="premium-item">
-                    <img src="{{ asset('assets/img/avatar/axl.jpg') }}" alt="">
+                    <img src="{{ asset('assets/img/avatar/default.svg') }}" alt="">
                     <h4>Ahmad Rizal M</h4>
                     <p>1461800076</p>
                 </div>

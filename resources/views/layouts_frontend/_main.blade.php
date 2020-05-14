@@ -7,6 +7,10 @@
     <meta name="description" content="Dryas Library">
     <meta name="keywords" content="library, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Meta Color -->
+    <meta content='#08192d' name='theme-color' />
+    <meta content='#08192d' name='msapplication-navbutton-color' />
+    <meta content='#08192d' name='apple-mobile-web-app-status-bar-style' />
     <!-- Icon -->
     <link href="{{ asset('assets/favicon.ico') }}" rel="shortcut icon" type='image/x-icon' />
     <link href='{{ asset('assets/favicon-32x32.png') }}' rel='icon' sizes='32x32' />
