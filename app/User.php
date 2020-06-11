@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','id','previleges'
+        'name', 'email', 'password', 'id', 'previleges', 'address_univ', 'address', 'tlp'
     ];
 
     /**
@@ -38,7 +38,8 @@ class User extends Authenticatable
     ];
 
 
-    public function previleges(){
-      return $this->belongsTo('App\previleges', 'previleges', 'mp_id');
-    } 
+    public function previleges()
+    {
+        return $this->belongsTo('App\previleges', 'previleges', 'mp_id');
+    }
 }

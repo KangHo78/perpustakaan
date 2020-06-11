@@ -5,39 +5,37 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Master pengarang</h1>
+                    <h1 class="m-0 text-dark">Master Pengarang</h1>
                 </div>
                 <!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                         <li class="breadcrumb-item">Master</li>
-                        <li class="breadcrumb-item active">pengarang</li>
+                        <li class="breadcrumb-item active">Pengarang</li>
                     </ol>
                 </div>
                 <!-- /.col -->
             </div>
 
-        <div class="card card-info">
-              <div class="card-header">
-                <h3 class="card-title">Index pengarang</h3>
-                <div style="float:right">
-                    <button class="btn btn-sm btn-warning" onclick="tambah()"><i class="fas fa-plus"></i> Tambah </button>
+            <div class="card card-info">
+                <div class="card-header">
+                    <div class="float-right">
+                        <button class="btn btn-sm btn-warning" onclick="tambah()"><i class="fas fa-plus"></i> Tambah
+                        </button>
+                    </div>
                 </div>
-              </div>
-              <!-- /.card-header -->
-              <!-- form start -->
 
                 <div class="card-body">
-                    <table id="example1 " class="table table-bordered table-striped">
+                    <table id="example1" class="table-bordered table-striped table">
                         <thead>
                             <tr>
-                                <td>no</td>
-                                <td>name</td>
+                                <td>No</td>
+                                <td>Nama</td>
                                 <td>Kode</td>
                                 <td>Alamat</td>
-                                <td>tlp</td>
-                                <td>aksi</td>
+                                <td>Telepon</td>
+                                <td>Aksi</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -49,8 +47,10 @@
                                 <td>{{ $element->mpg_alamat }}</td>
                                 <td>{{ $element->mpg_tlp }}</td>
                                 <td>
-                                    <button class="btn btn-sm btn-warning" onclick="edit('{{ $element->mpg_id }}')"><i class="fas fa-pencil-o"></i> Edit</button>
-                                    <button class="btn btn-sm btn-danger" onclick="hapus('{{ $element->mpg_id }}')"><i class="fas fa-trash"></i> Hapus</button>
+                                    <button class="btn btn-sm btn-warning" onclick="edit('{{ $element->mpg_id }}')"><i
+                                            class="fas fa-pencil-o"></i> Edit</button>
+                                    <button class="btn btn-sm btn-danger" onclick="hapus('{{ $element->mpg_id }}')"><i
+                                            class="fas fa-trash"></i> Hapus</button>
                                 </td>
                             </tr>
                             @endforeach

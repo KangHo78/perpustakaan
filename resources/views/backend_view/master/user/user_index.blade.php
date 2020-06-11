@@ -10,59 +10,58 @@
                 <!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                         <li class="breadcrumb-item">Master</li>
                         <li class="breadcrumb-item active">User</li>
                     </ol>
                 </div>
                 <!-- /.col -->
             </div>
+
+            <!-- Main content -->
+            <div class="card card-info">
+                <div class="card-header">
+                    <div class="float-right">
+                        <button class="btn btn-sm btn-warning" onclick="tambah()"><i class="fas fa-plus"></i> Tambah
+                        </button>
+                    </div>
+                </div>
+
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table id="example1" class="table-bordered table-striped table">
+                        <thead>
+                            <tr>
+                                <td>No</td>
+                                <td>Nama</td>
+                                <td>Email</td>
+                                <td>Aksi</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($data as $index => $element)
+                            <tr>
+                                <td>{{ $index+1 }}</td>
+                                <td>{{ $element->name }}</td>
+                                <td>{{ $element->email }}</td>
+                                <td>
+                                    <button class="btn btn-sm btn-warning" onclick="edit('{{ $element->id }}')"><i
+                                            class="fas fa-pencil-o"></i> Edit</button>
+                                    <button class="btn btn-sm btn-danger" onclick="hapus('{{ $element->id }}')"><i
+                                            class="fas fa-trash"></i> Hapus</button>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
             <!-- /.row -->
         </div>
         <!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-
-    <!-- Main content -->
-    <div class="card">
-        <div class="card-header">
-            <h3 class="card-title">Index</h3>
-
-            <div style="float:right">
-                <button class="btn btn-sm btn-primary" onclick="tambah()"><i class="fas fa-plus"></i> Tambah </button>
-            </div>
-
-        </div>
-
-        <!-- /.card-header -->
-        <div class="card-body">
-            <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <td>no</td>
-                        <td>name</td>
-                        <td>email</td>
-                        <td>aksi</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($data as $index => $element)
-                    <tr>
-                        <td>{{ $index+1 }}</td>
-                        <td>{{ $element->name }}</td>
-                        <td>{{ $element->email }}</td>
-                        <td>
-                            <button class="btn btn-sm btn-warning" onclick="edit('{{ $element->id }}')"><i class="fas fa-pencil-o"></i> Edit</button>
-                            <button class="btn btn-sm btn-danger" onclick="hapus('{{ $element->id }}')"><i class="fas fa-trash"></i> Hapus</button>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-        <!-- /.card-body -->
-    </div>
-    <!-- /.content -->
 </div>
 @endsection
 
