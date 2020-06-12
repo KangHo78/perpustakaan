@@ -47,8 +47,8 @@
                                 <td>{{ $element->mpn_alamat }}</td>
                                 <td>{{ $element->mpn_tlp }}</td>
                                 <td>
-                                    <button class="btn btn-sm btn-warning btn-block"
-                                        onclick="edit('{{ $element->mpn_id }}')"><i class="fas fa-pencil-o"></i>
+                                    <button class="btn btn-sm btn-info btn-block"
+                                        onclick="edit('{{ $element->mpn_id }}')"><i class="fas fa-pen"></i>
                                         Edit</button>
                                     <button class="btn btn-sm btn-danger btn-block"
                                         onclick="hapus('{{ $element->mpn_id }}')"><i class="fas fa-trash"></i>
@@ -78,7 +78,24 @@
         location.href = '{{ url('/') }}' + '/penerbit_edit?&id=' + argument;
     }
 
-    function hapus(argument) {
-        location.href = '{{ url('/') }}' + '/penerbit_hapus?&id=' + argument;
+    function hapus(argument) {        
+        Swal.fire({
+            title: 'Yakin Menghapus Data?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            if (result.value) {
+                Swal.fire({
+                title: 'Data Berhasil Di Hapus',
+                icon: 'success',
+                showConfirmButton: false,
+                }
+            )
+            location.href = '{{ url('/') }}' + '/penerbit_hapus?&id=' + argument;
+            }
+        })
     }
 </script>

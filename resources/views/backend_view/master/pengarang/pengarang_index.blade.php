@@ -47,8 +47,8 @@
                                 <td>{{ $element->mpg_alamat }}</td>
                                 <td>{{ $element->mpg_tlp }}</td>
                                 <td>
-                                    <button class="btn btn-sm btn-warning" onclick="edit('{{ $element->mpg_id }}')"><i
-                                            class="fas fa-pencil-o"></i> Edit</button>
+                                    <button class="btn btn-sm btn-info" onclick="edit('{{ $element->mpg_id }}')"><i
+                                            class="fas fa-pen"></i> Edit</button>
                                     <button class="btn btn-sm btn-danger" onclick="hapus('{{ $element->mpg_id }}')"><i
                                             class="fas fa-trash"></i> Hapus</button>
                                 </td>
@@ -77,6 +77,23 @@
     }
 
     function hapus(argument) {
-        location.href = '{{ url('/') }}' + '/pengarang_hapus?&id=' + argument;
+        Swal.fire({
+            title: 'Yakin Menghapus Data?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            if (result.value) {
+                Swal.fire({
+                title: 'Data Berhasil Di Hapus',
+                icon: 'success',
+                showConfirmButton: false,
+                }
+            )
+            location.href = '{{ url('/') }}' + '/pengarang_hapus?&id=' + argument;
+            }
+        })
     }
 </script>

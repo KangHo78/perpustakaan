@@ -45,8 +45,8 @@
                                 <td>{{ $element->name }}</td>
                                 <td>{{ $element->email }}</td>
                                 <td>
-                                    <button class="btn btn-sm btn-warning btn-block"
-                                        onclick="edit('{{ $element->id }}')"><i class="fas fa-pencil-o"></i>
+                                    <button class="btn btn-sm btn-info btn-block"
+                                        onclick="edit('{{ $element->id }}')"><i class="fas fa-pen"></i>
                                         Edit</button>
                                     <button class="btn btn-sm btn-danger btn-block"
                                         onclick="hapus('{{ $element->id }}')"><i class="fas fa-trash"></i>
@@ -77,6 +77,23 @@
     }
 
     function hapus(argument) {
-        location.href = '{{ url(' / ') }}' + '/latihan_crud_hapus?&id=' + argument;
+        Swal.fire({
+            title: 'Yakin Menghapus Data?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            if (result.value) {
+                Swal.fire({
+                title: 'Data Berhasil Di Hapus',
+                icon: 'success',
+                showConfirmButton: false,
+                }
+            )
+            location.href = '{{ url(' / ') }}' + '/latihan_crud_hapus?&id=' + argument;
+            }
+        })        
     }
 </script>

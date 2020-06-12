@@ -1,3 +1,5 @@
+<!-- Javascript -->
+<script src="{{ asset('js/back.js') }}"></script>
 {{-- <!-- jQuery -->
 <script src="{{ asset('assets_backend/plugins/jquery/jquery.min.js') }}"></script>
 <!-- Bootstrap 4 -->
@@ -24,8 +26,10 @@
 <script src="{{ asset('assets_backend/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('assets_backend/dist/js/adminlte.js') }}"></script> --}}
-<!-- Javascript -->
-<script src="{{ asset('js/back.js') }}"></script>
+<!-- Toastr -->
+<script src="{{ asset('assets_backend/plugins/toastr/toastr.min.js') }}"></script>
+<!-- SweetAlert2 -->
+<script src="{{ asset('assets_backend/plugins/sweetalert2/sweetalert2.all.min.js') }}"></script>
 <!-- page script -->
 <script>
   $(function () {
@@ -34,4 +38,5 @@
       "autoWidth": false,
     });
   });
+
 </script>
