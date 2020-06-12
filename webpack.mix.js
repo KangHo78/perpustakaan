@@ -11,6 +11,7 @@ const mix = require('laravel-mix');
  |
  */
 
+// Front End
 mix.styles([
         'resources/css/frontend/bootstrap.min.css',
         'resources/css/frontend/font-awesome.min.css',
@@ -28,3 +29,34 @@ mix.scripts([
         'resources/js/frontend/main.js',
     ],
     'public/js/front.js');
+
+// Back End
+mix.styles([
+        'resources/css/backend/tempusdominus-bootstrap-4.min.css',
+        'resources/css/backend/icheck-bootstrap.min.css',
+        'resources/css/backend/OverlayScrollbars.min.css',
+        'resources/css/backend/daterangepicker.css',
+        'resources/css/backend/dataTables.bootstrap4.min.css',
+        'resources/css/backend/responsive.bootstrap4.min.css',
+        'resources/css/backend/adminlte.min.css',
+    ],
+    'public/css/back.css');
+
+mix.scripts([
+        'resources/js/backend/jquery.min.js',
+        'resources/js/backend/bootstrap.bundle.min.js',
+        'resources/js/backend/moment.min.js',
+        'resources/js/backend/daterangepicker.js',
+        'resources/js/backend/tempusdominus-bootstrap-4.min.js',
+        'resources/js/backend/fastclick.js',
+        'resources/js/backend/bs-custom-file-input.min.js',
+        'resources/js/backend/jquery.overlayScrollbars.min.js',
+        'resources/js/backend/pdfmake.min.js',
+        'resources/js/backend/vfs_fonts.js',
+        'resources/js/backend/jquery.dataTables.min.js',
+        'resources/js/backend/dataTables.bootstrap4.min.js',
+        'resources/js/backend/dataTables.responsive.min.js',
+        'resources/js/backend/responsive.bootstrap4.min.js',
+        'resources/js/backend/adminlte.min.js',
+    ],
+    'public/js/back.js');

@@ -26,7 +26,7 @@ Route::get('/catalog', 'buku_katalogController@buku_katalog')->name('buku_katalo
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'HomeController@index')->name('home');
 Route::get('/profile', 'userController@profile')->name('profile');
 
 

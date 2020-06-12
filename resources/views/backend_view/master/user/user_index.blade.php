@@ -29,7 +29,7 @@
 
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <table id="example1" class="table-bordered table-striped table">
+                    <table id="tables" class="table-bordered table-striped table">
                         <thead>
                             <tr>
                                 <td>No</td>
@@ -45,10 +45,12 @@
                                 <td>{{ $element->name }}</td>
                                 <td>{{ $element->email }}</td>
                                 <td>
-                                    <button class="btn btn-sm btn-warning" onclick="edit('{{ $element->id }}')"><i
-                                            class="fas fa-pencil-o"></i> Edit</button>
-                                    <button class="btn btn-sm btn-danger" onclick="hapus('{{ $element->id }}')"><i
-                                            class="fas fa-trash"></i> Hapus</button>
+                                    <button class="btn btn-sm btn-warning btn-block"
+                                        onclick="edit('{{ $element->id }}')"><i class="fas fa-pencil-o"></i>
+                                        Edit</button>
+                                    <button class="btn btn-sm btn-danger btn-block"
+                                        onclick="hapus('{{ $element->id }}')"><i class="fas fa-trash"></i>
+                                        Hapus</button>
                                 </td>
                             </tr>
                             @endforeach
