@@ -26,7 +26,7 @@
       <!-- FORM -->
       <div class="card card-default">
         <div class="card-header">
-          <h3 class="card-title">Previlege Create</h3>
+          <h3 class="card-title">Previlege Edit</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body" style="display: block;">

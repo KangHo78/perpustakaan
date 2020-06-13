@@ -32,7 +32,6 @@
                             <tr>
                                 <td>No</td>
                                 <td>Nama</td>
-                                <td>Kode</td>
                                 <td>Alamat</td>
                                 <td>Telepon</td>
                                 <td>Aksi</td>
@@ -43,7 +42,6 @@
                             <tr>
                                 <td>{{ $index+1 }}</td>
                                 <td>{{ $element->mpg_name }}</td>
-                                <td>{{ $element->mpg_kode }}</td>
                                 <td>{{ $element->mpg_alamat }}</td>
                                 <td>{{ $element->mpg_tlp }}</td>
                                 <td>

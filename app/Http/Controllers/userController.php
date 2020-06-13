@@ -74,6 +74,6 @@ class userController extends Controller
     public function profile()
     {
         $data = $this->model->user()->get();
-        return view('backend_view.master.user.user_profile', compact('data'));
+        return view('backend_view.master.user.profile.profile_index', compact('data'));
     }
 }

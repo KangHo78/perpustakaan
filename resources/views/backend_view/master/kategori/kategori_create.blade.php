@@ -7,12 +7,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0 text-dark">Dashboard</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">Previlege Create</li>
+            <li class="breadcrumb-item">Master</li>
+            <li class="breadcrumb-item active">Kategori Create</li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -21,22 +21,30 @@
   <!-- /.content-header -->
 
   <!-- Main content -->
-  <div class="card">
-    <div class="card-header">
-      <h3 class="card-title">Create Form</h3>
+  <section class="content">
+    <div class="container-fluid">
+      <!-- FORM -->
+      <div class="card card-default">
+        <div class="card-header">
+          <h3 class="card-title">Kategori Create</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body" style="display: block;">
+          <form class="form-save">
+            <div class="form-group">
+              <label>Nama</label>
+              <input type="text" class="form-control" name="name" placeholder="Nama Previlege">
+            </div>
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer">
+          <button type="button" class="btn btn-primary" onclick="save()"><i class="fas fa-save"></i> Save</button>
+        </div>
+        </form>
+      </div>
+      <!-- /.card -->
     </div>
-    <!-- /.card-header -->
-    <div class="card-body">
-      <form class="form-save">
-        <label> name </label>
-        <input type="text" class="form-control" name="name">
-        <br>
-        <button class="btn btn-sm btn-info" type="button" onclick="save()">
-          <i class="fas fa-save"></i> Save
-        </button>
-      </form>
-    </div>
-  </div>
+  </section>
 </div>
 @endsection
 

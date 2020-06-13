@@ -33,7 +33,7 @@
       </a>
       <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" style="background-color: white" href="{{ route('profile') }}">
+        <a class="dropdown-item" style="background-color: white" href="{{ route('profile_index') }}">
           <i class="fa fa-user m-r-5 m-l-5"></i> Profile</a>
         <div class="dropdown-divider"></div>
         <div class="dropdown-divider"></div>

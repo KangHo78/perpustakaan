@@ -26,10 +26,11 @@
 <script src="{{ asset('assets_backend/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('assets_backend/dist/js/adminlte.js') }}"></script> --}}
-<!-- Toastr -->
-<script src="{{ asset('assets_backend/plugins/toastr/toastr.min.js') }}"></script>
 <!-- SweetAlert2 -->
 <script src="{{ asset('assets_backend/plugins/sweetalert2/sweetalert2.all.min.js') }}"></script>
+<!-- Input Mask-->
+<script src="{{ asset('assets_backend/plugins/inputmask/jquery.inputmask.min.js') }}"></script>
+<script src="{{ asset('assets_backend/plugins/inputmask/bindings/inputmask.binding.js') }}"></script>
 <!-- page script -->
 <script>
   $(function () {

@@ -7,12 +7,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0 text-dark">Dashboard</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">pengarang Create</li>
+            <li class="breadcrumb-item">Master</li>
+            <li class="breadcrumb-item active">Pengarang Create</li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -21,48 +21,39 @@
   <!-- /.content-header -->
 
   <!-- Main content -->
-  <div class="card">
-    <div class="card-header">
-      <h3 class="card-title">Create Form</h3>
-    </div>
-    <!-- /.card-header -->
-    <div class="card-body">
-
-      <form class="form-save">
-        <div class="row">
-          <div class="col-sm-6">
+  <section class="content">
+    <div class="container-fluid">
+      <!-- FORM -->
+      <div class="card card-default">
+        <div class="card-header">
+          <h3 class="card-title">Pengarang Edit</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body" style="display: block;">
+          <form class="form-save">
             <div class="form-group">
               <label>Nama</label>
-              <input type="text" class="form-control" name="name" placeholder="Enter ...">
+              <input type="text" class="form-control" name="name">
             </div>
-          </div>
-          <div class="col-sm-6">
-            <div class="form-group">
-              <label>Kode</label>
-              <input type="text" class="form-control" name="kode" placeholder="Enter ...">
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-6">
             <div class="form-group">
               <label>Alamat</label>
-              <input type="text" class="form-control" name="alamat" placeholder="Enter ...">
+              <input type="text" class="form-control" name="alamat">
             </div>
-          </div>
-          <div class="col-sm-6">
             <div class="form-group">
-              <label>Tlp</label>
-              <input type="text" class="form-control" name="tlp" placeholder="Enter ...">
+              <label>Telepon</label>
+              <input type="text" class="form-control" data-inputmask="&quot;mask&quot;: &quot;(+62) 999-9999-9999&quot;"
+                name="tlp">
             </div>
-          </div>
         </div>
-        <button class="btn btn-sm btn-info float-sm-right" type="button" onclick="save()">
-          <i class="fas fa-save"></i> Save
-        </button>
-      </form>
+        <!-- /.card-body -->
+        <div class="card-footer">
+          <button type="button" class="btn btn-primary" onclick="save()"><i class="fas fa-save"></i> Save</button>
+        </div>
+        </form>
+      </div>
+      <!-- /.card -->
     </div>
-  </div>
+  </section>
 </div>
 @endsection
 
