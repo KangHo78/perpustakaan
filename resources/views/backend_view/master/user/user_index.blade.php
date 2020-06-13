@@ -20,12 +20,6 @@
 
             <!-- Main content -->
             <div class="card card-info">
-                <div class="card-header">
-                    <div class="float-right">
-                        <button class="btn btn-sm btn-warning" onclick="tambah()"><i class="fas fa-plus"></i> Tambah
-                        </button>
-                    </div>
-                </div>
 
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -34,6 +28,10 @@
                             <tr>
                                 <td>No</td>
                                 <td>Nama</td>
+                                <td>Kode</td>
+                                <td>Alamat</td>
+                                <td>Telepon</td>
+                                <td>Kode Registrasi</td>
                                 <td>Email</td>
                                 <td>Aksi</td>
                             </tr>
@@ -43,6 +41,10 @@
                             <tr>
                                 <td>{{ $index+1 }}</td>
                                 <td>{{ $element->name }}</td>
+                                <td>{{ $element->kode }}</td>
+                                <td>{{ $element->address }}</td>
+                                <td>{{ $element->tlp }}</td>
+                                <td>{{ $element->registration_kode }}</td>
                                 <td>{{ $element->email }}</td>
                                 <td>
                                     <button class="btn btn-sm btn-info btn-block"
@@ -68,12 +70,8 @@
 @endsection
 
 <script type="text/javascript">
-    function tambah(argument) {
-        location.href = '{{ route('user_create') }}';
-    }
-
     function edit(argument) {
-        location.href = '{{ url(' / ') }}' + '/latihan_crud_edit?&id=' + argument;
+        location.href = '{{ url('/') }}' + '/user_edit?&id=' + argument;
     }
 
     function hapus(argument) {
@@ -92,7 +90,7 @@
                 showConfirmButton: false,
                 }
             )
-            location.href = '{{ url(' / ') }}' + '/latihan_crud_hapus?&id=' + argument;
+            location.href = '{{ url('/') }}' + '/user_hapus?&id=' + argument;
             }
         })        
     }

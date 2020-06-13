@@ -28,8 +28,8 @@
             <div class="card card-primary card-outline">
                 <div class="card-body box-profile">
                     <div class="text-center">
-                        <img class="profile-user-img img-fluid img-circle"
-                            src="{{ asset('assets_backend/dist/img/user2-160x160.jpg') }}" alt="User profile picture">
+                        <img class="profile-user-img img-fluid img-circle" src="{{ Auth::user()->photo }}"
+                            alt="User profile picture">
                     </div>
                     <h3 class="profile-username text-center">{{ Auth::user()->name }}</h3>
                     <p class="text-muted text-center">Mahasiswa</p>

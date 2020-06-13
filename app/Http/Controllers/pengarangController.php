@@ -72,7 +72,7 @@ class pengarangController extends Controller
     }
     public function hapus(Request $req)
     {
-        $data = $this->model->pengarang()->where('mpg_id', $req->id)->delete();
+        $this->model->pengarang()->where('mpg_id', $req->id)->delete();
         return redirect()->back();
     }
 }

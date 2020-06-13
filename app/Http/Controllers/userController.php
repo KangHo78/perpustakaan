@@ -32,35 +32,30 @@ class userController extends Controller
         $data = $this->model->user()->get();
         return view('backend_view.master.user.user_index', compact('data'));
     }
-    public function create()
-    {
-        return view('latihan_crud_create');
-    }
-    public function save(Request $req)
-    {
-        $simpan = DB::table('latihan_crud')->insert([
-            'nama' => $req->nama,
-            'kelas' => $req->kelas,
-        ]);
-        if ($simpan == true) {
-            return Response()->json(['status' => 'sukses']);
-        } else {
-            return Response()->json(['status' => 'gagal']);
-        }
-    }
     public function edit(Request $req)
     {
-        $data = DB::table('latihan_crud')->where('id', $req->id)->first();
-        return view('latihan_crud_edit', compact('data'));
+        $data = $this->model->user()->where('id', $req->id)->first();
+        return view('backend_view.master.user.user_edit', compact('data'));
     }
     public function update(Request $req)
     {
-        $simpan = DB::table('latihan_crud')->where('id', $req->id)->update([
-            'nama' => $req->nama,
-            'kelas' => $req->kelas,
+        $validasi = $this->validate($req, [
+            'name' => 'required',
+            'username' => 'required',
+            'address' => 'required'
         ]);
-
-        if ($simpan == true) {
+        if ($validasi == true) {
+            $this->model->user()->where('id', $req->id)->update([
+                'name' => $req->name,
+                'email' => $req->email,
+                'previleges' => $req->previleges,
+                'kode' => $req->kode,
+                'address_univ' => $req->addressuniv,
+                'address' => $req->address,
+                'tlp' => $req->tlp,
+                'registration_kode' => $req->reg,
+                'username' => $req->username,
+            ]);
             return Response()->json(['status' => 'sukses']);
         } else {
             return Response()->json(['status' => 'gagal']);
@@ -68,7 +63,7 @@ class userController extends Controller
     }
     public function hapus(Request $req)
     {
-        $data = DB::table('latihan_crud')->where('id', $req->id)->delete();
+        DB::table('users')->where('id', $req->id)->delete();
         return redirect()->back();
     }
     public function profile()
