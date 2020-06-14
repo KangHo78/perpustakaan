@@ -38,14 +38,19 @@ class pengarangController extends Controller
     }
     public function save(Request $req)
     {
-        $id = $this->model->pengarang()->max('mpg_id') + 1;
-        $simpan = $this->model->pengarang()->create([
-            'mpg_id' => $id,
-            'mpg_name' => $req->name,
-            'mpg_alamat' => $req->alamat,
-            'mpg_tlp' => $req->tlp,
+        $validasi = $this->validate($req, [
+            'name' => 'required',
+            'alamat' => 'required',
+            'tlp' => 'required',
         ]);
-        if ($simpan == true) {
+        $id = $this->model->pengarang()->max('mpg_id') + 1;
+        if ($validasi == true) {
+            $this->model->pengarang()->create([
+                'mpg_id' => $id,
+                'mpg_name' => $req->name,
+                'mpg_alamat' => $req->alamat,
+                'mpg_tlp' => $req->tlp,
+            ]);
             return Response()->json(['status' => 'sukses']);
         } else {
             return Response()->json(['status' => 'gagal']);
@@ -58,13 +63,17 @@ class pengarangController extends Controller
     }
     public function update(Request $req)
     {
-        $simpan = $this->model->pengarang()->where('mpg_id', $req->id)->update([
-            'mpg_name' => $req->name,
-            'mpg_alamat' => $req->alamat,
-            'mpg_tlp' => $req->tlp,
+        $validasi = $this->validate($req, [
+            'name' => 'required',
+            'alamat' => 'required',
+            'tlp' => 'required',
         ]);
-
-        if ($simpan == true) {
+        if ($validasi == true) {
+            $this->model->pengarang()->where('mpg_id', $req->id)->update([
+                'mpg_name' => $req->name,
+                'mpg_alamat' => $req->alamat,
+                'mpg_tlp' => $req->tlp,
+            ]);
             return Response()->json(['status' => 'sukses']);
         } else {
             return Response()->json(['status' => 'gagal']);

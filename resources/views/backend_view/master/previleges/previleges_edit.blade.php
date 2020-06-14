@@ -12,7 +12,7 @@
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
             <li class="breadcrumb-item">Master</li>
-            <li class="breadcrumb-item active">Previlege Edit</li>
+            <li class="breadcrumb-item active">Edit Previlege</li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -26,7 +26,7 @@
       <!-- FORM -->
       <div class="card card-default">
         <div class="card-header">
-          <h3 class="card-title">Previlege Edit</h3>
+          <h3 class="card-title">Edit Previlege</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body" style="display: block;">
@@ -56,6 +56,15 @@
       url:'{{ route('previleges_update') }}',
       data:$('.form-save').serialize(),
       type:'get',
+      error:function(data){
+        if(data.status == 422){
+            Swal.fire({
+              title: 'Pastikan Data Tidak Kosong.',
+              icon: 'error',
+              confirmButtonText: 'Ok'
+            })
+          }
+        }, 
       success:function(data){
         if (data.status == 'sukses') {
           Swal.fire({

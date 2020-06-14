@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use DB;
 use App\models;
 use Response;
+
 class kategoriController extends Controller
 {
     /**
@@ -17,9 +18,9 @@ class kategoriController extends Controller
 
     public function __construct()
     {
-      $this->middleware('auth');
-      $this->model = new models();
-    } 
+        $this->middleware('auth');
+        $this->model = new models();
+    }
 
     /**
      * Show the application dashboard.
@@ -27,9 +28,9 @@ class kategoriController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {   
+    {
         $data = $this->model->kategori()->get();
-        return view('backend_view.master.kategori.kategori_index',compact('data'));
+        return view('backend_view.master.kategori.kategori_index', compact('data'));
     }
     public function create()
     {
@@ -37,37 +38,42 @@ class kategoriController extends Controller
     }
     public function save(Request $req)
     {
-        $id = $this->model->kategori()->max('mk_id')+1;
-        $simpan = $this->model->kategori()->create([
-                    'mk_id'=>$id,
-                    'mk_name'=>$req->name,
-                  ]);
-        if ($simpan == true) {
-            return Response()->json(['status'=>'sukses']);
-        }else{
-            return Response()->json(['status'=>'gagal']);
+        $validasi = $this->validate($req, [
+            'name' => 'required',
+        ]);
+        $id = $this->model->kategori()->max('mk_id') + 1;
+        if ($validasi == true) {
+            $this->model->kategori()->create([
+                'mk_id' => $id,
+                'mk_name' => $req->name,
+            ]);
+            return Response()->json(['status' => 'sukses']);
+        } else {
+            return Response()->json(['status' => 'gagal']);
         }
     }
     public function edit(Request $req)
     {
-        $data = $this->model->kategori()->where('mk_id',$req->id)->first();
-        return view('backend_view.master.kategori.kategori_edit',compact('data'));
+        $data = $this->model->kategori()->where('mk_id', $req->id)->first();
+        return view('backend_view.master.kategori.kategori_edit', compact('data'));
     }
     public function update(Request $req)
     {
-        $simpan = $this->model->kategori()->where('mk_id',$req->id)->update([
-                    'mk_name'=>$req->name,
-                  ]);
-
-        if ($simpan == true) {
-            return Response()->json(['status'=>'sukses']);
-        }else{
-            return Response()->json(['status'=>'gagal']);
+        $validasi = $this->validate($req, [
+            'name' => 'required',
+        ]);
+        if ($validasi == true) {
+            $this->model->kategori()->where('mk_id', $req->id)->update([
+                'mk_name' => $req->name,
+            ]);
+            return Response()->json(['status' => 'sukses']);
+        } else {
+            return Response()->json(['status' => 'gagal']);
         }
     }
     public function hapus(Request $req)
     {
-        $data = $this->model->kategori()->where('mk_id',$req->id)->delete();
+        $data = $this->model->kategori()->where('mk_id', $req->id)->delete();
         return redirect()->back();
     }
 }

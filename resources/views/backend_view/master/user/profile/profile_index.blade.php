@@ -32,13 +32,23 @@
                             alt="User profile picture">
                     </div>
                     <h3 class="profile-username text-center">{{ Auth::user()->name }}</h3>
-                    <p class="text-muted text-center">Mahasiswa</p>
+                    <p class="text-muted text-center">
+                        @if(Auth::user()->previleges == '3')
+                        Mahasiswa
+                        @elseif(Auth::user()->previleges == '2')
+                        Dosen
+                        @else
+                        Administrator
+                        @endif</p>
                     <ul class="list-group list-group-unbordered mb-3">
                         <li class="list-group-item">
                             <b>Status</b> <a class="float-right">Aktif</a>
                         </li>
                         <li class="list-group-item">
-                            <b>Fakultas</b> <a class="float-right">Teknik Informatika</a>
+                            <b>Username</b> <a class="float-right">{{ Auth::user()->username }}</a>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Email</b> <a class="float-right">{{ Auth::user()->email }}</a>
                         </li>
                         <li class="list-group-item">
                             <b>Alamat</b> <a class="float-right">{{ Auth::user()->address }}</a>
@@ -47,7 +57,8 @@
                             <b>Telepon</b> <a class="float-right">{{ Auth::user()->tlp }}</a>
                         </li>
                     </ul>
-                    <a href="#" class="btn btn-primary btn-block"><b>Edit Data</b></a>
+                    <button onclick="edit('{{ Auth::user()->id }}')" class="btn btn-primary btn-block"><b>Edit
+                            Data</b></button>
                     <a href="#" class="btn btn-primary btn-block"><b>Print Kartu Anggota</b></a>
                 </div>
                 <!-- /.card-body -->
@@ -56,3 +67,9 @@
     </div>
 </div>
 @endsection
+
+<script type="text/javascript">
+    function edit(argument) {
+        location.href = '{{ url('/') }}' + '/profile_edit?&id=' + argument;
+    }
+</script>

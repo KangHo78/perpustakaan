@@ -29,12 +29,13 @@ Auth::routes();
 Route::get('/dashboard', 'HomeController@index')->name('home');
 
 Route::get('/user', 'userController@index')->name('user_index');
-Route::get('/user_save', 'userController@save')->name('user_save');
 Route::get('/user_edit', 'userController@edit')->name('user_edit');
 Route::get('/user_update', 'userController@update')->name('user_update');
 Route::get('/user_hapus', 'userController@hapus')->name('user_hapus');
 
 Route::get('/profile', 'userController@profile')->name('profile_index');
+Route::get('/profile_edit', 'userController@profileedit')->name('profile_edit');
+Route::get('/profile_update', 'userController@profileupdate')->name('profile_update');
 
 Route::get('/previleges', 'previlegesController@index')->name('previleges_index');
 Route::get('/previleges_create', 'previlegesController@create')->name('previleges_create');

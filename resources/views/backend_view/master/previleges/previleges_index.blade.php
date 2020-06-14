@@ -19,12 +19,6 @@
             </div>
 
             <div class="card card-info">
-                <div class="card-header">
-                    <div class="float-right">
-                        <button class="btn btn-sm btn-warning" onclick="tambah()"><i class="fas fa-plus"></i> Tambah
-                        </button>
-                    </div>
-                </div>
 
                 <div class="card-body">
                     <table id="tables" class="table-bordered table-striped table">
@@ -41,10 +35,8 @@
                                 <td>{{ $index+1 }}</td>
                                 <td>{{ $element->mp_name }}</td>
                                 <td>
-                                    <button class="btn btn-sm btn-info" onclick="edit('{{ $element->mp_id }}')"><i
-                                            class="fas fa-pen"></i> Edit</button>
-                                    <button class="btn btn-sm btn-danger" onclick="hapus('{{ $element->mp_id }}')"><i
-                                            class="fas fa-trash"></i> Hapus</button>
+                                    <button class="btn btn-sm btn-info btn-block"
+                                        onclick="edit('{{ $element->mp_id }}')"><i class="fas fa-pen"></i> Edit</button>
                                 </td>
                             </tr>
                             @endforeach

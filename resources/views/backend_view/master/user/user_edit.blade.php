@@ -27,21 +27,12 @@
                     <h3 class="card-title">Create User</h3>
                 </div>
                 <!-- /.card-header -->
-                @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-                @endif
                 <div class="card-body" style="display: block;">
                     <form class="form-save">
                         <div class="form-group">
                             <label>Nama</label>
                             <input type="text" class="form-control" value="{{ $data->name }}" name="name">
-                            <input type="hidden" class="form-control" name="id" value="{{ $data->id }}">
+                            <input type="text" hidden class="form-control" name="id" value="{{ $data->id }}">
                         </div>
                         <div class="form-group">
                             <label>Email</label>

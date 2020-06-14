@@ -38,12 +38,15 @@ class previlegesController extends Controller
     }
     public function save(Request $req)
     {
-        $id = $this->model->previleges()->max('mp_id') + 1;
-        $simpan = $this->model->previleges()->create([
-            'mp_id' => $id,
-            'mp_name' => $req->name,
+        $validasi = $this->validate($req, [
+            'name' => 'required',
         ]);
-        if ($simpan == true) {
+        $id = $this->model->previleges()->max('mp_id') + 1;
+        if ($validasi == true) {
+            $this->model->previleges()->create([
+                'mp_id' => $id,
+                'mp_name' => $req->name,
+            ]);
             return Response()->json(['status' => 'sukses']);
         } else {
             return Response()->json(['status' => 'gagal']);
@@ -56,11 +59,13 @@ class previlegesController extends Controller
     }
     public function update(Request $req)
     {
-        $simpan = $this->model->previleges()->where('mp_id', $req->id)->update([
-            'mp_name' => $req->name,
+        $validasi = $this->validate($req, [
+            'name' => 'required',
         ]);
-
-        if ($simpan == true) {
+        if ($validasi == true) {
+            $this->model->previleges()->where('mp_id', $req->id)->update([
+                'mp_name' => $req->name,
+            ]);
             return Response()->json(['status' => 'sukses']);
         } else {
             return Response()->json(['status' => 'gagal']);

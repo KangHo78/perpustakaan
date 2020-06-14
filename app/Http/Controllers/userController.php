@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use DB;
 use App\models;
 use Response;
@@ -41,8 +42,14 @@ class userController extends Controller
     {
         $validasi = $this->validate($req, [
             'name' => 'required',
+            'email' => 'required',
+            'previleges' => 'required',
+            'kode' => 'required',
+            'addressuniv' => 'required',
+            'address' => 'required',
+            'tlp' => 'required',
+            'reg' => 'required',
             'username' => 'required',
-            'address' => 'required'
         ]);
         if ($validasi == true) {
             $this->model->user()->where('id', $req->id)->update([
@@ -70,5 +77,57 @@ class userController extends Controller
     {
         $data = $this->model->user()->get();
         return view('backend_view.master.user.profile.profile_index', compact('data'));
+    }
+    public function profileedit(Request $req)
+    {
+        $data = $this->model->user()->where('id', $req->id)->first();
+        return view('backend_view.master.user.profile.profile_edit', compact('data'));
+    }
+    public function profileupdate(Request $req)
+    {
+        $validasi = $this->validate($req, [
+            'photo' => 'required|image|mimes:jpeg,png,jpg,svg|max:2000',
+            'name' => 'required',
+            'email' => 'required',
+            'address' => 'required',
+            'tlp' => 'required',
+            'username' => 'required',
+        ]);
+        // $uploadFile = $req->file('image');
+
+        //generate random filename and append original extension (eg: asddasada.jpg, asddasada.png)
+        // $filename = $req->id . '.' . $uploadFile->extension();
+
+        // storing path (Change it to your desired path in public folder)
+        // $path = 'img/uploads';
+
+        // Move file to public filder
+        // $uploadFile->storeAs('../../public/' . $path, $filename);
+        // $imagePath = $req->file('photo');
+        // $imagePath = Storage::disk('local')->putFile('uploads', $req->file('photo'));
+
+        // $imageName = time() . '.' . $imagePath->getClientOriginalExtension();
+        // $imagePath->move(public_path('images'), $imagePath->getClientOriginalName());
+        // $path = Storage::putFile('images', $req->file('photo'));
+        // Storage::putFile(
+        //     'assets/user',
+        //     $imagePath,
+        // );
+        // Storage::disk('local')->put('images/1/smalls' . '/' . $imageName, 'public');
+        if ($validasi == true) {
+            $this->model->user()->where('id', $req->id)->update([
+                'photo' => $req->photo,
+                'name' => $req->name,
+                'email' => $req->email,
+                'address' => $req->address,
+                'tlp' => $req->tlp,
+                'username' => $req->username,
+            ]);
+            // $file = 'user' . $req->id . '.jpg';
+            // Storage::put($file, file_get_contents($req->file('photo')));
+            return Response()->json(['status' => 'sukses']);
+        } else {
+            return Response()->json(['status' => 'gagal']);
+        }
     }
 }

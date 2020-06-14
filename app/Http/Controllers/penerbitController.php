@@ -38,14 +38,19 @@ class penerbitController extends Controller
     }
     public function save(Request $req)
     {
-        $id = $this->model->penerbit()->max('mpn_id') + 1;
-        $simpan = $this->model->penerbit()->create([
-            'mpn_id' => $id,
-            'mpn_name' => $req->name,
-            'mpn_alamat' => $req->alamat,
-            'mpn_tlp' => $req->tlp,
+        $validasi = $this->validate($req, [
+            'name' => 'required',
+            'alamat' => 'required',
+            'tlp' => 'required',
         ]);
-        if ($simpan == true) {
+        $id = $this->model->penerbit()->max('mpn_id') + 1;
+        if ($validasi == true) {
+            $this->model->penerbit()->create([
+                'mpn_id' => $id,
+                'mpn_name' => $req->name,
+                'mpn_alamat' => $req->alamat,
+                'mpn_tlp' => $req->tlp,
+            ]);
             return Response()->json(['status' => 'sukses']);
         } else {
             return Response()->json(['status' => 'gagal']);
@@ -58,13 +63,17 @@ class penerbitController extends Controller
     }
     public function update(Request $req)
     {
-        $simpan = $this->model->penerbit()->where('mpn_id', $req->id)->update([
-            'mpn_name' => $req->name,
-            'mpn_alamat' => $req->alamat,
-            'mpn_tlp' => $req->tlp,
+        $validasi = $this->validate($req, [
+            'name' => 'required',
+            'alamat' => 'required',
+            'tlp' => 'required',
         ]);
-
-        if ($simpan == true) {
+        if ($validasi == true) {
+            $this->model->penerbit()->where('mpn_id', $req->id)->update([
+                'mpn_name' => $req->name,
+                'mpn_alamat' => $req->alamat,
+                'mpn_tlp' => $req->tlp,
+            ]);
             return Response()->json(['status' => 'sukses']);
         } else {
             return Response()->json(['status' => 'gagal']);
