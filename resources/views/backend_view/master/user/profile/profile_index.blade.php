@@ -82,11 +82,6 @@
 // };
 // pdfMake.createPdf(docDefinition).print();
 // }
-$('#photo').on('change',function(){
-                var fileName = $(this).val();
-                $(this).next('.custom-file-label').html(fileName);
-    }
-    
     function edit(argument) {
         location.href = '{{ url('/') }}' + '/profile_edit?&id=' + argument;
     }
