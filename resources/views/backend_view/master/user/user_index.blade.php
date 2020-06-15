@@ -28,6 +28,7 @@
                             <tr>
                                 <td>No</td>
                                 <td>Nama</td>
+                                <td>Previleges</td>
                                 <td>Kode</td>
                                 <td>Alamat</td>
                                 <td>Telepon</td>
@@ -41,6 +42,13 @@
                             <tr>
                                 <td>{{ $index+1 }}</td>
                                 <td>{{ $element->name }}</td>
+                                @if($element->previleges == '3')
+                                <td>Mahasiswa</td>
+                                @elseif($element->previleges == '2')
+                                <td>Dosen</td>
+                                @else
+                                <td>Administrator</td>
+                                @endif
                                 <td>{{ $element->kode }}</td>
                                 <td>{{ $element->address }}</td>
                                 <td>{{ $element->tlp }}</td>

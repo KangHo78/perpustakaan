@@ -40,7 +40,11 @@
                         </div>
                         <div class="form-group">
                             <label>Previleges</label>
-                            <input type="text" class="form-control" value="{{ $data->previleges }}" name="previleges">
+                            <select name="previleges" class="form-control">
+                                @foreach ($previlege as $previleges )
+                                <option value="{{ $previleges->mp_id }}">{{ $previleges->mp_name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
                             <label>Kode</label>

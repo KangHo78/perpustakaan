@@ -36,16 +36,16 @@
 <!-- page script -->
 <script type="text/javascript">
   $(document).ready(function () {
-    $('#photo').on('change',function(){
-                var fileName = $(this).val();
-                $(this).next('.custom-file-label').html(fileName);
-            })
-  $(function () {
+    // $('#photo').on('change',function(){
+    //             var fileName = $(this).val();
+    //             $(this).next('.custom-file-label').html(fileName);
+$(function () {
     $("#tables").DataTable({
       "responsive": true,
       "autoWidth": false,
     });
   });
-  bsCustomFileInput.init()
+  bsCustomFileInput.init()            
+            })  
 })
 </script>

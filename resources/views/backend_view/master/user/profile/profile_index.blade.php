@@ -28,7 +28,7 @@
             <div class="card card-primary card-outline">
                 <div class="card-body box-profile">
                     <div class="text-center">
-                        <img class="profile-user-img img-fluid img-circle" src="{{ Auth::user()->photo }}"
+                        <img class="profile-user-img img-fluid img-circle" src="{{ asset(Auth::user()->photo) }}"
                             alt="User profile picture">
                     </div>
                     <h3 class="profile-username text-center">{{ Auth::user()->name }}</h3>
@@ -59,7 +59,9 @@
                     </ul>
                     <button onclick="edit('{{ Auth::user()->id }}')" class="btn btn-primary btn-block"><b>Edit
                             Data</b></button>
-                    <a href="#" class="btn btn-primary btn-block"><b>Print Kartu Anggota</b></a>
+                    <a href="{{ route('profile_print') }}" target="_blank" class="btn btn-primary btn-block"><b>Print
+                            Kartu
+                            Anggota</b></a>
                 </div>
                 <!-- /.card-body -->
             </div>
@@ -69,6 +71,22 @@
 @endsection
 
 <script type="text/javascript">
+    //     function print(argument) {
+//     var docDefinition = {
+//   footer: function(currentPage, pageCount) { return currentPage.toString() + ' of ' + pageCount; },
+//   header: function(currentPage, pageCount) {
+//     // you can apply any logic and return any valid pdfmake element
+
+//     return { text: 'simple text', alignment: (currentPage % 2) ? 'left' : 'right' };
+//   },
+// };
+// pdfMake.createPdf(docDefinition).print();
+// }
+$('#photo').on('change',function(){
+                var fileName = $(this).val();
+                $(this).next('.custom-file-label').html(fileName);
+    }
+    
     function edit(argument) {
         location.href = '{{ url('/') }}' + '/profile_edit?&id=' + argument;
     }

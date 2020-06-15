@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use DB;
 use App\models;
 use Response;
+use PDF;
 
 class userController extends Controller
 {
@@ -36,7 +37,8 @@ class userController extends Controller
     public function edit(Request $req)
     {
         $data = $this->model->user()->where('id', $req->id)->first();
-        return view('backend_view.master.user.user_edit', compact('data'));
+        $previlege = $this->model->previleges()->get();
+        return view('backend_view.master.user.user_edit', compact('data', 'previlege'));
     }
     public function update(Request $req)
     {
@@ -51,6 +53,7 @@ class userController extends Controller
             'reg' => 'required',
             'username' => 'required',
         ]);
+
         if ($validasi == true) {
             $this->model->user()->where('id', $req->id)->update([
                 'name' => $req->name,
@@ -129,5 +132,40 @@ class userController extends Controller
         } else {
             return Response()->json(['status' => 'gagal']);
         }
+    }
+    public function profileprint()
+    {
+        // $pdf = App::make('dompdf.wrapper');
+        // $pdf->loadHTML('<h1>Test</h1>');
+        // $data = [
+        //     'title' => 'First PDF for Medium',
+        //     'heading' => 'Hello from 99Points.info',
+        //     'content' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.'
+        // ];
+
+        // $pdf = PDF::loadView('backend_view.master.user.profile.profile_index', $data);
+        // return $pdf->stream('invoice.pdf');
+        // $pdf = PDF::loadHTML('<h1>Test</h1>')->setPaper('catalog #10 1/2 envelope','portrait');
+        // return $pdf->stream("invoice.pdf");
+        // $pdf = PDF::loadHTML('<h1>Test</h1>');
+        // return $pdf->stream("test.pdf");
+        $data = $this->model->user()->get();
+        // return view('backend_view.master.user.profile.profile_print');
+        // $pdf = PDF::loadview('backend_view.master.user.profile.profile_index')->setOption('no-stop-slow-scripts', true);
+        // return $pdf->download('memek.pdf');
+        // $pdf = PDF::loadView('backend_view.master.user.profile.profile_index');
+        // return $pdf->download('pdfview.pdf');
+        // return View::make('backend_view.master.user.profile.profile_print');        
+        // $pdf = PDF::loadHTML($this->convert_customer_data_to_html());
+        // return $pdf->stream();
+        $pdf = PDF::loadview('backend_view.master.user.profile.profile_print');
+        return $pdf->stream();
+    }
+    function convert_customer_data_to_html()
+    {
+        $output = '
+     <h3 align="center">Customer Data</h3>{{ Auth::user()->name  }}
+     ';
+        return $output;
     }
 }
