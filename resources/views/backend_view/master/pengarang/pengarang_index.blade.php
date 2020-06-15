@@ -45,10 +45,12 @@
                                 <td>{{ $element->mpg_alamat }}</td>
                                 <td>{{ $element->mpg_tlp }}</td>
                                 <td>
-                                    <button class="btn btn-sm btn-info" onclick="edit('{{ $element->mpg_id }}')"><i
-                                            class="fas fa-pen"></i> Edit</button>
-                                    <button class="btn btn-sm btn-danger" onclick="hapus('{{ $element->mpg_id }}')"><i
-                                            class="fas fa-trash"></i> Hapus</button>
+                                    <button class="btn btn-sm btn-info btn-block"
+                                        onclick="edit('{{ $element->mpg_id }}')"><i class="fas fa-pen"></i>
+                                        Edit</button>
+                                    <button class="btn btn-sm btn-danger btn-block"
+                                        onclick="hapus('{{ $element->mpg_id }}')"><i class="fas fa-trash"></i>
+                                        Hapus</button>
                                 </td>
                             </tr>
                             @endforeach

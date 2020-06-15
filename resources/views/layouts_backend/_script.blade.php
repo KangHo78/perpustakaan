@@ -35,17 +35,11 @@
 <script src="{{ asset('assets_backend/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
 <!-- page script -->
 <script type="text/javascript">
-  $(document).ready(function () {
-    // $('#photo').on('change',function(){
-    //             var fileName = $(this).val();
-    //             $(this).next('.custom-file-label').html(fileName);
-$(function () {
-    $("#tables").DataTable({
+  $(document).ready(function () {    
+  bsCustomFileInput.init();
+  $("#tables").DataTable({
       "responsive": true,
-      "autoWidth": false,
-    });
-  });
-  bsCustomFileInput.init()            
-            })  
-})
+      "autoWidth": true,
+    });            
+            });
 </script>
