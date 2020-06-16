@@ -51,7 +51,7 @@
                             <input type="text" class="form-control" value="{{ $data->address }}" name="address">
                         </div>
                         <div class="form-group">
-                            <label>Telepon</label>
+                            <label>Telephone</label>
                             <input type="text" class="form-control"
                                 data-inputmask="&quot;mask&quot;: &quot;(+62) 999-9999-9999&quot;" name="tlp"
                                 value="{{ $data->tlp }}">

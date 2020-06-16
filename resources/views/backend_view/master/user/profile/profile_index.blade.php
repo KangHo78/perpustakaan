@@ -71,17 +71,6 @@
 @endsection
 
 <script type="text/javascript">
-    //     function print(argument) {
-//     var docDefinition = {
-//   footer: function(currentPage, pageCount) { return currentPage.toString() + ' of ' + pageCount; },
-//   header: function(currentPage, pageCount) {
-//     // you can apply any logic and return any valid pdfmake element
-
-//     return { text: 'simple text', alignment: (currentPage % 2) ? 'left' : 'right' };
-//   },
-// };
-// pdfMake.createPdf(docDefinition).print();
-// }
     function edit(argument) {
         location.href = '{{ url('/') }}' + '/profile_edit?&id=' + argument;
     }

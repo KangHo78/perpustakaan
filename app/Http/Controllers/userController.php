@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use DB;
 use App\models;
+use Illuminate\Support\Facades\Auth;
 use Response;
 use PDF;
 
@@ -133,12 +134,11 @@ class userController extends Controller
             return Response()->json(['status' => 'gagal']);
         }
     }
-    protected function profileprint()
+    function profileprint()
     {
-        // return view('backend_view.master.user.profile.profile_print');
-        $data = $this->model->user()->get();
-        $date = $data->updated_at = date('Y-m-d', strtotime('+4 years'));
+        $userdate = strtotime("+4 years", strtotime(Auth::user()->updated_at));
+        $date = date("Y-m-d", $userdate);
         $pdf = PDF::loadView('backend_view.master.user.profile.profile_print', ['date' => $date]);
-        return $pdf->stream("sample.pdf", array("Attachment" => 0));
+        return $pdf->stream("ID Card " . Auth::user()->name . ".pdf", array("Attachment" => 0));
     }
 }
