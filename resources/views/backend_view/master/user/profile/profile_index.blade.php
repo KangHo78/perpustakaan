@@ -22,7 +22,13 @@
 
     <!-- Main content -->
     <div class="card-body">
-
+        @if (Session::has('status'))
+        <div class="alert alert-info alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h5><i class="icon fas fa-info"></i> Alert!</h5>
+            {{ Session::get('status') }}
+        </div>
+        @endif
         <div class="container-fluid">
             <!-- Profile Image -->
             <div class="card card-primary card-outline">
@@ -48,6 +54,9 @@
                             <b>Username</b> <a class="float-right">{{ Auth::user()->username }}</a>
                         </li>
                         <li class="list-group-item">
+                            <b>NBI</b> <a class="float-right">{{ Auth::user()->registration_kode }}</a>
+                        </li>
+                        <li class="list-group-item">
                             <b>Email</b> <a class="float-right">{{ Auth::user()->email }}</a>
                         </li>
                         <li class="list-group-item">
@@ -71,17 +80,6 @@
 @endsection
 
 <script type="text/javascript">
-    //     function print(argument) {
-//     var docDefinition = {
-//   footer: function(currentPage, pageCount) { return currentPage.toString() + ' of ' + pageCount; },
-//   header: function(currentPage, pageCount) {
-//     // you can apply any logic and return any valid pdfmake element
-
-//     return { text: 'simple text', alignment: (currentPage % 2) ? 'left' : 'right' };
-//   },
-// };
-// pdfMake.createPdf(docDefinition).print();
-// }
     function edit(argument) {
         location.href = '{{ url('/') }}' + '/profile_edit?&id=' + argument;
     }

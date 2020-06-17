@@ -128,6 +128,9 @@
                     Username : {{ Auth::user()->username }}
                 </div>
                 <div class="coords">
+                    NBI : {{ Auth::user()->registration_kode }}
+                </div>
+                <div class="coords">
                     Address : {{ Auth::user()->address }}
                 </div>
                 <div class="coords">

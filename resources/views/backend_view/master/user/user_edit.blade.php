@@ -66,8 +66,9 @@
                                 value="{{ $data->tlp }}">
                         </div>
                         <div class="form-group">
-                            <label>Kode Registrasi</label>
-                            <input type="text" class="form-control" value="{{ $data->registration_kode }}" name="reg">
+                            <label>NBI</label>
+                            <input type="text" class="form-control" value="{{ $data->registration_kode }}"
+                                data-inputmask="&quot;mask&quot;: &quot;9999999999&quot;" name="reg">
                         </div>
                         <div class="form-group">
                             <label>Username</label>

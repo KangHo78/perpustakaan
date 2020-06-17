@@ -38,6 +38,10 @@ Route::get('/profile_edit', 'userController@profileedit')->name('profile_edit');
 Route::get('/profile_update', 'userController@profileupdate')->name('profile_update');
 Route::get('/idcard_print', 'userController@profileprint')->name('profile_print');
 
+Route::get('/forgot_password', 'Auth\ForgotPasswordController@index')->name('forgot_password_index');
+Route::get('/change_password', 'Auth\ForgotPasswordController@changepassword')->name('forgot_password');
+Route::get('/password_reset', 'Auth\ForgotPasswordController@logout')->name('password_reset');
+
 Route::get('/previleges', 'previlegesController@index')->name('previleges_index');
 Route::get('/previleges_create', 'previlegesController@create')->name('previleges_create');
 Route::get('/previleges_save', 'previlegesController@save')->name('previleges_save');
