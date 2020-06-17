@@ -22,7 +22,13 @@
 
     <!-- Main content -->
     <div class="card-body">
-
+        @if (Session::has('status'))
+        <div class="alert alert-info alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h5><i class="icon fas fa-info"></i> Alert!</h5>
+            {{ Session::get('status') }}
+        </div>
+        @endif
         <div class="container-fluid">
             <!-- Profile Image -->
             <div class="card card-primary card-outline">
@@ -46,6 +52,9 @@
                         </li>
                         <li class="list-group-item">
                             <b>Username</b> <a class="float-right">{{ Auth::user()->username }}</a>
+                        </li>
+                        <li class="list-group-item">
+                            <b>NBI</b> <a class="float-right">{{ Auth::user()->registration_kode }}</a>
                         </li>
                         <li class="list-group-item">
                             <b>Email</b> <a class="float-right">{{ Auth::user()->email }}</a>

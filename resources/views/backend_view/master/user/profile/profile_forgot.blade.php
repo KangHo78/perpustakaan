@@ -10,7 +10,7 @@
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
                         <li class="breadcrumb-item">Profile</li>
-                        <li class="breadcrumb-item active">Edit User</li>
+                        <li class="breadcrumb-item active">Forgot Password</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -21,50 +21,41 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
+            <div class="alert alert-info alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h5><i class="icon fas fa-info"></i> Alert!</h5>
+                Pastikan Password Memiliki Panjang Minimal 8
+            </div>
             <!-- FORM -->
             <div class="card card-default">
                 <div class="card-header">
-                    <h3 class="card-title">Edit User</h3>
+                    <h3 class="card-title">Forgot Password</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body" style="display: block;">
                     <form class="form-save">
                         <div class="form-group">
-                            <label>Photo</label>
-                            <div class="custom-file">
-                                <input type="file" name="photo" class="custom-file-input"
-                                    accept=".jpg,.gif,.png,.jpeg,.svg" id="photo">
-                                <label class="custom-file-label" for="photo"></label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Nama</label>
-                            <input type="text" class="form-control" value="{{ $data->name }}" name="name">
-                            <input type="text" hidden class="form-control" name="id" value="{{ $data->id }}">
+                            <label>NBI</label>
+                            <input type="text" data-inputmask="&quot;mask&quot;: &quot;9999999999&quot;"
+                                class="form-control" name="reg">
+                            <input type="text" hidden class="form-control" name="id" value="{{ Auth::user()->id }}">
                         </div>
                         <div class="form-group">
                             <label>Email</label>
-                            <input type="email" class="form-control" value="{{ $data->email }}" name="email">
+                            <input type="email" class="form-control" name="email">
                         </div>
                         <div class="form-group">
-                            <label>Alamat</label>
-                            <input type="text" class="form-control" value="{{ $data->address }}" name="address">
-                        </div>
-                        <div class="form-group">
-                            <label>Telephone</label>
+                            <label>Kode</label>
                             <input type="text" class="form-control"
-                                data-inputmask="&quot;mask&quot;: &quot;(+62) 999-9999-9999&quot;" name="tlp"
-                                value="{{ $data->tlp }}">
-                        </div>
-                        <div class="form-group">
-                            <label>NBI</label>
-                            <input type="text" class="form-control"
-                                data-inputmask="&quot;mask&quot;: &quot;9999999999&quot;" name="reg"
-                                value="{{ $data->registration_kode }}">
+                                data-inputmask="&quot;mask&quot;: &quot;AAA/9999/99999&quot;" name="kode">
                         </div>
                         <div class="form-group">
                             <label>Username</label>
-                            <input type="text" class="form-control" value="{{ $data->username }}" name="username">
+                            <input type="text" class="form-control" name="username">
+                        </div>
+                        <div class="form-group">
+                            <label>New Password</label>
+                            <input type="password" class="form-control" minlength="8" name="password">
                         </div>
                 </div>
                 <!-- /.card-body -->
@@ -83,7 +74,7 @@
 <script type="text/javascript">
     function save(argument) {      
       $.ajax({
-        url:'{{ route('profile_update') }}',
+        url:'{{ route('forgot_password') }}',
         data:$('.form-save').serialize(),
         type:'get',
         error:function(data){
@@ -98,12 +89,18 @@
         success:function(data){
           if (data.status == 'sukses') {
             Swal.fire({
-              title: 'Data Sudah Disimpan.',
+              title: 'Password Sudah Diganti, Silahkan Login Kembali!',
               icon: 'success',
               confirmButtonText: 'Ok'
             }).then(function(result){
-              location.href = '{{ route('profile_index') }}';
+              location.href = '{{ route('password_reset') }}';
                })
+          }else if (data.status == 'gagal') {
+            Swal.fire({
+              title: 'Pastikan Data Sama Dengan Sebelumnya.',
+              icon: 'error',
+              confirmButtonText: 'Ok'
+            })
           }
         }        
       });

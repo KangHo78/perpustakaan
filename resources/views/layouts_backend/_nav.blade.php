@@ -37,6 +37,10 @@
           <i class="fa fa-user m-r-5 m-l-5"></i> Profile</a>
         <div class="dropdown-divider"></div>
         <div class="dropdown-divider"></div>
+        <a class="dropdown-item" style="background-color: white" href="{{ route('forgot_password_index') }}">
+          <i class="fa fa-key m-r-5 m-l-5"></i> Change Password</a>
+        <div class="dropdown-divider"></div>
+        <div class="dropdown-divider"></div>
         <a class="dropdown-item" style="background-color: white" href="{{ route('logout') }}"
           onclick="event.preventDefault();document.getElementById('logout-form').submit();">
           <i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>

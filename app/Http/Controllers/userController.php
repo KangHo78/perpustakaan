@@ -90,11 +90,12 @@ class userController extends Controller
     public function profileupdate(Request $req)
     {
         $validasi = $this->validate($req, [
-            'photo' => 'required|image|mimes:jpeg,png,jpg,svg|max:2000',
+            // 'photo' => 'required|image|mimes:jpeg,png,jpg,svg|max:2000',
             'name' => 'required',
             'email' => 'required',
             'address' => 'required',
             'tlp' => 'required',
+            'reg' => 'required',
             'username' => 'required',
         ]);
         // $uploadFile = $req->file('image');
@@ -125,6 +126,7 @@ class userController extends Controller
                 'email' => $req->email,
                 'address' => $req->address,
                 'tlp' => $req->tlp,
+                'registration_kode' => $req->reg,
                 'username' => $req->username,
             ]);
             // $file = 'user' . $req->id . '.jpg';
