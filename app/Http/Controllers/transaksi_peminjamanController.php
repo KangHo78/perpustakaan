@@ -7,7 +7,7 @@ use DB;
 use App\models;
 use Response;
 
-class peminjamanController extends Controller
+class transaksi_peminjamanController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -29,21 +29,21 @@ class peminjamanController extends Controller
      */
     public function index()
     {
-        $data = $this->model->kategori()->get();
-        return view('backend_view.master.kategori.kategori_index', compact('data'));
+        $data = $this->model->peminjaman()->with(['peminjaman_dt','peminjaman_dt.buku_dt','peminjaman_dt.buku_dt.buku'])->get();
+        return view('backend_view.transaksi.peminjaman.peminjaman_index', compact('data'));
     }
     public function create()
     {
-        return view('backend_view.master.kategori.kategori_create');
+        return view('backend_view.transaksi.peminjaman.peminjaman_create');
     }
     public function save(Request $req)
     {
         $validasi = $this->validate($req, [
             'name' => 'required',
         ]);
-        $id = $this->model->kategori()->max('mk_id') + 1;
+        $id = $this->model->peminjaman()->max('mk_id') + 1;
         if ($validasi == true) {
-            $this->model->kategori()->create([
+            $this->model->peminjaman()->create([
                 'mk_id' => $id,
                 'mk_name' => $req->name,
             ]);
@@ -54,8 +54,8 @@ class peminjamanController extends Controller
     }
     public function edit(Request $req)
     {
-        $data = $this->model->kategori()->where('mk_id', $req->id)->first();
-        return view('backend_view.master.kategori.kategori_edit', compact('data'));
+        $data = $this->model->peminjaman()->where('mk_id', $req->id)->first();
+        return view('backend_view.transaksi.peminjaman.peminjaman_edit', compact('data'));
     }
     public function update(Request $req)
     {
@@ -63,7 +63,7 @@ class peminjamanController extends Controller
             'name' => 'required',
         ]);
         if ($validasi == true) {
-            $this->model->kategori()->where('mk_id', $req->id)->update([
+            $this->model->peminjaman()->where('mk_id', $req->id)->update([
                 'mk_name' => $req->name,
             ]);
             return Response()->json(['status' => 'sukses']);
@@ -73,7 +73,7 @@ class peminjamanController extends Controller
     }
     public function hapus(Request $req)
     {
-        $data = $this->model->kategori()->where('mk_id', $req->id)->delete();
+        $data = $this->model->peminjaman()->where('mk_id', $req->id)->delete();
         return redirect()->back();
     }
 }

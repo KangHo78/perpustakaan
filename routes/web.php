@@ -76,3 +76,12 @@ Route::get('/rak_buku_save', 'rak_bukuController@save')->name('rak_buku_save');
 Route::get('/rak_buku_edit', 'rak_bukuController@edit')->name('rak_buku_edit');
 Route::get('/rak_buku_update', 'rak_bukuController@update')->name('rak_buku_update');
 Route::get('/rak_buku_hapus', 'rak_bukuController@hapus')->name('rak_buku_hapus');
+
+
+// peminjaman
+Route::get('/transaksi_peminjaman', 'transaksi_peminjamanController@index')->name('transaksi_peminjaman_index');
+Route::get('/transaksi_peminjaman_create', 'transaksi_peminjamanController@create')->name('transaksi_peminjaman_create');
+Route::get('/transaksi_peminjaman_save', 'transaksi_peminjamanController@save')->name('transaksi_peminjaman_save');
+Route::get('/transaksi_peminjaman_edit', 'transaksi_peminjamanController@edit')->name('transaksi_peminjaman_edit');
+Route::get('/transaksi_peminjaman_update', 'transaksi_peminjamanController@update')->name('transaksi_peminjaman_update');
+Route::get('/transaksi_peminjaman_hapus', 'transaksi_peminjamanController@hapus')->name('transaksi_peminjaman_hapus');

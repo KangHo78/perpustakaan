@@ -42,4 +42,12 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\previleges', 'previleges', 'mp_id');
     }
+    public function peminjaman_anggota()
+    {
+      return $this->hasMany('App\peminjaman', 'tpj_anggota', 'id');
+    }
+    public function peminjaman_staff()
+    { 
+      return $this->hasMany('App\peminjaman', 'tpj_staff', 'id');
+    }
 }
