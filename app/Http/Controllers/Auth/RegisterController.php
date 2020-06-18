@@ -76,6 +76,7 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'previleges' => '3',
             'kode' => $this->calculatecode(),
+            'address_univ' => 'Jl. Semolowaru No.45',
             'photo' => '/storage/user/default.svg',
         ]);
     }

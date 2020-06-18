@@ -20,7 +20,12 @@
 
             <!-- Main content -->
             <div class="card card-info">
-
+                <div class="card-header">
+                    <div class="float-right">
+                        <button class="btn btn-sm btn-warning" onclick="tambah()"><i class="fas fa-plus"></i> Tambah
+                        </button>
+                    </div>
+                </div>
                 <!-- /.card-header -->
                 <div class="card-body">
                     <table id="tables" class="table-bordered table-striped table" width="100%">
@@ -78,6 +83,10 @@
 @endsection
 
 <script type="text/javascript">
+    function tambah(argument) {
+        location.href = '{{ route('user_create') }}';
+    }
+
     function edit(argument) {
         location.href = '{{ url('/') }}' + '/user_edit?&id=' + argument;
     }
