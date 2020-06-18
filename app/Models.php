@@ -14,6 +14,7 @@ use App\buku_dt;
 use App\rak_buku;
 use App\peminjaman;
 use App\peminjaman_dt;
+use App\rak_buku_dt;
 
 class models extends model
 {
@@ -31,6 +32,7 @@ class models extends model
       return $previleges;
     }
 
+
     public function buku()
     {
       $buku = new buku(); 
@@ -42,6 +44,7 @@ class models extends model
       $buku_dt = new buku_dt(); 
 
       return $buku_dt;
+
     }
 
     public function penerbit()

@@ -12,7 +12,7 @@
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
             <li class="breadcrumb-item">Master</li>
-            <li class="breadcrumb-item active">Edit Pengarang</li>
+            <li class="breadcrumb-item active">Edit Rak Buku</li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -26,24 +26,23 @@
       <!-- FORM -->
       <div class="card card-default">
         <div class="card-header">
-          <h3 class="card-title">Edit Pengarang</h3>
+          <h3 class="card-title">Edit Rak Buku</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body" style="display: block;">
           <form class="form-save">
             <div class="form-group">
+              <label>Kode</label>
+              <input type="text" class="form-control" name="kode" value="{{ $data->mrb_kode }}">
+              <input type="hidden" class="form-control" name="id" value="{{ $data->mrb_id }}">
+            </div>
+            <div class="form-group">
               <label>Nama</label>
-              <input type="text" class="form-control" name="name" value="{{ $data->mpg_name }}">
-              <input type="hidden" class="form-control" name="id" value="{{ $data->mpg_id }}">
+              <input type="text" class="form-control" name="name" value="{{ $data->mrb_name }}">
             </div>
             <div class="form-group">
-              <label>Alamat</label>
-              <input type="text" class="form-control" name="alamat" value="{{ $data->mpg_alamat }}">
-            </div>
-            <div class="form-group">
-              <label>Telepon</label>
-              <input type="text" class="form-control" data-inputmask="&quot;mask&quot;: &quot;(+62) 999-9999-9999&quot;"
-                name="tlp" value="{{ $data->mpg_tlp }}">
+              <label>Lokasi</label>
+              <input type="text" class="form-control" name="lokasi" value="{{ $data->mrb_lokasi_rak }}">
             </div>
         </div>
         <!-- /.card-body -->
@@ -61,7 +60,7 @@
 <script type="text/javascript">
   function save(argument) {
     $.ajax({
-      url:'{{ route('pengarang_update') }}',
+      url:'{{ route('rak_buku_update') }}',
       data:$('.form-save').serialize(),
       type:'get',      
       error:function(data){
@@ -80,7 +79,7 @@
             icon: 'success',
             confirmButtonText: 'Ok'
           }).then(function(result){
-            location.href = '{{ route('pengarang_index') }}';
+            location.href = '{{ route('rak_buku_index') }}';
              })
         }
       }
