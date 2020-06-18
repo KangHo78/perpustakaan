@@ -23,5 +23,8 @@ class rak_buku_dt extends model
     {
       return 'Y-m-d H:i:s';
     } 
-
+    public function buku()
+    {
+      return $this->belongsTo('App\buku', 'mrbd_id', 'mrb_id');
+    }
 }

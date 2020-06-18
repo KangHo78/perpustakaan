@@ -24,5 +24,9 @@ class rak_buku extends model
     {
       return 'Y-m-d H:i:s';
     } 
+    public function rak_buku_dt()
+  {
+      return $this->hasMany('App\rak_buku_dt', 'mrbd_id', 'mrb_id');
+  }
 
 }
