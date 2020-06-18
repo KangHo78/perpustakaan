@@ -35,7 +35,7 @@ Route::get('/user_hapus', 'userController@hapus')->name('user_hapus');
 
 Route::get('/profile', 'userController@profile')->name('profile_index');
 Route::get('/profile_edit', 'userController@profileedit')->name('profile_edit');
-Route::get('/profile_update', 'userController@profileupdate')->name('profile_update');
+Route::post('/profile_update', 'userController@profileupdate')->name('profile_update');
 Route::get('/idcard_print', 'userController@profileprint')->name('profile_print');
 
 Route::get('/forgot_password', 'Auth\ForgotPasswordController@index')->name('forgot_password_index');

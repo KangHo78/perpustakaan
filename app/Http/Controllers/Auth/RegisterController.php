@@ -8,6 +8,8 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use DB;
+use App\models;
 
 class RegisterController extends Controller
 {
@@ -23,6 +25,7 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
+    protected $model;
 
     /**
      * Where to redirect users after registration.
@@ -39,6 +42,7 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+        $this->model = new models();
     }
 
     /**
@@ -71,7 +75,19 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'previleges' => '3',
-            'photo' => 'storage/user/default.svg',
+            'kode' => $this->calculatecode(),
+            'photo' => '/storage/user/default.svg',
         ]);
+    }
+    public function calculatecode()
+    {
+        $count = DB::table('users')
+            ->select(DB::raw('count(kode)'))
+            ->where('kode', 'like', 'MHS%')
+            ->first();
+        $date = date("ym");
+        $newcount = str_pad($count->count + 1, 5, '0', STR_PAD_LEFT);
+        $kode = 'MHS/' . $date . "/" . $newcount;
+        return $kode;
     }
 }
