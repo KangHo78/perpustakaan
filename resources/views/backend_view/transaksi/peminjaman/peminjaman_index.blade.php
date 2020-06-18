@@ -5,14 +5,14 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Master Kategori</h1>
+                    <h1 class="m-0 text-dark">Master Peminjaman</h1>
                 </div>
                 <!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                         <li class="breadcrumb-item">Master</li>
-                        <li class="breadcrumb-item active">Kategori</li>
+                        <li class="breadcrumb-item active">Peminjaman</li>
                     </ol>
                 </div>
                 <!-- /.col -->
@@ -70,7 +70,7 @@
                                         </tr>
                                         @foreach ($element->peminjaman_dt as $element1)
                                         <tr>
-                                            <td>{{ $element1->tpjdt_isbn }}</td>
+                                            <td>{{ $element1->buku_dt->buku->mb_name }}</td>
                                             <td>{{ $element1->tpjdt_isbn }}</td>
                                         </tr>
                                         @endforeach
@@ -99,7 +99,7 @@
 
 <script type="text/javascript">
     function tambah(argument) {
-        location.href = '{{ route('kategori_create') }}';
+        location.href = '{{ route('transaksi_peminjaman_create') }}';
     }
 
     function edit(argument) {

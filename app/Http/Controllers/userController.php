@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use DB;
 use App\models;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\UploadedFile;
 use Response;
 use PDF;
 
@@ -90,7 +91,7 @@ class userController extends Controller
     public function profileupdate(Request $req)
     {
         $validasi = $this->validate($req, [
-            // 'photo' => 'required|image|mimes:jpeg,png,jpg,svg|max:2000',
+            'photo' => 'required|image|mimes:jpeg,png,jpg,svg|max:2000',
             'name' => 'required',
             'email' => 'required',
             'address' => 'required',
@@ -98,30 +99,14 @@ class userController extends Controller
             'reg' => 'required',
             'username' => 'required',
         ]);
-        // $uploadFile = $req->file('image');
-
-        //generate random filename and append original extension (eg: asddasada.jpg, asddasada.png)
-        // $filename = $req->id . '.' . $uploadFile->extension();
-
-        // storing path (Change it to your desired path in public folder)
-        // $path = 'img/uploads';
-
-        // Move file to public filder
-        // $uploadFile->storeAs('../../public/' . $path, $filename);
-        // $imagePath = $req->file('photo');
-        // $imagePath = Storage::disk('local')->putFile('uploads', $req->file('photo'));
-
-        // $imageName = time() . '.' . $imagePath->getClientOriginalExtension();
-        // $imagePath->move(public_path('images'), $imagePath->getClientOriginalName());
-        // $path = Storage::putFile('images', $req->file('photo'));
-        // Storage::putFile(
-        //     'assets/user',
-        //     $imagePath,
-        // );
-        // Storage::disk('local')->put('images/1/smalls' . '/' . $imageName, 'public');
+        if ($req->hasFile('photo')) {
+            $imagePath = $req->file('photo');
+            $fileName =  $req->id . '.' . $imagePath->getClientOriginalExtension();
+            $imagePath->move(public_path('storage/user'), $fileName);
+        }
         if ($validasi == true) {
             $this->model->user()->where('id', $req->id)->update([
-                'photo' => $req->photo,
+                'photo' => $fileName,
                 'name' => $req->name,
                 'email' => $req->email,
                 'address' => $req->address,
@@ -129,18 +114,26 @@ class userController extends Controller
                 'registration_kode' => $req->reg,
                 'username' => $req->username,
             ]);
-            // $file = 'user' . $req->id . '.jpg';
-            // Storage::put($file, file_get_contents($req->file('photo')));
             return Response()->json(['status' => 'sukses']);
         } else {
             return Response()->json(['status' => 'gagal']);
         }
     }
-    function profileprint()
+    public function profileprint()
     {
         $userdate = strtotime("+4 years", strtotime(Auth::user()->updated_at));
         $date = date("Y-m-d", $userdate);
-        $pdf = PDF::loadView('backend_view.master.user.profile.profile_print', ['date' => $date]);
-        return $pdf->stream("ID Card " . Auth::user()->name . ".pdf", array("Attachment" => 0));
+        if (Auth::user()->registration_kode == null) {
+            return redirect()->route('profile_index')->with(['status' => 'Pastikan Sudah Mengisi Semua Data Diri']);
+        } else if (Auth::user()->username == null) {
+            return redirect()->route('profile_index')->with(['status' => 'Pastikan Sudah Mengisi Semua Data Diri']);
+        } else if (Auth::user()->address == null) {
+            return redirect()->route('profile_index')->with(['status' => 'Pastikan Sudah Mengisi Semua Data Diri']);
+        } else if (Auth::user()->tlp == null) {
+            return redirect()->route('profile_index')->with(['status' => 'Pastikan Sudah Mengisi Semua Data Diri']);
+        } else {
+            $pdf = PDF::loadView('backend_view.master.user.profile.profile_print', ['date' => $date]);
+            return $pdf->stream("ID Card " . Auth::user()->name . ".pdf", array("Attachment" => 0));
+        }
     }
 }

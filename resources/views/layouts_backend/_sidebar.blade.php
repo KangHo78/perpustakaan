@@ -10,7 +10,7 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <img src="{{ asset(Auth::user()->photo) }}" class="img-circle elevation-2" alt="User Image">
+        <img src="{{ asset('storage/user/'.Auth::user()->photo) }}" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
         <a href="{{ route('profile_index') }}" class="d-block">Hy {{ Auth::user()->name }}</a>
@@ -82,7 +82,7 @@
             <li class="nav-item">
               <a href="{{ route('previleges_index') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Hak akses</p>
+                <p>Hak Akses</p>
               </a>
             </li>
             <li class="nav-item">
