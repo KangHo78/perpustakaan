@@ -34,7 +34,12 @@ class transaksi_peminjamanController extends Controller
     }
     public function create()
     {
-        return view('backend_view.transaksi.peminjaman.peminjaman_create');
+        $id = $this->model->peminjaman()->max('tpj_id')+1;
+        $date = date('m').date('y');
+        $kode = 'PJ/'.$date.'/'.str_pad($id, 5, '0', STR_PAD_LEFT);
+        $user = $this->model->user()->get();
+        $buku = $this->model->buku_dt()->where('mb_status','TERSEDIA')->with('buku')->get();
+        return view('backend_view.transaksi.peminjaman.peminjaman_create',compact('user','kode','buku'));
     }
     public function save(Request $req)
     {

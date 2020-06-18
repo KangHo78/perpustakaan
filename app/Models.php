@@ -9,6 +9,8 @@ use App\previleges;
 use App\penerbit;
 use App\pengarang;
 use App\kategori;
+use App\buku;
+use App\buku_dt;
 use App\rak_buku;
 use App\peminjaman;
 use App\peminjaman_dt;
@@ -27,6 +29,19 @@ class models extends model
       $previleges = new previleges(); 
 
       return $previleges;
+    }
+
+    public function buku()
+    {
+      $buku = new buku(); 
+
+      return $buku;
+    }
+    public function buku_dt()
+    {
+      $buku_dt = new buku_dt(); 
+
+      return $buku_dt;
     }
 
     public function penerbit()
