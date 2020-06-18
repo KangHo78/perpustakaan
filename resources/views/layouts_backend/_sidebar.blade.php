@@ -142,7 +142,7 @@
         </li>
         <li class="nav-header">TRANSAKSI</li>
         <li class="nav-item">
-          <a href="https://adminlte.io/docs/3.0" class="nav-link">
+          <a href="{{ route('transaksi_peminjaman_index') }}" class="nav-link">
             <i class="nav-icon fas fa-book-reader"></i>
             <p>Peminjaman</p>
           </a>

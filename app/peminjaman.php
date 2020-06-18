@@ -14,10 +14,10 @@ class peminjaman extends model
   const CREATED_AT = 'created_at';
 
   protected $fillable = [
-    'tpj_id'  ,
+    'tpj_id',
     'tpj_kode' ,
-    'tpj_anggota' ,
-    'tpj_staff' ,
+    'tpj_anggota',
+    'tpj_staff',
     'tpj_date_pinjam' ,
     'tpj_date_kembali' ,
     'tpj_created_by' ,
@@ -28,5 +28,17 @@ class peminjaman extends model
   public function getDateFormat()
   {
     return 'Y-m-d H:i:s';
+  }
+  public function peminjaman_anggota()
+  {
+      return $this->belongsTo('App\User', 'tpj_anggota', 'id');
+  }
+  public function peminjaman_staff()
+  {
+      return $this->belongsTo('App\User', 'tpj_staff', 'id');
+  }
+  public function peminjaman_dt()
+  {
+      return $this->hasMany('App\peminjaman_dt', 'tpjdt_id', 'tpj_id');
   }
 }
