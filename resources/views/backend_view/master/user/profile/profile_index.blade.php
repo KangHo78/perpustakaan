@@ -34,8 +34,8 @@
             <div class="card card-primary card-outline">
                 <div class="card-body box-profile">
                     <div class="text-center">
-                        <img class="profile-user-img img-fluid img-circle" src="{{ asset(Auth::user()->photo) }}"
-                            alt="User profile picture">
+                        <img class="profile-user-img img-fluid img-circle"
+                            src="{{ asset('storage/user/'.Auth::user()->photo) }}" alt="User profile picture">
                     </div>
                     <h3 class="profile-username text-center">{{ Auth::user()->name }}</h3>
                     <p class="text-muted text-center">
@@ -68,7 +68,7 @@
                     </ul>
                     <button onclick="edit('{{ Auth::user()->id }}')" class="btn btn-primary btn-block"><b>Edit
                             Data</b></button>
-                    <a href="{{ route('profile_print') }}" target="_blank" class="btn btn-primary btn-block"><b>Print
+                    <a href="{{ route('profile_print') }}" class="btn btn-primary btn-block"><b>Print
                             Kartu
                             Anggota</b></a>
                 </div>

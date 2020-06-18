@@ -22,6 +22,11 @@
     <section class="content">
         <div class="container-fluid">
             <!-- FORM -->
+            <div class="alert alert-info alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h5><i class="icon fas fa-info"></i> Alert!</h5>
+                Ukuran Upload Foto Minimal 2MB, Lebih Baik Gunakan Ukuran Persegi.
+            </div>
             <div class="card card-default">
                 <div class="card-header">
                     <h3 class="card-title">Edit User</h3>
@@ -29,12 +34,12 @@
                 <!-- /.card-header -->
                 <div class="card-body" style="display: block;">
                     <form class="form-save">
+                        @csrf
                         <div class="form-group">
                             <label>Photo</label>
                             <div class="custom-file">
-                                <input type="file" name="photo" class="custom-file-input"
-                                    accept=".jpg,.gif,.png,.jpeg,.svg" id="photo">
-                                <label class="custom-file-label" for="photo"></label>
+                                <input type="file" name="photo" class="custom-file-input" accept="image/*">
+                                <label class="custom-file-label">Choose file</label>
                             </div>
                         </div>
                         <div class="form-group">
@@ -81,15 +86,24 @@
 @endsection
 
 <script type="text/javascript">
-    function save(argument) {      
+    function save(argument) {    
+    var form   = $('.form-save');
+    formdata = new FormData(form[0]);
+    $.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+      });
       $.ajax({
         url:'{{ route('profile_update') }}',
-        data:$('.form-save').serialize(),
-        type:'get',
+        data:formdata ? formdata : form.serialize(),
+        type:'post',
+        processData: false,
+        contentType: false,
         error:function(data){
         if(data.status == 422){
             Swal.fire({
-              title: 'Pastikan Data Tidak Kosong.',
+              title: 'Pastikan Data Tidak Kosong Dan Ukuran Foto Minimal 2MB.',
               icon: 'error',
               confirmButtonText: 'Ok'
             })
