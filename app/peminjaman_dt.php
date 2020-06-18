@@ -22,6 +22,14 @@ class peminjaman_dt extends model
 
   public function getDateFormat()
   {
-    return 'Y-m-d H:i:s';
+      return 'Y-m-d H:i:s';
+  }
+  public function peminjaman()
+  {
+      return $this->belongsTo('App\peminjaman', 'tpj_id', 'tpjdt_id');
+  }
+  public function buku_dt()
+  {
+      return $this->belongsTo('App\buku_dt', 'tpjdt_isbn', 'mbdt_isbn');
   }
 }

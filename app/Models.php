@@ -10,6 +10,8 @@ use App\penerbit;
 use App\pengarang;
 use App\kategori;
 use App\rak_buku;
+use App\peminjaman;
+use App\peminjaman_dt;
 
 class models extends model
 {
@@ -50,5 +52,17 @@ class models extends model
       $rak_buku = new rak_buku(); 
 
       return $rak_buku;
+    }
+    public function peminjaman()
+    {
+      $peminjaman = new peminjaman(); 
+
+      return $peminjaman;
+    }
+    public function peminjaman_dt()
+    {
+      $peminjaman_dt = new peminjaman_dt(); 
+
+      return $peminjaman_dt;
     }
 }
