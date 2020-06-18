@@ -12,6 +12,7 @@ use App\kategori;
 use App\rak_buku;
 use App\peminjaman;
 use App\peminjaman_dt;
+use App\rak_buku_dt;
 
 class models extends model
 {
@@ -27,6 +28,13 @@ class models extends model
       $previleges = new previleges(); 
 
       return $previleges;
+    }
+
+    public function rak_buku_dt()
+    {
+      $rak_buku_dt = new rak_buku_dt(); 
+
+      return $rak_buku_dt;
     }
 
     public function penerbit()

@@ -5,14 +5,14 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Master Pengarang</h1>
+                    <h1 class="m-0 text-dark">Master Rak Buku</h1>
                 </div>
                 <!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                         <li class="breadcrumb-item">Master</li>
-                        <li class="breadcrumb-item active">Pengarang</li>
+                        <li class="breadcrumb-item active">Rak Buku</li>
                     </ol>
                 </div>
                 <!-- /.col -->
@@ -71,10 +71,10 @@
                                     </td>
                                 <td>
                                     <button class="btn btn-sm btn-info btn-block"
-                                        onclick="edit('{{ $element->mpg_id }}')"><i class="fas fa-pen"></i>
+                                        onclick="edit('{{ $element->mrb_id }}')"><i class="fas fa-pen"></i>
                                         Edit</button>
                                     <button class="btn btn-sm btn-danger btn-block"
-                                        onclick="hapus('{{ $element->mpg_id }}')"><i class="fas fa-trash"></i>
+                                        onclick="hapus('{{ $element->mrb_id }}')"><i class="fas fa-trash"></i>
                                         Hapus</button>
                                 </td>
                             </tr>
@@ -94,11 +94,11 @@
 
 <script type="text/javascript">
     function tambah(argument) {
-        location.href = '{{ route('pengarang_create') }}';
+        location.href = '{{ route('rak_buku_create') }}';
     }
 
     function edit(argument) {
-        location.href = '{{ url('/') }}' + '/pengarang_edit?&id=' + argument;
+        location.href = '{{ url('/') }}' + '/rak_buku_edit?&id=' + argument;
     }
 
     function hapus(argument) {
@@ -117,7 +117,7 @@
                 showConfirmButton: false,
                 }
             )
-            location.href = '{{ url('/') }}' + '/pengarang_hapus?&id=' + argument;
+            location.href = '{{ url('/') }}' + '/rak_buku_hapus?&id=' + argument;
             }
         })
     }

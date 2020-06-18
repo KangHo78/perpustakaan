@@ -39,13 +39,17 @@ class rak_bukuController extends Controller
     public function save(Request $req)
     {
         $validasi = $this->validate($req, [
+            'kode' => 'required',
             'name' => 'required',
+            'lokasi' => 'required',
         ]);
-        $id = $this->model->rak_buku()->max('mp_id') + 1;
+        $id = $this->model->rak_buku()->max('mrb_id') + 1;
         if ($validasi == true) {
             $this->model->rak_buku()->create([
-                'mp_id' => $id,
-                'mp_name' => $req->name,
+                'mrb_id' => $id,
+                'mrb_kode' => $req->kode,
+                'mrb_name' => $req->name,
+                'mrb_lokasi_rak' => $req->lokasi,
             ]);
             return Response()->json(['status' => 'sukses']);
         } else {
@@ -54,26 +58,22 @@ class rak_bukuController extends Controller
     }
     public function edit(Request $req)
     {
-        $data = $this->model->rak_buku()->where('mp_id', $req->id)->first();
+        $data = $this->model->rak_buku()->where('mrb_id', $req->id)->first();
         return view('backend_view.master.rak_buku.rak_buku_edit', compact('data'));
     }
     public function update(Request $req)
     {
-        $validasi = $this->rak_buku($req, [
-            'name' => 'required',
-        ]);
-        if ($validasi == true) {
-            $this->model->rak_buku()->where('mp_id', $req->id)->update([
-                'mp_name' => $req->name,
+        
+            $this->model->rak_buku()->where('mrb_id', $req->id)->update([
+                'mrb_kode' => $req->kode,
+                'mrb_name' => $req->name,
+                'mrb_lokasi_rak' => $req->lokasi,
             ]);
             return Response()->json(['status' => 'sukses']);
-        } else {
-            return Response()->json(['status' => 'gagal']);
-        }
     }
     public function hapus(Request $req)
     {
-        DB::table('m_rak_buku')->where('mp_id', $req->id)->delete();
+        DB::table('m_rak_buku')->where('mrb_id', $req->id)->delete();
         return redirect()->back();
     }
 }

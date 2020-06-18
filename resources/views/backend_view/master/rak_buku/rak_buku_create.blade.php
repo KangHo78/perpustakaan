@@ -12,7 +12,7 @@
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
             <li class="breadcrumb-item">Master</li>
-            <li class="breadcrumb-item active">Create Pengarang</li>
+            <li class="breadcrumb-item active">Create Rak Buku</li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -26,23 +26,22 @@
       <!-- FORM -->
       <div class="card card-default">
         <div class="card-header">
-          <h3 class="card-title">Create Pengarang</h3>
+          <h3 class="card-title">Create Rak Buku</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body" style="display: block;">
           <form class="form-save">
             <div class="form-group">
+              <label>Kode</label>
+              <input type="text" class="form-control" name="kode">
+            </div>
+            <div class="form-group">
               <label>Nama</label>
               <input type="text" class="form-control" name="name">
             </div>
             <div class="form-group">
-              <label>Alamat</label>
-              <input type="text" class="form-control" name="alamat">
-            </div>
-            <div class="form-group">
-              <label>Telepon</label>
-              <input type="text" class="form-control" data-inputmask="&quot;mask&quot;: &quot;(+62) 999-9999-9999&quot;"
-                name="tlp">
+              <label>Lokasi</label>
+              <input type="text" class="form-control" name="lokasi">
             </div>
         </div>
         <!-- /.card-body -->
@@ -60,7 +59,7 @@
 <script type="text/javascript">
   function save(argument) {      
     $.ajax({
-      url:'{{ route('pengarang_save') }}',
+      url:'{{ route('rak_buku_save') }}',
       data:$('.form-save').serialize(),
       type:'get',      
       error:function(data){
@@ -79,7 +78,7 @@
             icon: 'success',
             confirmButtonText: 'Ok'
           }).then(function(result){
-            location.href = '{{ route('pengarang_index') }}';
+            location.href = '{{ route('rak_buku_index') }}';
              })
         }
       }
