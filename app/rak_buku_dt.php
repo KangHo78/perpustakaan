@@ -16,15 +16,15 @@ class rak_buku_dt extends model
     protected $fillable = [
                             'mrbd_dt',
                             'mrbd_id',
-                            'mrb_kode',
+                            'mrbd_kode',
                           ];
 
     public function getDateFormat()
     {
       return 'Y-m-d H:i:s';
     } 
-    public function buku()
+    public function rak_buku()
     {
-      return $this->belongsTo('App\buku', 'mrbd_id', 'mrb_id');
+      return $this->belongsTo('App\rak_buku', 'mrbd_id', 'mrb_id');
     }
 }

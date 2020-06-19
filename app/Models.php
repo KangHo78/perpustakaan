@@ -71,6 +71,12 @@ class models extends model
 
       return $rak_buku;
     }
+    public function rak_buku_dt()
+    {
+      $rak_buku_dt = new rak_buku_dt(); 
+
+      return $rak_buku_dt;
+    }
     public function peminjaman()
     {
       $peminjaman = new peminjaman(); 
