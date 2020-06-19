@@ -36,13 +36,13 @@
                 <!-- text input -->
                 <div class="form-group">
                   <label>Kode</label>
-                  <input readonly="" value="{{ $kode }}" type="text" class="form-control" placeholder="Enter ...">
+                  <input readonly="" value="{{ $kode }}" name="kode" type="text" class="form-control" placeholder="Enter ...">
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="form-group">
                   <label>Peminjam</label>
-                  <select class="form-control select2">
+                  <select class="form-control select2 peminjam" name="peminjam">
                     <option>- Pilih Peminjam -</option>
                     @foreach ($user as $element)
                       <option value="{{ $element->id }}">{{ $element->kode }} / {{ $element->name }}</option>
@@ -56,15 +56,26 @@
               <div class="col-sm-12">
                 <div class="form-group">
                   <label>Buku</label>
-                  <select class="form-control select2">
+                  <select class="form-control select2 pilih_buku" onchange="buku()">
                     <option>- Pilih Buku -</option>
                     @foreach ($buku as $element)
-                      <option value="{{ $element->mbdt_isbn }}">{{ $element->mbdt_isbn }} / {{ $element->buku->mb_name }}</option>
+                      @if ($element->buku != null)
+                        <option value="{{ $element->mbdt_isbn }}">{{ $element->buku->mb_kode }} / {{ $element->mbdt_isbn }} / {{ $element->buku->mb_name }}</option>
+                      @endif
                     @endforeach
                   </select>
                 </div>
               </div>
             </div>
+
+            <table class="table table-bordered drop">
+              <tr>
+                <th>Kode</th>
+                <th>Buku</th>
+                <th>Isbn</th>
+                <th>aksi</th>
+              </tr>
+            </table>
 
 
 
@@ -80,26 +91,32 @@
   </section>
 </div>
 @endsection
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
 <script type="text/javascript">
-  $(document).ready(function() {
-    $('.select2').select2();
-  });
-  function save(argument) {      
+
+  function save(argument) {     
+    var peminjam = $('.peminjam').val();
+    var isbn = $('.isbn').val();
+    if (peminjam == '' || peminjam == null || peminjam == undefined) {
+      Swal.fire({
+        title: 'Peminjam kosong.',
+        icon: 'warning',
+        confirmButtonText: 'Ok'
+      })
+      return false;
+    }
+    if (isbn == '' || isbn == null || isbn == undefined) {
+      Swal.fire({
+        title: 'buku belum dipilih.',
+        icon: 'warning',
+        confirmButtonText: 'Ok'
+      })
+      return false;
+    } 
     $.ajax({
-      url:'{{ route('kategori_save') }}',
+      url:'{{ route('transaksi_peminjaman_save') }}',
       data:$('.form-save').serialize(),
       type:'get',      
-      error:function(data){
-        if(data.status == 422){
-            Swal.fire({
-              title: 'Pastikan Data Tidak Kosong.',
-              icon: 'error',
-              confirmButtonText: 'Ok'
-            })
-          }
-        }, 
       success:function(data){
         if (data.status == 'sukses') {
           Swal.fire({
@@ -107,12 +124,58 @@
             icon: 'success',
             confirmButtonText: 'Ok'
           }).then(function(result){
-            location.href = '{{ route('kategori_index') }}';
-             })
+            location.href = '{{ route('transaksi_peminjaman_index') }}';
+          })
+        }else if(data.status == 'duplicate'){
+          Swal.fire({
+            title: 'Data Buku ada yang kembar/duplicate.',
+            icon: 'warning',
+            confirmButtonText: 'Ok'
+          })
+        }else if(data.status == 'bukan_user'){
+          Swal.fire({
+            title: 'Peminjam bukan termasuk user.',
+            icon: 'warning',
+            confirmButtonText: 'Ok'
+          })
         }
       }
 
     });
 
+  }
+  function buku(argument) {
+    var isbn = $('.pilih_buku').val();
+      $.ajax({
+      url:'{{ route('transaksi_peminjaman_get_data_buku') }}',
+      data:{isbn:isbn},
+      type:'get',      
+      success:function(data){
+        if ($('.total_pinjam').length == 5) {
+          Swal.fire({
+            title: 'Buku Yang dipinjam max 5.',
+            icon: 'warning',
+            confirmButtonText: 'Ok'
+          })
+        }else{
+          $('.drop').append(
+            '<tr class="total_pinjam remove_'+data.hasil.mbdt_isbn+'">'+
+              '<th>'+data.hasil.buku.mb_kode+'</th>'+
+              '<th>'+data.hasil.buku.mb_name+'</th>'+
+              '<th>'+data.hasil.mbdt_isbn+'</th>'+
+              '<th>'+
+                '<input type="hidden" name="isbn[]" value="'+data.hasil.mbdt_isbn+'">'+
+                '<button type="button" class="btn btn-sm btn-danger" onclick="removed(\''+data.hasil.mbdt_isbn+'\')" ><i class="fas fa-trash"></i></button>'+
+              '</th>'+
+            '</tr>'
+          );
+        }
+        
+      }
+    });
+  }
+
+  function removed(argument) {
+    $('.remove_'+argument).remove();
   }
 </script>

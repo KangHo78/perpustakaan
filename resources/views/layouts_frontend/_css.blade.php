@@ -4,12 +4,3 @@
 
 <!-- Stylesheets -->
 <link rel="stylesheet" href="{{ asset('css/front.css') }}" />
-
-{{-- <!-- Stylesheets -->
-<link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}"/>
-<link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}" />
-<link rel="stylesheet" href="{{ asset('assets/css/owl.carousel.min.css') }}" />
-<link rel="stylesheet" href="{{ asset('assets/css/slicknav.min.css') }}" />
-
-<!-- Main Stylesheets -->
-<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" /> --}}

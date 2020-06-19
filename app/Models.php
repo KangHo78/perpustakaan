@@ -15,6 +15,7 @@ use App\rak_buku;
 use App\peminjaman;
 use App\peminjaman_dt;
 use App\rak_buku_dt;
+use App\log;
 
 class models extends model
 {
@@ -88,5 +89,11 @@ class models extends model
       $peminjaman_dt = new peminjaman_dt(); 
 
       return $peminjaman_dt;
+    }
+    public function log()
+    {
+      $log = new log(); 
+
+      return $log;
     }
 }
