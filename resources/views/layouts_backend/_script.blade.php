@@ -35,7 +35,6 @@
 <script src="{{ asset('assets_backend/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-<!-- page script -->
 <script type="text/javascript">
   $(document).ready(function () {    
   bsCustomFileInput.init();

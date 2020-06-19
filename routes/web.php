@@ -29,6 +29,7 @@ Auth::routes();
 Route::get('/dashboard', 'HomeController@index')->name('home');
 
 Route::get('/user', 'userController@index')->name('user_index');
+Route::get('/user_create', 'userController@create')->name('user_create');
 Route::get('/user_edit', 'userController@edit')->name('user_edit');
 Route::get('/user_update', 'userController@update')->name('user_update');
 Route::get('/user_hapus', 'userController@hapus')->name('user_hapus');

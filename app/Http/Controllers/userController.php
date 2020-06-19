@@ -3,12 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use DB;
 use App\models;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\UploadedFile;
-use Response;
 use PDF;
 
 class userController extends Controller
@@ -35,6 +32,27 @@ class userController extends Controller
     {
         $data = $this->model->user()->get();
         return view('backend_view.master.user.user_index', compact('data'));
+    }
+    public function create()
+    {
+        $previlege = $this->model->previleges()->get();
+        return view('backend_view.master.user.user_create', compact('previlege'));
+    }
+    public function save(Request $req)
+    {
+        $validasi = $this->validate($req, [
+            'name' => 'required',
+        ]);
+        // $id = $this->model->kategori()->max('mk_id') + 1;
+        // if ($validasi == true) {
+        //     $this->model->kategori()->create([
+        //         'mk_id' => $id,
+        //         'mk_name' => $req->name,
+        //     ]);
+        //     return Response()->json(['status' => 'sukses']);
+        // } else {
+        //     return Response()->json(['status' => 'gagal']);
+        // }
     }
     public function edit(Request $req)
     {

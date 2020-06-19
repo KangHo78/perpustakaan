@@ -24,8 +24,8 @@ mix.styles([
 mix.scripts([
         'resources/js/frontend/jquery-3.2.1.min.js',
         'resources/js/frontend/bootstrap.min.js',
-        'resources/js/frontend/jquery.slicknav.min.js',
         'resources/js/frontend/owl.carousel.min.js',
+        'resources/js/frontend/jquery.slicknav.min.js',
         'resources/js/frontend/main.js',
     ],
     'public/js/front.js');
@@ -33,6 +33,7 @@ mix.scripts([
 // Back End
 mix.styles([
         'resources/css/backend/tempusdominus-bootstrap-4.min.css',
+        'resources/css/backend/all.css',
         'resources/css/backend/icheck-bootstrap.min.css',
         'resources/css/backend/OverlayScrollbars.min.css',
         'resources/css/backend/daterangepicker.css',
@@ -51,12 +52,13 @@ mix.scripts([
         'resources/js/backend/fastclick.js',
         'resources/js/backend/bs-custom-file-input.min.js',
         'resources/js/backend/jquery.overlayScrollbars.min.js',
-        'resources/js/backend/pdfmake.min.js',
-        'resources/js/backend/vfs_fonts.js',
         'resources/js/backend/jquery.dataTables.min.js',
         'resources/js/backend/dataTables.bootstrap4.min.js',
         'resources/js/backend/dataTables.responsive.min.js',
         'resources/js/backend/responsive.bootstrap4.min.js',
+        'resources/js/backend/sweetalert2.all.min.js',
+        'resources/js/backend/jquery.inputmask.min.js',
+        'resources/js/backend/inputmask.binding.js',
         'resources/js/backend/adminlte.min.js',
     ],
     'public/js/back.js');
