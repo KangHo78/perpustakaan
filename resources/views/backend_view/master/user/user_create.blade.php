@@ -26,7 +26,7 @@
       <div class="alert alert-info alert-dismissible">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
         <h5><i class="icon fas fa-info"></i> Alert!</h5>
-        Pastikan Password Memiliki Panjang Minimal 8
+        Pastikan password memiliki panjang minimal 8
       </div>
       <!-- FORM -->
       <div class="card card-default">
@@ -61,6 +61,10 @@
               <input type="text" class="form-control" name="address">
             </div>
             <div class="form-group">
+              <label>Alamat Universitas</label>
+              <input type="text" class="form-control" value="Jl. Semolowaru No.45" name="addressuniv">
+            </div>
+            <div class="form-group">
               <label>Telepon</label>
               <input type="text" class="form-control" data-inputmask="&quot;mask&quot;: &quot;(+62) 999-9999-9999&quot;"
                 name="tlp">
@@ -90,13 +94,14 @@
 <script type="text/javascript">
   function save(argument) {      
     $.ajax({
-      url:'{{ route('previleges_save') }}',
+      url:'{{ route('user_save') }}',
       data:$('.form-save').serialize(),
       type:'get',
       error:function(data){
         if(data.status == 422){
             Swal.fire({
-              title: 'Pastikan Data Tidak Kosong.',
+              title: 'Error',
+              text: 'Pastikan data tidak kosong dan panjang password minimal 8.',
               icon: 'error',
               confirmButtonText: 'Ok'
             })
@@ -105,11 +110,11 @@
       success:function(data){
         if (data.status == 'sukses') {
           Swal.fire({
-            title: 'Data Sudah Disimpan.',
+            title: 'Data sudah disimpan.',
             icon: 'success',
             confirmButtonText: 'Ok'
           }).then(function(result){
-            location.href = '{{ route('previleges_index') }}';
+            location.href = '{{ route('user_index') }}';
              })
         }
       }

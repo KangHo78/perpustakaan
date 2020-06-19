@@ -24,7 +24,7 @@
             <!-- FORM -->
             <div class="card card-default">
                 <div class="card-header">
-                    <h3 class="card-title">Create User</h3>
+                    <h3 class="card-title">Edit User</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body" style="display: block;">
@@ -98,7 +98,7 @@
         error:function(data){
         if(data.status == 422){
             Swal.fire({
-              title: 'Pastikan Data Tidak Kosong.',
+              title: 'Pastikan data tidak kosong.',
               icon: 'error',
               confirmButtonText: 'Ok'
             })
@@ -107,7 +107,7 @@
         success:function(data){
           if (data.status == 'sukses') {
             Swal.fire({
-              title: 'Data Sudah Disimpan.',
+              title: 'Data sudah disimpan.',
               icon: 'success',
               confirmButtonText: 'Ok'
             }).then(function(result){

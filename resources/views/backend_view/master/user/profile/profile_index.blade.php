@@ -44,11 +44,14 @@
                         @elseif(Auth::user()->previleges == '2')
                         Dosen
                         @else
-                        Administrator
+                        Staff Perpustakaan
                         @endif</p>
                     <ul class="list-group list-group-unbordered mb-3">
                         <li class="list-group-item">
                             <b>Status</b> <a class="float-right">Aktif</a>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Kode</b> <a class="float-right">{{ Auth::user()->kode }}</a>
                         </li>
                         <li class="list-group-item">
                             <b>Username</b> <a class="float-right">{{ Auth::user()->username }}</a>

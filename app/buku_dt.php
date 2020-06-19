@@ -16,9 +16,9 @@ class buku_dt extends model
   protected $fillable = [
     'mbdt_id'  ,
     'mbdt_dt'  ,
+    'mbdt_isbn'  ,
     'mbdt_status' ,
     'mbdt_rak_buku_dt' ,
-    'mbdt_isbn' ,
   ];
 
   public function getDateFormat()
@@ -35,7 +35,7 @@ class buku_dt extends model
   }
   public function buku()
   {
-      return $this->belongsTo('App\buku', 'mbdt_id', 'mb_id');
+      return $this->hasMany('App\buku', 'mbdt_id', 'mb_id');
   }
 
 }

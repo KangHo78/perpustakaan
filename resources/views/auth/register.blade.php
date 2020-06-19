@@ -33,6 +33,40 @@
                         </span>
                         @enderror
 
+                        {{-- Nbi --}}
+                        <input id="reg" type="text" class="form-control @error('reg') is-invalid @enderror" name="reg"
+                            placeholder="Your NBI" data-inputmask="&quot;mask&quot;: &quot;9999999999&quot;"
+                            value="{{ old('reg') }}" required autocomplete="reg">
+
+                        @error('reg')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+
+                        {{-- Alamat --}}
+                        <input id="address" type="text" class="form-control @error('address') is-invalid @enderror"
+                            name="address" placeholder="Your address" value="{{ old('address') }}" required
+                            autocomplete="address">
+
+                        @error('address')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+
+                        {{-- No --}}
+                        <input id="tlp" type="text" class="form-control @error('tlp') is-invalid @enderror" name="tlp"
+                            placeholder="Your telepon"
+                            data-inputmask="&quot;mask&quot;: &quot;(+62) 999-9999-9999&quot;" value="{{ old('tlp') }}"
+                            required autocomplete="tlp">
+
+                        @error('tlp')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+
                         {{-- Password --}}
                         <input id="password" type="password"
                             class="form-control @error('password') is-invalid @enderror" name="password" required

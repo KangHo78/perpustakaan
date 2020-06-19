@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
 use App\models;
-use Response;
 
 class kategoriController extends Controller
 {
@@ -48,8 +46,6 @@ class kategoriController extends Controller
                 'mk_name' => $req->name,
             ]);
             return Response()->json(['status' => 'sukses']);
-        } else {
-            return Response()->json(['status' => 'gagal']);
         }
     }
     public function edit(Request $req)
@@ -67,8 +63,6 @@ class kategoriController extends Controller
                 'mk_name' => $req->name,
             ]);
             return Response()->json(['status' => 'sukses']);
-        } else {
-            return Response()->json(['status' => 'gagal']);
         }
     }
     public function hapus(Request $req)

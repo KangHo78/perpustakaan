@@ -12,7 +12,7 @@
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
             <li class="breadcrumb-item">Master</li>
-            <li class="breadcrumb-item active">Create Kategori</li>
+            <li class="breadcrumb-item active">Create Buku</li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -26,14 +26,45 @@
       <!-- FORM -->
       <div class="card card-default">
         <div class="card-header">
-          <h3 class="card-title">Create Kategori</h3>
+          <h3 class="card-title">Create Buku</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body" style="display: block;">
           <form class="form-save">
             <div class="form-group">
-              <label>Nama</label>
-              <input type="text" class="form-control" name="name">
+              <label>Kode</label>
+              <input type="text" class="form-control" name="kode">
+            </div>
+            <div class="form-group">
+              <label>Kategori</label>
+            </div>
+            <div class="form-group">
+              <label>Penerbit</label>
+              <input type="text" class="form-control" name="kode">
+            </div>
+            <div class="form-group">
+              <label>Pengarang</label>
+              <input type="text" class="form-control" name="kode">
+            </div>
+            <div class="form-group">
+              <label>Created By</label>
+              <input type="text" class="form-control" name="kode">
+            </div>
+            <div class="form-group">
+              <label>Created At</label>
+              <input type="text" class="form-control" name="kode">
+            </div>
+            <div class="form-group">
+              <label>Name</label>
+              <input type="text" class="form-control" name="kode">
+            </div>
+            <div class="form-group">
+              <label>Desc</label>
+              <input type="text" class="form-control" name="kode">
+            </div>
+            <div class="form-group">
+              <label>Pinjam</label>
+              <input type="text" class="form-control" name="kode">
             </div>
         </div>
         <!-- /.card-body -->
@@ -51,13 +82,13 @@
 <script type="text/javascript">
   function save(argument) {      
     $.ajax({
-      url:'{{ route('kategori_save') }}',
+      url:'{{ route('buku_save') }}',
       data:$('.form-save').serialize(),
       type:'get',      
       error:function(data){
         if(data.status == 422){
             Swal.fire({
-              title: 'Pastikan data tidak kosong.',
+              title: 'Pastikan Data Tidak Kosong.',
               icon: 'error',
               confirmButtonText: 'Ok'
             })
@@ -66,11 +97,11 @@
       success:function(data){
         if (data.status == 'sukses') {
           Swal.fire({
-            title: 'Data sudah disimpan.',
+            title: 'Data Sudah Disimpan.',
             icon: 'success',
             confirmButtonText: 'Ok'
           }).then(function(result){
-            location.href = '{{ route('kategori_index') }}';
+            location.href = '{{ route('buku_index') }}';
              })
         }
       }

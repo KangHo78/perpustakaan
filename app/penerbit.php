@@ -24,4 +24,9 @@ class penerbit extends model
   {
     return 'Y-m-d H:i:s';
   }
+  public function buku()
+    {
+      return $this->hasMany('App\buku', 'mb_penerbit', 'mpn_id');
+    }
+
 }
