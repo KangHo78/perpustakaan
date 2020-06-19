@@ -29,7 +29,7 @@
           <!-- small box -->
           <div class="small-box bg-info">
             <div class="inner">
-              <h3>100.000</h3>
+              <h3>{{ $total_buku }}</h3>
               <p>Total Buku</p>
             </div>
             <div class="icon">
@@ -44,7 +44,7 @@
           <!-- small box -->
           <div class="small-box bg-success">
             <div class="inner">
-              <h3>10.000</h3>
+              <h3>{{ $total_user }}</h3>
               <p>Total User Terdaftar</p>
             </div>
             <div class="icon">
@@ -58,7 +58,7 @@
           <!-- small box -->
           <div class="small-box bg-warning">
             <div class="inner">
-              <h3>300</h3>
+              <h3>{{ $total_buku_dipinjam }}</h3>
               <p>Buku Sedang Dipinjam</p>
             </div>
             <div class="icon">
@@ -72,7 +72,7 @@
           <!-- small box -->
           <div class="small-box bg-danger">
             <div class="inner">
-              <h3>126.931.923</h3>
+              <h3>{{ $total_buku_terpinjam }}</h3>
               <p>Total Peminjaman</p>
             </div>
             <div class="icon">

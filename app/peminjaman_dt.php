@@ -16,7 +16,6 @@ class peminjaman_dt extends model
   protected $fillable = [
     'tpjdt_id'  ,
     'tpjdt_dt'  ,
-    'tpjdt_buku' ,
     'tpjdt_isbn' ,
   ];
 

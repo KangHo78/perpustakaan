@@ -85,3 +85,5 @@ Route::get('/transaksi_peminjaman_save', 'transaksi_peminjamanController@save')-
 Route::get('/transaksi_peminjaman_edit', 'transaksi_peminjamanController@edit')->name('transaksi_peminjaman_edit');
 Route::get('/transaksi_peminjaman_update', 'transaksi_peminjamanController@update')->name('transaksi_peminjaman_update');
 Route::get('/transaksi_peminjaman_hapus', 'transaksi_peminjamanController@hapus')->name('transaksi_peminjaman_hapus');
+Route::get('/transaksi_peminjaman_get_data_buku', 'transaksi_peminjamanController@get_data_buku')->name('transaksi_peminjaman_get_data_buku');
+Route::get('/transaksi_peminjaman_get_data_buku_remove', 'transaksi_peminjamanController@get_data_buku_remove')->name('transaksi_peminjaman_get_data_buku_remove');
