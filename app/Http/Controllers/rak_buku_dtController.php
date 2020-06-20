@@ -30,6 +30,7 @@ class rak_buku_dtController extends Controller
     public function index()
     {
         $data = $this->model->rak_buku_dt()->with('m_rak_buku_dt')->get();
+        $data = $this->model->rak_buku_dt()->get();
         return view('backend_view.master.rak_buku.rak_buku_index', compact('data'));
     }
     public function save(Request $req)
@@ -38,8 +39,11 @@ class rak_buku_dtController extends Controller
             'kode_dt' => 'required',
         ]);
         $id = $this->model->rak_buku_dt()->max('mrbd_dt') + 1;
+        $id = $this->model->rak_buku_dt()->max('mrbd_id') + 1;
         if ($validasi == true) {    
             $this->model->rak_buku_dt()->create([
+                'mrbd_dt' => $id,
+                'mrbd_id' => 'mrb_id',
                 'mrbd_kode' => $req->kode_dt,
             ]);
             return Response()->json(['status' => 'sukses']);

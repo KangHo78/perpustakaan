@@ -72,6 +72,14 @@ Route::get('/penerbit_edit', 'penerbitController@edit')->name('penerbit_edit');
 Route::get('/penerbit_update', 'penerbitController@update')->name('penerbit_update');
 Route::get('/penerbit_hapus', 'penerbitController@hapus')->name('penerbit_hapus');
 
+Route::get('/buku', 'bukuController@index')->name('buku_index');
+Route::get('/buku_create', 'bukuController@create')->name('buku_create');
+Route::get('/buku_save', 'bukuController@save')->name('buku_save');
+Route::get('/buku_edit', 'bukuController@edit')->name('buku_edit');
+Route::get('/buku_update', 'bukuController@update')->name('buku_update');
+Route::get('/buku_hapus', 'bukuController@hapus')->name('buku_hapus');
+
+
 Route::get('/rak_buku', 'rak_bukuController@index')->name('rak_buku_index');
 Route::get('/rak_buku_create', 'rak_bukuController@create')->name('rak_buku_create');
 Route::get('/rak_buku_save', 'rak_bukuController@save')->name('rak_buku_save');
