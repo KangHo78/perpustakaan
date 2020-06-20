@@ -76,8 +76,8 @@
               <tr>
                 <th>Kode</th>
                 <th>Buku</th>
-                <th>Isbn</th>
-                <th>aksi</th>
+                <th>ISBN</th>
+                <th>Aksi</th>
               </tr>
               @foreach ($data->peminjaman_dt as $element)
               <tr class="total_pinjam remove_{{ $element->tpjdt_isbn }}">

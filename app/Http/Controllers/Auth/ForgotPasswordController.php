@@ -35,13 +35,9 @@ class ForgotPasswordController extends Controller
     }
     public function index()
     {
-        if (Auth::user()->registration_kode == null) {
-            return redirect()->route('profile_index')->with(['status' => 'Pastikan Sudah Mengisi Semua Data Diri']);
-        } else if (Auth::user()->username == null) {
-            return redirect()->route('profile_index')->with(['status' => 'Pastikan Sudah Mengisi Semua Data Diri']);
-        } else {
-            return view('backend_view.master.user.profile.profile_forgot');
-        }
+        return Auth::user()->username == null ?
+            redirect()->route('profile_index')->with(['status' => 'Pastikan sudah mengisi semua data diri']) :
+            view('backend_view.master.user.profile.profile_forgot');
     }
     public function changepassword(Request $req)
     {
@@ -53,13 +49,8 @@ class ForgotPasswordController extends Controller
             'password' => ['required', 'min:8'],
         ]);
 
-        $reg = Auth::user()->registration_kode != $req->reg;
-        $email = Auth::user()->email != $req->email;
-        $kode = Auth::user()->kode != $req->kode;
-        $username = Auth::user()->username != $req->username;
-
         if ($validasi == true) {
-            if ($reg || $email || $kode || $username) {
+            if (Auth::user()->username != $req->username) {
                 return Response()->json(['status' => 'gagal']);
             } else {
                 $this->model->user()->where('id', $req->id)->update([
@@ -71,8 +62,6 @@ class ForgotPasswordController extends Controller
                 ]);
                 return Response()->json(['status' => 'sukses']);
             }
-        } else {
-            return Response()->json(['status' => 'gagal']);
         }
     }
     public function logout()

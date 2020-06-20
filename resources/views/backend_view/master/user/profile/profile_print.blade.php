@@ -115,7 +115,7 @@
                     @elseif(Auth::user()->previleges == '2')
                     Dosen
                     @else
-                    Administrator
+                    Staff Perpustakaan
                     @endif
                 </div>
                 <img class="center image" src="{{ public_path("storage/user/".Auth::user()->photo)}}">

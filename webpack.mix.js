@@ -26,6 +26,8 @@ mix.scripts([
         'resources/js/frontend/bootstrap.min.js',
         'resources/js/frontend/owl.carousel.min.js',
         'resources/js/frontend/jquery.slicknav.min.js',
+        'resources/js/backend/jquery.inputmask.min.js',
+        'resources/js/backend/inputmask.binding.js',
         'resources/js/frontend/main.js',
     ],
     'public/js/front.js');

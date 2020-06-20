@@ -53,7 +53,7 @@
                                 @elseif($element->previleges == '2')
                                 <td>Dosen</td>
                                 @else
-                                <td>Administrator</td>
+                                <td>Staff Perpustakaan</td>
                                 @endif
                                 <td>{{ $element->kode }}</td>
                                 <td>{{ $element->address }}</td>
@@ -90,7 +90,7 @@
 <script type="text/javascript">
     function perpanjang(argument) {
         Swal.fire({
-            title: 'Yakin Ingin Diperpanjang?',
+            title: 'Yakin ingin diperpanjang?',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -99,7 +99,7 @@
         }).then((result) => {
             if (result.value) {
                 Swal.fire({
-                title: 'Perpanjangan Berhasil',
+                title: 'Perpanjangan berhasil',
                 icon: 'success',
                 showConfirmButton: false,
                 }
@@ -119,7 +119,7 @@
 
     function hapus(argument) {
         Swal.fire({
-            title: 'Yakin Menghapus Data?',
+            title: 'Yakin menghapus data?',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -128,7 +128,7 @@
         }).then((result) => {
             if (result.value) {
                 Swal.fire({
-                title: 'Data Berhasil Di Hapus',
+                title: 'Data berhasil di hapus',
                 icon: 'success',
                 showConfirmButton: false,
                 }

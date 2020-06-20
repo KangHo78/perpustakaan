@@ -54,23 +54,12 @@ class userController extends Controller
         ]);
 
         $id = $this->model->user()->max('id') + 1;
-        $user = DB::table('users')->select(DB::raw('count(kode)'));
-
         if ($req->previleges == '1') {
-            $count = $user->where('kode', 'like', 'ADM%')->first();
-            $date = date("ym");
-            $newcount = str_pad($count->count + 1, 5, '0', STR_PAD_LEFT);
-            $kode = 'ADM/' . $date . "/" . $newcount;
+            $this->kodeadm();
         } else if ($req->previleges == '2') {
-            $count = $user->where('kode', 'like', 'DSN%')->first();
-            $date = date("ym");
-            $newcount = str_pad($count->count + 1, 5, '0', STR_PAD_LEFT);
-            $kode = 'DSN/' . $date . "/" . $newcount;
+            $this->kodedsn();
         } else {
-            $count = $user->where('kode', 'like', 'MHS%')->first();
-            $date = date("ym");
-            $newcount = str_pad($count->count + 1, 5, '0', STR_PAD_LEFT);
-            $kode = 'MHS/' . $date . "/" . $newcount;
+            $this->kodemhs();
         }
         if ($validasi == true) {
             $this->model->user()->create([
@@ -179,25 +168,49 @@ class userController extends Controller
                 'username' => $req->username,
             ]);
             return Response()->json(['status' => 'sukses']);
-        } else {
-            return Response()->json(['status' => 'gagal']);
         }
     }
     public function profileprint()
     {
-        $userdate = strtotime("+4 years", strtotime(Auth::user()->updated_at));
-        $date = date("Y-m-d", $userdate);
-        if (Auth::user()->registration_kode == null) {
-            return redirect()->route('profile_index')->with(['status' => 'Pastikan Sudah Mengisi Semua Data Diri']);
-        } else if (Auth::user()->username == null) {
-            return redirect()->route('profile_index')->with(['status' => 'Pastikan Sudah Mengisi Semua Data Diri']);
-        } else if (Auth::user()->address == null) {
-            return redirect()->route('profile_index')->with(['status' => 'Pastikan Sudah Mengisi Semua Data Diri']);
-        } else if (Auth::user()->tlp == null) {
-            return redirect()->route('profile_index')->with(['status' => 'Pastikan Sudah Mengisi Semua Data Diri']);
+        $date = date("Y-m-d", strtotime("+4 years", strtotime(Auth::user()->updated_at)));
+        if (Auth::user()->username == null) {
+            return redirect()->route('profile_index')->with(['status' => 'Pastikan sudah mengisi semua data diri']);
         } else {
             $pdf = PDF::loadView('backend_view.master.user.profile.profile_print', ['date' => $date]);
             return $pdf->stream("ID Card " . Auth::user()->name . ".pdf", array("Attachment" => 0));
         }
+    }
+    public function kodemhs()
+    {
+        $count = DB::table('users')
+            ->select(DB::raw('count(kode)'))
+            ->where('kode', 'like', 'MHS%')
+            ->first();
+        $date = date("ym");
+        $newcount = str_pad($count->count + 1, 5, '0', STR_PAD_LEFT);
+        $kode = 'MHS/' . $date . "/" . $newcount;
+        return $kode;
+    }
+    public function kodedsn()
+    {
+        $count = DB::table('users')
+            ->select(DB::raw('count(kode)'))
+            ->where('kode', 'like', 'DSN%')
+            ->first();
+        $date = date("ym");
+        $newcount = str_pad($count->count + 1, 5, '0', STR_PAD_LEFT);
+        $kode = 'DSN/' . $date . "/" . $newcount;
+        return $kode;
+    }
+    public function kodeadm()
+    {
+        $count = DB::table('users')
+            ->select(DB::raw('count(kode)'))
+            ->where('kode', 'like', 'ADM%')
+            ->first();
+        $date = date("ym");
+        $newcount = str_pad($count->count + 1, 5, '0', STR_PAD_LEFT);
+        $kode = 'ADM/' . $date . "/" . $newcount;
+        return $kode;
     }
 }

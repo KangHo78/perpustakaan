@@ -66,7 +66,7 @@
                                     <table>
                                         <tr>
                                             <th>Buku</th>
-                                            <th>Isbn</th>
+                                            <th>ISBN</th>
                                         </tr>
                                         @foreach ($element->peminjaman_dt as $element1)
                                         <tr>
