@@ -37,8 +37,9 @@
                                 <td>Kode</td>
                                 <td>Alamat</td>
                                 <td>Telepon</td>
-                                <td>Kode Registrasi</td>
+                                <td>NBI</td>
                                 <td>Email</td>
+                                <td>Valid</td>
                                 <td>Aksi</td>
                             </tr>
                         </thead>
@@ -59,6 +60,7 @@
                                 <td>{{ $element->tlp }}</td>
                                 <td>{{ $element->registration_kode }}</td>
                                 <td>{{ $element->email }}</td>
+                                <td>{{ date("d-m-Y", strtotime($element->updated_at)) }}</td>
                                 <td>
                                     <button class="btn btn-sm btn-info btn-block"
                                         onclick="edit('{{ $element->id }}')"><i class="fas fa-pen"></i>
@@ -66,6 +68,9 @@
                                     <button class="btn btn-sm btn-danger btn-block"
                                         onclick="hapus('{{ $element->id }}')"><i class="fas fa-trash"></i>
                                         Hapus</button>
+                                    <button class="btn btn-sm btn-secondary btn-block"
+                                        onclick="perpanjang('{{ $element->id }}')"><i class="fas fa-plus"></i>
+                                        Perpanjang</button>
                                 </td>
                             </tr>
                             @endforeach
@@ -83,6 +88,27 @@
 @endsection
 
 <script type="text/javascript">
+    function perpanjang(argument) {
+        Swal.fire({
+            title: 'Yakin Ingin Diperpanjang?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            if (result.value) {
+                Swal.fire({
+                title: 'Perpanjangan Berhasil',
+                icon: 'success',
+                showConfirmButton: false,
+                }
+            )
+            location.href = '{{ url('/') }}' + '/user_perpanjang?&id=' + argument;
+            }
+        })        
+    }
+
     function tambah(argument) {
         location.href = '{{ route('user_create') }}';
     }

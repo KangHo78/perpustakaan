@@ -77,6 +77,7 @@
             width: 100px;
             height: 100px;
             top: 14%;
+            border-radius: 50%;
         }
 
         .card .additional .user-card .points {
@@ -117,18 +118,18 @@
                     Administrator
                     @endif
                 </div>
-                <img class="center image" src="{{ public_path(Auth::user()->photo)}}">
+                <img class="center image" src="{{ public_path("storage/user/".Auth::user()->photo)}}">
                 <div class="points center">
                     {{ Auth::user()->kode }}
                 </div>
             </div>
             <div class="more-info">
-                <h1>{{ Auth::user()->name }}</h1>
+                <h1>{{ Auth::user()->registration_kode }}</h1>
                 <div class="coords">
                     Username : {{ Auth::user()->username }}
                 </div>
                 <div class="coords">
-                    NBI : {{ Auth::user()->registration_kode }}
+                    Name : {{ Auth::user()->name }}
                 </div>
                 <div class="coords">
                     Address : {{ Auth::user()->address }}

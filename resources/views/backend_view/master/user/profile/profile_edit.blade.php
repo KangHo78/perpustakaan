@@ -103,7 +103,8 @@
         error:function(data){
         if(data.status == 422){
             Swal.fire({
-              title: 'Pastikan Data Tidak Kosong Dan Ukuran Foto Minimal 2MB.',
+              title: 'Error',
+              text: 'Pastikan Data Tidak Kosong Dan Ukuran Foto Minimal 2MB.',
               icon: 'error',
               confirmButtonText: 'Ok'
             })

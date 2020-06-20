@@ -7,6 +7,7 @@ use DB;
 use App\models;
 use Illuminate\Support\Facades\Auth;
 use PDF;
+use Illuminate\Support\Facades\Hash;
 
 class userController extends Controller
 {
@@ -42,17 +43,54 @@ class userController extends Controller
     {
         $validasi = $this->validate($req, [
             'name' => 'required',
+            'email' => 'required',
+            'password' => ['required', 'min:8'],
+            'previleges' => 'required',
+            'address' => 'required',
+            'addressuniv' => 'required',
+            'reg' => 'required',
+            'tlp' => 'required',
+            'username' => 'required',
         ]);
-        // $id = $this->model->kategori()->max('mk_id') + 1;
-        // if ($validasi == true) {
-        //     $this->model->kategori()->create([
-        //         'mk_id' => $id,
-        //         'mk_name' => $req->name,
-        //     ]);
-        //     return Response()->json(['status' => 'sukses']);
-        // } else {
-        //     return Response()->json(['status' => 'gagal']);
-        // }
+
+        $id = $this->model->user()->max('id') + 1;
+        $user = DB::table('users')->select(DB::raw('count(kode)'));
+
+        if ($req->previleges == '1') {
+            $count = $user->where('kode', 'like', 'ADM%')->first();
+            $date = date("ym");
+            $newcount = str_pad($count->count + 1, 5, '0', STR_PAD_LEFT);
+            $kode = 'ADM/' . $date . "/" . $newcount;
+        } else if ($req->previleges == '2') {
+            $count = $user->where('kode', 'like', 'DSN%')->first();
+            $date = date("ym");
+            $newcount = str_pad($count->count + 1, 5, '0', STR_PAD_LEFT);
+            $kode = 'DSN/' . $date . "/" . $newcount;
+        } else {
+            $count = $user->where('kode', 'like', 'MHS%')->first();
+            $date = date("ym");
+            $newcount = str_pad($count->count + 1, 5, '0', STR_PAD_LEFT);
+            $kode = 'MHS/' . $date . "/" . $newcount;
+        }
+        if ($validasi == true) {
+            $this->model->user()->create([
+                'id' => $id,
+                'name' => $req->name,
+                'email' => $req->email,
+                'password' => Hash::make($req->password),
+                'previleges' => $req->previleges,
+                'kode' => $kode,
+                'address' => $req->address,
+                'address_univ' => $req->addressuniv,
+                'registration_kode' => $req->reg,
+                'tlp' => $req->tlp,
+                'username' => $req->username,
+                'photo' => 'default.svg',
+            ]);
+            return Response()->json(['status' => 'sukses']);
+        } else {
+            return Response()->json(['status' => 'gagal']);
+        }
     }
     public function edit(Request $req)
     {
@@ -94,6 +132,14 @@ class userController extends Controller
     public function hapus(Request $req)
     {
         DB::table('users')->where('id', $req->id)->delete();
+        return redirect()->back();
+    }
+    public function perpanjang(Request $req)
+    {
+        $users = DB::table('users')->where('id', $req->id);
+        $userdate = $users->first()->updated_at;
+        $newdate = date("Y-m-d H:i:s", strtotime("+4 years", strtotime($userdate)));
+        $users->update(['updated_at' => $newdate]);
         return redirect()->back();
     }
     public function profile()
