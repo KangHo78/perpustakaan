@@ -32,17 +32,14 @@
                             <tr>
                                 <td>No</td>
                                 <td>Kode</td>
-                                <td>ISBN</td>
                                 <td>Kategori</td>
                                 <td>Penerbit</td>
                                 <td>Pengarang</td>
-                                <td>Rak Buku</td>
-                                <td>Sub Rak Buku</td>
                                 <td>Dibuat Oleh</td>
                                 <td>Dibuat Di</td>
                                 <td>Name</td>
                                 <td>Desc</td>
-                                <td>Status</td>
+                                <td>Pinjam</td>
                                 <td>Aksi</td>
                             </tr>
                         </thead>
@@ -51,17 +48,14 @@
                             <tr>
                                 <td>{{ $index+1 }}</td>
                                 <td>{{ $element->mb_kode }}</td>
-                                <td>{{ $element->mb_isbn }}</td>
-                                <td>{{ $element->mb_kategori }}</td>
-                                <td>{{ $element->mb_Penerbit }}</td>
-                                <td>{{ $element->mb_pengarang }}</td>
-                                <td>{{ $element->mb_rak_buku }}</td>
-                                <td>{{ $element->mb_rak_buku_dt }}</td>
+                                <td>{{ $element->kategori->mk_name }}</td>
+                                <td>{{ $element->penerbit->mpn_name }}</td>
+                                <td>{{ $element->pengarang->mpg_name }}</td>
                                 <td>{{ $element->mb_created_by }}</td>
                                 <td>{{ $element->mb_created_at }}</td>
                                 <td>{{ $element->mb_name }}</td>
                                 <td>{{ $element->mb_desc }}</td>
-                                <td>{{ $element->mb_status }}</td>
+                                <td>{{ $element->mb_pinjam }}</td>
                                 <td>
                                     <button class="btn btn-sm btn-info" onclick="edit('{{ $element->mb_id }}')"><i
                                             class="fas fa-pen"></i> Edit</button>
