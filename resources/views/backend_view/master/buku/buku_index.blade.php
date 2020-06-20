@@ -5,14 +5,14 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Master Peminjaman</h1>
+                    <h1 class="m-0 text-dark">Master Buku</h1>
                 </div>
                 <!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                         <li class="breadcrumb-item">Master</li>
-                        <li class="breadcrumb-item active">Peminjaman</li>
+                        <li class="breadcrumb-item active">Buku</li>
                     </ol>
                 </div>
                 <!-- /.col -->
@@ -31,11 +31,18 @@
                         <thead>
                             <tr>
                                 <td>No</td>
-                                <td>kode</td>
-                                <td>Peminjam</td>
-                                <td>Pustakawan</td>
-                                <td>Tanggal</td>
-                                <td>Buku</td>
+                                <td>Kode</td>
+                                <td>ISBN</td>
+                                <td>Kategori</td>
+                                <td>Penerbit</td>
+                                <td>Pengarang</td>
+                                <td>Rak Buku</td>
+                                <td>Sub Rak Buku</td>
+                                <td>Dibuat Oleh</td>
+                                <td>Dibuat Di</td>
+                                <td>Name</td>
+                                <td>Desc</td>
+                                <td>Status</td>
                                 <td>Aksi</td>
                             </tr>
                         </thead>
@@ -43,43 +50,22 @@
                             @foreach ($data as $index => $element)
                             <tr>
                                 <td>{{ $index+1 }}</td>
-                                <td>{{ $element->tpj_kode }}</td>
-                                <td>{{ $element->peminjaman_anggota->name }}</td>
-                                <td>{{ $element->peminjaman_staff->name }}</td>
+                                <td>{{ $element->mb_kode }}</td>
+                                <td>{{ $element->mb_isbn }}</td>
+                                <td>{{ $element->mb_kategori }}</td>
+                                <td>{{ $element->mb_Penerbit }}</td>
+                                <td>{{ $element->mb_pengarang }}</td>
+                                <td>{{ $element->mb_rak_buku }}</td>
+                                <td>{{ $element->mb_rak_buku_dt }}</td>
+                                <td>{{ $element->mb_created_by }}</td>
+                                <td>{{ $element->mb_created_at }}</td>
+                                <td>{{ $element->mb_name }}</td>
+                                <td>{{ $element->mb_desc }}</td>
+                                <td>{{ $element->mb_status }}</td>
                                 <td>
-                                    <table>
-                                        <tr>
-                                            <th>Tgl Pinjam</th>
-                                            <td>{{ date('d-M-Y',strtotime($element->tpj_date_pinjam)) }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Tgl Kembali</th>
-                                            <td>{{ date('d-M-Y',strtotime($element->tpj_date_kembali)) }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Tgl Tempo</th>
-                                            <td>{{ date('d-M-Y',strtotime($element->tpj_date_tempo)) }}</td>
-                                        </tr>
-                                    </table>
-                                </td>
-                                <td>
-                                    <table>
-                                        <tr>
-                                            <th>Buku</th>
-                                            <th>Isbn</th>
-                                        </tr>
-                                        @foreach ($element->peminjaman_dt as $element1)
-                                        <tr>
-                                            <td>{{ $element1->buku_dt->buku->mb_name }}</td>
-                                            <td>{{ $element1->tpjdt_isbn }}</td>
-                                        </tr>
-                                        @endforeach
-                                    </table>
-                                </td>
-                                <td>
-                                    <button class="btn btn-sm btn-info" onclick="edit('{{ $element->tpj_id }}')"><i
+                                    <button class="btn btn-sm btn-info" onclick="edit('{{ $element->mb_id }}')"><i
                                             class="fas fa-pen"></i> Edit</button>
-                                    <button class="btn btn-sm btn-danger" onclick="hapus('{{ $element->tpj_id }}')"><i
+                                    <button class="btn btn-sm btn-danger" onclick="hapus('{{ $element->mb_id }}')"><i
                                             class="fas fa-trash"></i> Hapus</button>
                                 </td>
                             </tr>
@@ -99,11 +85,11 @@
 
 <script type="text/javascript">
     function tambah(argument) {
-        location.href = '{{ route('transaksi_peminjaman_create') }}';
+        location.href = '{{ route('buku_create') }}';
     }
 
     function edit(argument) {
-        location.href = '{{ url('/') }}' + '/transaksi_peminjaman_edit?&id=' + argument;
+        location.href = '{{ url('/') }}' + '/buku_edit?&id=' + argument;
     }
 
     function hapus(argument) {
@@ -122,7 +108,7 @@
                 showConfirmButton: false,
                 }
             )
-            location.href = '{{ url('/') }}' + '/kategori_hapus?&id=' + argument;
+            location.href = '{{ url('/') }}' + '/buku_hapus?&id=' + argument;
             }
         })
     }

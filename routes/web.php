@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Support\Facades\Route;
@@ -73,12 +74,24 @@ Route::get('/penerbit_edit', 'penerbitController@edit')->name('penerbit_edit');
 Route::get('/penerbit_update', 'penerbitController@update')->name('penerbit_update');
 Route::get('/penerbit_hapus', 'penerbitController@hapus')->name('penerbit_hapus');
 
+Route::get('/buku', 'bukuController@index')->name('buku_index');
+Route::get('/buku_create', 'bukuController@create')->name('buku_create');
+Route::get('/buku_save', 'bukuController@save')->name('buku_save');
+Route::get('/buku_edit', 'bukuController@edit')->name('buku_edit');
+Route::get('/buku_update', 'bukuController@update')->name('buku_update');
+Route::get('/buku_hapus', 'bukuController@hapus')->name('buku_hapus');
+
+
 Route::get('/rak_buku', 'rak_bukuController@index')->name('rak_buku_index');
 Route::get('/rak_buku_create', 'rak_bukuController@create')->name('rak_buku_create');
 Route::get('/rak_buku_save', 'rak_bukuController@save')->name('rak_buku_save');
 Route::get('/rak_buku_edit', 'rak_bukuController@edit')->name('rak_buku_edit');
 Route::get('/rak_buku_update', 'rak_bukuController@update')->name('rak_buku_update');
 Route::get('/rak_buku_hapus', 'rak_bukuController@hapus')->name('rak_buku_hapus');
+
+Route::get('/rak_buku_dt', 'rak_buku_dtController@index')->name('rak_buku_dt_index');
+Route::get('/rak_buku_dt_save', 'rak_buku_dtController@save')->name('rak_buku_dt_save');
+Route::get('/rak_buku_dt_hapus', 'rak_buku_dtController@hapus')->name('rak_buku_dt_hapus');
 
 
 // peminjaman
@@ -88,3 +101,5 @@ Route::get('/transaksi_peminjaman_save', 'transaksi_peminjamanController@save')-
 Route::get('/transaksi_peminjaman_edit', 'transaksi_peminjamanController@edit')->name('transaksi_peminjaman_edit');
 Route::get('/transaksi_peminjaman_update', 'transaksi_peminjamanController@update')->name('transaksi_peminjaman_update');
 Route::get('/transaksi_peminjaman_hapus', 'transaksi_peminjamanController@hapus')->name('transaksi_peminjaman_hapus');
+Route::get('/transaksi_peminjaman_get_data_buku', 'transaksi_peminjamanController@get_data_buku')->name('transaksi_peminjaman_get_data_buku');
+Route::get('/transaksi_peminjaman_get_data_buku_remove', 'transaksi_peminjamanController@get_data_buku_remove')->name('transaksi_peminjaman_get_data_buku_remove');

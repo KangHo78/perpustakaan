@@ -46,25 +46,44 @@
                                 <td>{{ $element->mrb_name }}</td>
                                 <td>{{ $element->mrb_lokasi_rak }}</td>
                                 <td>
-                                    <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> 
+                                    <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal_{{$element->mrb_id}}"> 
                                     Modal</button>
 
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="exampleModal_{{$element->mrb_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                <h5 class="modal-title" id="exampleModalLabel">Sub Rak Buku</h5>
+                                                <div class="card-body">
+                                                    <table id="tables" class="table-bordered table-striped table" width="100%">
+                                                    <thead>
+                                                    <tr>
+                                                        <td>No</td>
+                                                        <td>Kode</td>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    @foreach ($element->rak_buku_dt as $index2 => $element2)
+                                                    <tr>
+                                                        <td>{{ $index2+1 }}</td>
+                                                        <td>{{ $element2->mrbd_kode }}</td>
+                                                    </tr>
+                                                    @endforeach
+                                                    </tbody>
+                                                    </table>
+                                                    </div>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <input type="text" class="form-control" name="mrbd_kode">
+                                                <input type="text" class="form-control" name="kode_dt">
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Save</button>
+                                                <button type="button" class="btn btn-primary" onclick="tambah_dt()">Tambah</button>
                                             </div>
+                                            </form>
                                             </div>
                                         </div>
                                     </div>
@@ -121,4 +140,34 @@
             }
         })
     }
+    
+    function tambah_dt (argument) {
+    $.ajax({
+      url:'{{ route('rak_buku_dt_save') }}',
+      data:$('.form-save').serialize(),
+      type:'get',      
+      error:function(data){
+        if(data.status == 422){
+            Swal.fire({
+              title: 'Pastikan Data Tidak Kosong.',
+              icon: 'error',
+              confirmButtonText: 'Ok'
+            })
+          }
+        }, 
+      success:function(data){
+        if (data.status == 'sukses') {
+          Swal.fire({
+            title: 'Data Sudah Disimpan.',
+            icon: 'success',
+            confirmButtonText: 'Ok'
+          }).then(function(result){
+            location.href = '{{ route('rak_buku_index') }}';
+             })
+        }
+      }
+
+    });
+    }
+
 </script>
