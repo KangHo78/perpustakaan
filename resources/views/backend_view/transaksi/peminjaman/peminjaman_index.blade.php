@@ -31,7 +31,7 @@
                         <thead>
                             <tr>
                                 <td>No</td>
-                                <td>kode</td>
+                                <td>Kode</td>
                                 <td>Peminjam</td>
                                 <td>Pustakawan</td>
                                 <td>Tanggal</td>
@@ -77,10 +77,12 @@
                                     </table>
                                 </td>
                                 <td>
-                                    <button class="btn btn-sm btn-info" onclick="edit('{{ $element->tpj_id }}')"><i
-                                            class="fas fa-pen"></i> Edit</button>
-                                    <button class="btn btn-sm btn-danger" onclick="hapus('{{ $element->tpj_id }}')"><i
-                                            class="fas fa-trash"></i> Hapus</button>
+                                    <button class="btn btn-sm btn-info btn-block"
+                                        onclick="edit('{{ $element->tpj_id }}')"><i class="fas fa-pen"></i>
+                                        Edit</button>
+                                    <button class="btn btn-sm btn-danger btn-block"
+                                        onclick="hapus('{{ $element->tpj_id }}')"><i class="fas fa-trash"></i>
+                                        Hapus</button>
                                 </td>
                             </tr>
                             @endforeach
