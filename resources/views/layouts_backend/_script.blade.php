@@ -35,6 +35,10 @@
 <script src="{{ asset('assets_backend/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
 <script type="text/javascript">
   $(document).ready(function () {    
   bsCustomFileInput.init();
@@ -45,4 +49,10 @@
     $('.select2').select2();
   
   });
+  $('.datepicker').datepicker({
+  	format: 'dd-MM-yyyy',
+  	autoclose: true,
+  	todayHighlight:true,
+  });
+
 </script>

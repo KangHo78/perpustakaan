@@ -93,3 +93,13 @@ Route::get('/transaksi_peminjaman_update', 'transaksi_peminjamanController@updat
 Route::get('/transaksi_peminjaman_hapus', 'transaksi_peminjamanController@hapus')->name('transaksi_peminjaman_hapus');
 Route::get('/transaksi_peminjaman_get_data_buku', 'transaksi_peminjamanController@get_data_buku')->name('transaksi_peminjaman_get_data_buku');
 Route::get('/transaksi_peminjaman_get_data_buku_remove', 'transaksi_peminjamanController@get_data_buku_remove')->name('transaksi_peminjaman_get_data_buku_remove');
+
+
+Route::get('/transaksi_pengembalian', 'transaksi_pengembalianController@index')->name('transaksi_pengembalian_index');
+Route::get('/transaksi_pengembalian_create', 'transaksi_pengembalianController@create')->name('transaksi_pengembalian_create');
+Route::get('/transaksi_pengembalian_save', 'transaksi_pengembalianController@save')->name('transaksi_pengembalian_save');
+Route::get('/transaksi_pengembalian_edit', 'transaksi_pengembalianController@edit')->name('transaksi_pengembalian_edit');
+Route::get('/transaksi_pengembalian_update', 'transaksi_pengembalianController@update')->name('transaksi_pengembalian_update');
+Route::get('/transaksi_pengembalian_hapus', 'transaksi_pengembalianController@hapus')->name('transaksi_pengembalian_hapus');
+Route::get('/transaksi_pengembalian_get_data_peminjaman', 'transaksi_pengembalianController@get_data_peminjaman')->name('transaksi_pengembalian_get_data_peminjaman');
+
