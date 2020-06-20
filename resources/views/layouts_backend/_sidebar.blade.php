@@ -27,7 +27,6 @@
             <i class="nav-icon fas fa-home"></i>
             <p>
               Homepage
-              {{-- <span class="right badge badge-danger"></span> --}}
             </p>
           </a>
         </li>
@@ -36,22 +35,13 @@
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
               Dashboard
-              {{-- <span class="right badge badge-danger"></span> --}}
             </p>
           </a>
         </li>
-        {{-- <li class="nav-item">
-            <a href="{{ route('latihan_crud') }}" class="nav-link">
-        <i class="nav-icon fas fa-tachometer-alt"></i>
-        <p>
-          Dashboard
-        </p>
-        </a>
-        </li> --}}
         @if(Auth::user()->previleges == '3')
         <li class="nav-header">TRANSAKSI</li>
         <li class="nav-item">
-          <a href="https://adminlte.io/docs/3.0" class="nav-link">
+          <a href="{{ route('transaksi_peminjaman_index') }}" class="nav-link">
             <i class="nav-icon fas fa-book-reader"></i>
             <p>Peminjaman</p>
           </a>
@@ -154,25 +144,6 @@
           </a>
         </li>
         @endif
-        {{-- <li class="nav-header">LABELS</li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon far fa-circle text-danger"></i>
-              <p class="text">Important</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon far fa-circle text-warning"></i>
-              <p>Warning</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon far fa-circle text-info"></i>
-              <p>Informational</p>
-            </a>
-          </li> --}}
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

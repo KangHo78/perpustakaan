@@ -30,7 +30,11 @@
 							<h2><span>KILLING</span> HEMINGWAY.</h2>
 							<p>Brian D. Meeks's book, which is the most popular book, is currently hired by some young
 								teenagers to fill their free time wherever they are.</p>
-							<a href="#" class="site-btn">Borrow</a>
+							@if (Auth::user() != null)
+							<a href="{{ route('transaksi_peminjaman_index') }}" class="site-btn">Borrow</a>
+							@else
+							<a href="{{ route('login') }}" class="site-btn">Borrow</a>
+							@endif
 							<a href="{{ route('buku_katalog') }}" class="site-btn sb-c2">See Catalog</a>
 						</div>
 					</div>
@@ -58,7 +62,11 @@
 					And also get a free library member card when registering, book rental can be up to 21 days, this is
 					quite satisfying for you who love to read.
 				</p>
-				<a href="{{ route('register') }}" class="site-btn">Try it now</a>
+				@if (Auth::user() != null)
+				<a href="{{ route('transaksi_peminjaman_index') }}" class="site-btn">Try it now</a>
+				@else
+				<a href="{{ route('login') }}" class="site-btn">Try it now</a>
+				@endif
 			</div>
 		</div>
 	</div>
@@ -153,7 +161,11 @@
 					<p>To satisfy readers in the Dryas Library we want to give some advantages to our library that are
 						not in other libraries, or even yet. For that we want to show this feature as well as pamper you
 						as a book enthusiast.</p>
-					<a href="{{ route('register') }}" class="site-btn">Try it now</a>
+					@if (Auth::user() != null)
+					<a href="{{ route('transaksi_peminjaman_index') }}" class="site-btn">Try it now</a>
+					@else
+					<a href="{{ route('login') }}" class="site-btn">Try it now</a>
+					@endif
 				</div>
 			</div>
 			<div class="col-lg-6">
