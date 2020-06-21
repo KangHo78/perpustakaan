@@ -138,7 +138,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="https://adminlte.io/docs/3.0" class="nav-link">
+          <a href="{{ route('transaksi_pengembalian_index') }}" class="nav-link">
             <i class="nav-icon fas fa-arrow-alt-circle-left"></i>
             <p>Pengembalian</p>
           </a>

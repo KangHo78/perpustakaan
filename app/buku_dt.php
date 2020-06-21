@@ -29,6 +29,10 @@ class buku_dt extends model
   {
       return $this->hasMany('App\peminjaman_dt', 'tpjdt_isbn', 'mbdt_id');
   }
+  public function pengembalian_dt()
+  {
+      return $this->hasMany('App\pengembalian_dt', 'tpgdt_isbn', 'mbdt_id');
+  }
   public function buku()
   {
       return $this->hasMany('App\buku', 'mbdt_id', 'mb_id');
