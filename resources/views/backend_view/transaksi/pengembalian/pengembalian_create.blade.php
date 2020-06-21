@@ -52,7 +52,7 @@
               <div class="col-sm-6">
                 <div class="form-group">
                   <label>kode Peminjaman</label>
-                  <select class="form-control select2 pilih_peminjaman" onchange="peminjaman()">
+                  <select class="form-control select2 pilih_peminjaman" name="kode_pinjam" onchange="peminjaman()">
                     <option>- Pilih Kode Peminjaman -</option>
                     @foreach ($peminjaman as $element)
                         <option value="{{ $element->tpj_id }}">{{ $element->tpj_kode }} / {{ $element->peminjaman_anggota->name }}</option>

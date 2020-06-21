@@ -29,7 +29,7 @@ class transaksi_peminjamanController extends Controller
      */
     public function index()
     {
-        return $data = $this->model->peminjaman()->with(['peminjaman_dt','peminjaman_dt.buku_dt','peminjaman_dt.buku_dt.buku'])->get();
+        $data = $this->model->peminjaman()->with(['peminjaman_dt','peminjaman_dt.buku_dt','peminjaman_dt.buku_dt.buku'])->get();
         return view('backend_view.transaksi.peminjaman.peminjaman_index', compact('data'));
     }
     public function create()
