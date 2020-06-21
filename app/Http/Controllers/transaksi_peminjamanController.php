@@ -38,7 +38,7 @@ class transaksi_peminjamanController extends Controller
         $date = date('m').date('y');
         $kode = 'PJ/'.$date.'/'.str_pad($id, 5, '0', STR_PAD_LEFT);
         $user = $this->model->user()->get();
-        $buku = $this->model->buku_dt()->where('mbdt_status','TERSEDIA')
+        $buku = $this->model->buku_dt()->where('mbdt_status','TERSEDIA')->where('mbdt_kondisi','BAIK')
                      ->with(['buku'=>function($q){
                         return $q->where('mb_pinjam','YA');
                      }])
@@ -210,7 +210,12 @@ class transaksi_peminjamanController extends Controller
     }
     public function hapus(Request $req)
     {
-        $data = $this->model->peminjaman()->where('mk_id', $req->id)->delete();
+        $data = $this->model->peminjaman()->where('tpj_id', $req->id)->with('tpj_id')->first();
+
+
+
+        $data = $this->model->peminjaman()->where('tpj_id', $req->id)->delete();
+        $data = $this->model->peminjaman_dt()->where('tpjdt_id', $req->id)->delete();
         return redirect()->back();
     }
 }
