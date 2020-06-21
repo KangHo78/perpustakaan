@@ -53,20 +53,6 @@ class transaksi_pengembalianController extends Controller
         DB::beginTransaction();
         try {
             $total_unique = array_unique($req->isbn);
-            if (count($req->isbn) != count($total_unique)) {
-                return Response()->json(['status' => 'duplicate']);
-            }
-            $check_role_user = $user = $this->model->user()->where('id',$req->peminjam)->first();
-
-            if ($check_role_user->previleges == 4) {
-                $date_kembali = date('Y-m-d',strtotime('+21 day'));            
-                $date_tempo = date('Y-m-d',strtotime('+28 day'));            
-            }elseif($check_role_user->previleges == 5){
-                $date_kembali = date('Y-m-d',strtotime('+84 day'));            
-                $date_tempo = date('Y-m-d',strtotime('+98 day'));
-            }else{
-                return Response()->json(['status' => 'bukan_user']);
-            }
 
             $id = $this->model->pengembalian()->max('tpg_id')+1;
             $this->model->pengembalian()->create([

@@ -118,7 +118,7 @@
       return false;
     } 
     $.ajax({
-      url:'{{ route('transaksi_peminjaman_save') }}',
+      url:'{{ route('transaksi_pengembalian_save') }}',
       data:$('.form-save').serialize(),
       type:'get',      
       success:function(data){
@@ -128,7 +128,7 @@
             icon: 'success',
             confirmButtonText: 'Ok'
           }).then(function(result){
-            location.href = '{{ route('transaksi_peminjaman_index') }}';
+            location.href = '{{ route('transaksi_pengembalian_index') }}';
           })
         }else if(data.status == 'duplicate'){
           Swal.fire({

@@ -29,7 +29,7 @@ class transaksi_peminjamanController extends Controller
      */
     public function index()
     {
-        $data = $this->model->peminjaman()->with(['peminjaman_dt','peminjaman_dt.buku_dt','peminjaman_dt.buku_dt.buku'])->get();
+        return $data = $this->model->peminjaman()->with(['peminjaman_dt','peminjaman_dt.buku_dt','peminjaman_dt.buku_dt.buku'])->get();
         return view('backend_view.transaksi.peminjaman.peminjaman_index', compact('data'));
     }
     public function create()
@@ -76,10 +76,10 @@ class transaksi_peminjamanController extends Controller
             }
             $check_role_user = $user = $this->model->user()->where('id',$req->peminjam)->first();
 
-            if ($check_role_user->previleges == 4) {
+            if ($check_role_user->previleges == 3) {
                 $date_kembali = date('Y-m-d',strtotime('+21 day'));            
                 $date_tempo = date('Y-m-d',strtotime('+28 day'));            
-            }elseif($check_role_user->previleges == 5){
+            }elseif($check_role_user->previleges == 2){
                 $date_kembali = date('Y-m-d',strtotime('+84 day'));            
                 $date_tempo = date('Y-m-d',strtotime('+98 day'));
             }else{
