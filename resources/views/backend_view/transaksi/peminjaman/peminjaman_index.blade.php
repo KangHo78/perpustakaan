@@ -124,7 +124,7 @@
                 showConfirmButton: false,
                 }
             )
-            location.href = '{{ url('/') }}' + '/kategori_hapus?&id=' + argument;
+            location.href = '{{ url('/') }}' + '/transaksi_peminjaman_hapus?&id=' + argument;
             }
         })
     }

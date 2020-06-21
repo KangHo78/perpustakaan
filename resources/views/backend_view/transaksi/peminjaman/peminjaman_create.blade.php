@@ -163,7 +163,7 @@
               '<th>'+data.hasil.buku.mb_name+'</th>'+
               '<th>'+data.hasil.mbdt_isbn+'</th>'+
               '<th>'+
-                '<input type="hidden" name="isbn[]" value="'+data.hasil.mbdt_isbn+'">'+
+                '<input type="hidden" class="isbn" name="isbn[]" value="'+data.hasil.mbdt_isbn+'">'+
                 '<button type="button" class="btn btn-sm btn-danger" onclick="removed(\''+data.hasil.mbdt_isbn+'\')" ><i class="fas fa-trash"></i></button>'+
               '</th>'+
             '</tr>'
