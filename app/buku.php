@@ -32,7 +32,7 @@ class buku extends model
   }
   public function buku_dt()
   {
-      return $this->belongsTo('App\buku_dt', 'mbdt_id', 'mb_id');
+      return $this->hasMany('App\buku_dt', 'mbdt_id', 'mb_id');
   }
   public function kategori()
   {
