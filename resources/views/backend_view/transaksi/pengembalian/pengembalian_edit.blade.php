@@ -34,59 +34,62 @@
             <div class="row">
               <div class="col-sm-6">
                 <!-- text input -->
+                <input type="hidden" readonly="" value="{{ $data->tpg_id }}" class="form-control id" name="id">
+                
                 <div class="form-group">
                   <label>Kode</label>
-                  <input type="hidden" name="id" value="{{ $data->tpj_id }}">
-                  <input readonly="" value="{{ $data->tpj_kode }}" name="kode" type="text" class="form-control" placeholder="Enter ...">
+                  <input readonly="" value="{{ $data->tpg_kode }}" name="kode" type="text" class="form-control" placeholder="Enter ...">
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>Tgl Kembali</label>
+                  <input type="text" readonly="" value="{{ date('d-F-Y',strtotime($data->tpg_date_kembali)) }}" class="form-control datepicker" name="tgl_kembali">
+                </div>
+                
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6" style="pointer-events: none">
+                <div class="form-group">
+                  <label>kode Peminjaman</label>
+                  <select class="form-control pilih_peminjaman" readonly name="kode_pinjam" onchange="peminjaman()">
+                    <option>- Pilih Kode Peminjaman -</option>
+                    @foreach ($peminjaman as $element)
+                        <option value="{{ $element->tpj_id }}"  @if ($data->tpg_peminjaman == $element->tpj_id) selected="" @endif>{{ $element->tpj_kode }} / {{ $element->peminjaman_anggota->name }}</option>
+                    @endforeach
+                  </select>
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="form-group">
                   <label>Peminjam</label>
-                  <select class="form-control select2 " name="peminjam">
-                    <option>- Pilih Peminjam -</option>
-                    @foreach ($user as $element)
-                      <option value="{{ $element->id }}" @if ($element->id == $data->tpj_anggota) selected="" @endif>{{ $element->kode }} / {{ $element->name }}</option>
-                    @endforeach
-                  </select>
+                  <input type="text" readonly="" class="form-control peminjam" name="">
                 </div>
               </div>
             </div>
-
             <div class="row">
               <div class="col-sm-12">
                 <div class="form-group">
-                  <label>Buku</label>
-                  <select class="form-control select2 pilih_buku drop_peminjaman" onchange="buku()">
-                    <option>- Pilih Buku -</option>
-                    @foreach ($buku as $element)
-                      @if ($element->buku != null)
-                        <option value="{{ $element->mbdt_isbn }}">{{ $element->buku->mb_kode }} / {{ $element->mbdt_isbn }} / {{ $element->buku->mb_name }}</option>
-                      @endif
-                    @endforeach
-                  </select>
+                  <p style="display: none" class="show_tgl">Buku telah dipinjam pada tanggal <b class="tgl_pinjam"></b> dan di kembalikan sebelum tanggal <b class="tgl_kembalis"></b> atau selambat-lambatnya pada tanggal <b class="tgl_tempo"></b></p>
+                  <input type="hidden" readonly="" class="form-control tgl_pinjam" name="tgl_pinjam">
+                  <input type="hidden" readonly="" class="form-control tgl_tempo" name="tgl_tempo">
                 </div>
               </div>
             </div>
+            
 
-            <table class="table table-bordered drop">
+            <table class="table table-bordered">
               <tr>
                 <th>Kode</th>
                 <th>Buku</th>
                 <th>Isbn</th>
-                <th>aksi</th>
+                <th>kondisi</th>
               </tr>
-              @foreach ($data->peminjaman_dt as $element)
-                <tr class="total_pinjam remove_{{ $element->tpjdt_isbn }}">
-                    <th>{{ $element->buku_dt->buku->mb_kode }}</th>
-                    <th>{{ $element->buku_dt->buku->mb_name }}</th>
-                    <th>{{ $element->buku_dt->mbdt_isbn }}</th>
-                    <th>
-                      <input type="hidden" name="isbn[]" value="{{ $element->buku_dt->mbdt_isbn }}">
-                      <button type="button" class="btn btn-sm btn-danger" onclick="removed('{{ $element->buku_dt->mbdt_isbn }}')" ><i class="fas fa-trash"></i></button>
-                    </th>
-                </tr>
-              @endforeach
+              <tbody class="drop">
+                
+              </tbody>
             </table>
 
 
@@ -103,52 +106,26 @@
   </section>
 </div>
 @endsection
-
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/locale/af.min.js"></script>
 <script type="text/javascript">
-
-  function save(argument) {      
-    var peminjam = $('.peminjam').val();
-    var isbn = $('.isbn').val();
-    if (peminjam == '' || peminjam == null || peminjam == undefined) {
-      Swal.fire({
-        title: 'Peminjam kosong.',
-        icon: 'warning',
-        confirmButtonText: 'Ok'
-      })
-      return false;
-    }
-    if (isbn == '' || isbn == null || isbn == undefined) {
-      Swal.fire({
-        title: 'buku belum dipilih.',
-        icon: 'warning',
-        confirmButtonText: 'Ok'
-      })
-      return false;
-    } 
+  
+  $(document).ready(function(){
+    peminjaman();
+  });
+  function save(argument) {     
     $.ajax({
-      url:'{{ route('transaksi_peminjaman_update') }}',
+      url:'{{ route('transaksi_pengembalian_update') }}',
       data:$('.form-save').serialize(),
       type:'get',      
       success:function(data){
         if (data.status == 'sukses') {
           Swal.fire({
-            title: 'Data Sudah Diupdate.',
+            title: 'Data Sudah Disimpan.',
             icon: 'success',
             confirmButtonText: 'Ok'
           }).then(function(result){
-            location.href = '{{ route('transaksi_peminjaman_index') }}';  
-          })
-        }else if(data.status == 'duplicate'){
-          Swal.fire({
-            title: 'Data Buku ada yang kembar/duplicate.',
-            icon: 'warning',
-            confirmButtonText: 'Ok'
-          })
-        }else if(data.status == 'bukan_user'){
-          Swal.fire({
-            title: 'Peminjam bukan termasuk user.',
-            icon: 'warning',
-            confirmButtonText: 'Ok'
+            location.href = '{{ route('transaksi_pengembalian_index') }}';
           })
         }
       }
@@ -156,62 +133,47 @@
     });
 
   }
-  function buku(argument) {
-    var isbn = $('.pilih_buku').val();
+  function peminjaman(argument) {
+      var id_peminjaman = $('.pilih_peminjaman').val();
+      $('.drop').empty();
+      $('.peminjam').val('');
+      $('.show_tgl').css('display','none');
+
       $.ajax({
-      url:'{{ route('transaksi_peminjaman_get_data_buku') }}',
-      data:{isbn:isbn},
+      url:'{{ route('transaksi_pengembalian_get_data_pengembalian') }}',
+      data:{id_peminjaman:id_peminjaman},
       type:'get',      
       success:function(data){
-        if ($('.total_pinjam').length == 5) {
-          Swal.fire({
-            title: 'Buku Yang dipinjam max 5.',
-            icon: 'warning',
-            confirmButtonText: 'Ok'
-          })
-        }else{
-          $('.drop').append(
-            '<tr class="total_pinjam remove_'+data.hasil.mbdt_isbn+'">'+
-              '<th>'+data.hasil.buku.mb_kode+'</th>'+
-              '<th>'+data.hasil.buku.mb_name+'</th>'+
-              '<th>'+data.hasil.mbdt_isbn+'</th>'+
-              '<th>'+
-                '<input type="hidden" name="isbn[]" value="'+data.hasil.mbdt_isbn+'">'+
-                '<button type="button" class="btn btn-sm btn-danger" onclick="removed(\''+data.hasil.mbdt_isbn+'\')" ><i class="fas fa-trash"></i></button>'+
-              '</th>'+
-            '</tr>'
-          );
-        }
+          
+            $('.show_tgl').css('display','block');
+            $('.peminjam').val(data.hasil.pengembalian_anggota.name);
+            $('.peminjam_id').val(data.hasil.pengembalian_anggota.id);
+
+            $('.tgl_pinjam').val(data.hasil.tpj_date_pinjam);
+            $('.tgl_tempo').val(data.hasil.tpj_date_tempo);
+
+            $('.tgl_pinjam').text(moment(data.hasil.tpj_date_pinjam).format('DD MMMM YYYY'));
+            $('.tgl_tempo').text(moment(data.hasil.tpj_date_tempo).format('DD MMMM YYYY'));
+            $('.tgl_kembalis').text(moment(data.hasil.tpj_date_kembali).format('DD MMMM YYYY'));
+            $.each(data.hasil.pengembalian_dt, function( index, value ) {
+              $('.drop').append(
+                '<tr>'+
+                  '<th>'+value.buku_dt.buku.mb_kode+'</th>'+
+                  '<th>'+value.buku_dt.buku.mb_name+'</th>'+
+                  '<th>'+value.buku_dt.mbdt_isbn+'</th>'+
+                  '<th>'+
+                    '<b>'+value.buku_dt.mbdt_kondisi+'</b>'+
+                    '<input type="hidden" class="form-control isbn" value="'+value.buku_dt.mbdt_isbn+'" name="isbn[]">'+
+                  '</th>'+
+                '</tr>'
+              );
+            });
+          
+          
+        
         
       }
     });
-  }
-
-  function removed(argument) {
-    Swal.fire({
-      title: 'Yakin ingin menghapus data !?.',
-      text: 'Data yang di ubah akan terhapus dan buku menjadi TERSEDIA',
-      icon: 'error',
-      confirmButtonText: 'Ok'
-    }).then(function(result){
-        $.ajax({
-          url:'{{ route('transaksi_peminjaman_get_data_buku_remove') }}',
-          data:{isbn:argument},
-          type:'get',      
-          success:function(data){
-              $('.drop_peminjaman').empty();
-              var option = [];
-              $.each(data.hasil, function( index, value ) {
-                if (data.hasil[index].buku != null) {
-                  option[index] = '<option value="'+data.hasil[index].mbdt_isbn+'">'+data.hasil[index].mbdt_isbn+' / '+data.hasil[index].buku.mb_kode+' / '+data.hasil[index].buku.mb_name+'</option>';
-                }
-              });
-              $('.drop_peminjaman').html(option).trigger('update');
-              $('.remove_'+argument).remove();
-          }
-        });
-    })
-    
   }
 
   

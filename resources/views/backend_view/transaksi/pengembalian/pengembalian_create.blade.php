@@ -34,6 +34,8 @@
             <div class="row">
               <div class="col-sm-6">
                 <!-- text input -->
+                <input type="hidden" readonly="" class="form-control peminjam_id" name="peminjam_id">
+                
                 <div class="form-group">
                   <label>Kode</label>
                   <input readonly="" value="{{ $kode }}" name="kode" type="text" class="form-control" placeholder="Enter ...">
@@ -67,6 +69,16 @@
                 </div>
               </div>
             </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <p style="display: none" class="show_tgl">Buku telah dipinjam pada tanggal <b class="tgl_pinjam"></b> dan di kembalikan sebelum tanggal <b class="tgl_kembalis"></b> atau selambat-lambatnya pada tanggal <b class="tgl_tempo"></b></p>
+                  <input type="hidden" readonly="" class="form-control tgl_pinjam" name="tgl_pinjam">
+                  <input type="hidden" readonly="" class="form-control tgl_tempo" name="tgl_tempo">
+                </div>
+              </div>
+            </div>
+            
 
             <table class="table table-bordered">
               <tr>
@@ -94,7 +106,7 @@
   </section>
 </div>
 @endsection
-
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/locale/af.min.js"></script>
 <script type="text/javascript">
   
 
@@ -152,14 +164,25 @@
       var id_peminjaman = $('.pilih_peminjaman').val();
       $('.drop').empty();
       $('.peminjam').val('');
+      $('.show_tgl').css('display','none');
+
       $.ajax({
       url:'{{ route('transaksi_pengembalian_get_data_peminjaman') }}',
       data:{id_peminjaman:id_peminjaman},
       type:'get',      
       success:function(data){
           
-
+            $('.show_tgl').css('display','block');
             $('.peminjam').val(data.hasil.peminjaman_anggota.name);
+            $('.peminjam_id').val(data.hasil.peminjaman_anggota.id);
+
+            $('.tgl_pinjam').val(data.hasil.tpj_date_pinjam);
+            $('.tgl_tempo').val(data.hasil.tpj_date_tempo);
+
+            $('.tgl_pinjam').text(moment(data.hasil.tpj_date_pinjam).format('DD MMMM YYYY'));
+            $('.tgl_tempo').text(moment(data.hasil.tpj_date_tempo).format('DD MMMM YYYY'));
+            $('.tgl_kembalis').text(moment(data.hasil.tpj_date_kembali).format('DD MMMM YYYY'));
+
             $.each(data.hasil.peminjaman_dt, function( index, value ) {
               $('.drop').append(
                 '<tr>'+
