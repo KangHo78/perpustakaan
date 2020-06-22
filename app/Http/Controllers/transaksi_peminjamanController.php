@@ -118,6 +118,7 @@ class transaksi_peminjamanController extends Controller
                     'log_feature'=>'PEMINJAMAN',
                     'log_action'=>'CREATE',
                     'log_created_by'=>Auth::user()->id,
+                    'log_user'=>Auth::user()->id,
                     'log_created_at'=>date('Y-m-d h:i:s'),
                 ]);
             }

@@ -91,8 +91,8 @@
                                 <td>
                                     <button class="btn btn-sm btn-info" onclick="edit('{{ $element->tpg_id }}')"><i
                                             class="fas fa-pen"></i> Edit</button>
-                                    <button class="btn btn-sm btn-danger" onclick="hapus('{{ $element->tpg_id }}')"><i
-                                            class="fas fa-trash"></i> Hapus</button>
+                                    {{-- <button class="btn btn-sm btn-danger" onclick="hapus('{{ $element->tpg_id }}')"><i --}}
+                                            {{-- class="fas fa-trash"></i> Hapus</button> --}}
                                 </td>
                             </tr>
                             @endforeach
