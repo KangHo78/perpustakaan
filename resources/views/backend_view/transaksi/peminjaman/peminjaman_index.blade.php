@@ -11,7 +11,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                        <li class="breadcrumb-item">Master</li>
+                        <li class="breadcrumb-item">Transaksi</li>
                         <li class="breadcrumb-item active">Peminjaman</li>
                     </ol>
                 </div>
@@ -19,12 +19,14 @@
             </div>
 
             <div class="card card-info">
+                @if (Auth::user()->previleges == '1')
                 <div class="card-header">
                     <div class="float-right">
                         <button class="btn btn-sm btn-warning" onclick="tambah()"><i class="fas fa-plus"></i> Tambah
                         </button>
                     </div>
                 </div>
+                @endif
 
                 <div class="card-body">
                     <table id="tables" class="table-bordered table-striped table" width="100%">
@@ -36,7 +38,9 @@
                                 <td>Pustakawan</td>
                                 <td>Tanggal</td>
                                 <td>Buku</td>
+                                @if (Auth::user()->previleges == '1')
                                 <td>Aksi</td>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -76,6 +80,7 @@
                                         @endforeach
                                     </table>
                                 </td>
+                                @if (Auth::user()->previleges == '1')
                                 <td>
                                     @if (count($element->pengembalian) == 0)
                                         <button class="btn btn-sm btn-info btn-block"
@@ -88,6 +93,7 @@
                                         <span class="btn btn-sm btn-success">Sudah Dikembalikan</span>
                                     @endif
                                 </td>
+                                @endif
                             </tr>
                             @endforeach
                         </tbody>

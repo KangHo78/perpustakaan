@@ -38,21 +38,7 @@
             </p>
           </a>
         </li>
-        @if(Auth::user()->previleges == '3')
-        <li class="nav-header">TRANSAKSI</li>
-        <li class="nav-item">
-          <a href="{{ route('transaksi_peminjaman_index') }}" class="nav-link">
-            <i class="nav-icon fas fa-book-reader"></i>
-            <p>Peminjaman</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="https://adminlte.io/docs/3.0" class="nav-link">
-            <i class="nav-icon fas fa-arrow-alt-circle-left"></i>
-            <p>Pengembalian</p>
-          </a>
-        </li>
-        @else
+        @if(Auth::user()->previleges == '1')
         <li class="nav-header">MASTER</li>
         <li class="nav-item has-treeview">
           <a href="#" class="nav-link">
@@ -139,6 +125,20 @@
         </li>
         <li class="nav-item">
           <a href="{{ route('transaksi_pengembalian_index') }}" class="nav-link">
+            <i class="nav-icon fas fa-arrow-alt-circle-left"></i>
+            <p>Pengembalian</p>
+          </a>
+        </li>
+        @else
+        <li class="nav-header">TRANSAKSI</li>
+        <li class="nav-item">
+          <a href="{{ route('transaksi_peminjaman_index') }}" class="nav-link">
+            <i class="nav-icon fas fa-book-reader"></i>
+            <p>Peminjaman</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="https://adminlte.io/docs/3.0" class="nav-link">
             <i class="nav-icon fas fa-arrow-alt-circle-left"></i>
             <p>Pengembalian</p>
           </a>

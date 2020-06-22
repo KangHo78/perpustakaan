@@ -83,6 +83,8 @@ class RegisterController extends Controller
             'kode' => app('App\Http\Controllers\userController')->kodemhs(),
             'address_univ' => 'Jl. Semolowaru No.45',
             'photo' => 'default.svg',
+            'created_at' => date("Y-m-d H:i:s"),
+            'updated_at' => date("Y-m-d H:i:s", strtotime("+4 years")),
         ]);
     }
 }

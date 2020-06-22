@@ -52,14 +52,13 @@ class userController extends Controller
             'tlp' => 'required',
             'username' => 'required',
         ]);
-
         $id = $this->model->user()->max('id') + 1;
         if ($req->previleges == '1') {
-            $this->kodeadm();
+            $kode = $this->kodeadm();
         } else if ($req->previleges == '2') {
-            $this->kodedsn();
+            $kode =  $this->kodedsn();
         } else {
-            $this->kodemhs();
+            $kode =  $this->kodemhs();
         }
         if ($validasi == true) {
             $this->model->user()->create([
@@ -75,6 +74,8 @@ class userController extends Controller
                 'tlp' => $req->tlp,
                 'username' => $req->username,
                 'photo' => 'default.svg',
+                'created_at' => date("Y-m-d H:i:s"),
+                'updated_at' => date("Y-m-d H:i:s", strtotime("+4 years")),
             ]);
             return Response()->json(['status' => 'sukses']);
         } else {
@@ -93,20 +94,25 @@ class userController extends Controller
             'name' => 'required',
             'email' => 'required',
             'previleges' => 'required',
-            'kode' => 'required',
             'addressuniv' => 'required',
             'address' => 'required',
             'tlp' => 'required',
             'reg' => 'required',
             'username' => 'required',
         ]);
-
+        if ($req->previleges == '1') {
+            $kode = $this->kodeadm();
+        } else if ($req->previleges == '2') {
+            $kode =  $this->kodedsn();
+        } else {
+            $kode =  $this->kodemhs();
+        }
         if ($validasi == true) {
             $this->model->user()->where('id', $req->id)->update([
                 'name' => $req->name,
                 'email' => $req->email,
                 'previleges' => $req->previleges,
-                'kode' => $req->kode,
+                'kode' => $kode,
                 'address_univ' => $req->addressuniv,
                 'address' => $req->address,
                 'tlp' => $req->tlp,
@@ -172,44 +178,34 @@ class userController extends Controller
     }
     public function profileprint()
     {
-        $date = date("Y-m-d", strtotime("+4 years", strtotime(Auth::user()->updated_at)));
         if (Auth::user()->username == null) {
             return redirect()->route('profile_index')->with(['status' => 'Pastikan sudah mengisi semua data diri']);
         } else {
-            $pdf = PDF::loadView('backend_view.master.user.profile.profile_print', ['date' => $date]);
+            $pdf = PDF::loadView('backend_view.master.user.profile.profile_print');
             return $pdf->stream("ID Card " . Auth::user()->name . ".pdf", array("Attachment" => 0));
         }
     }
     public function kodemhs()
     {
-        $count = DB::table('users')
-            ->select(DB::raw('count(kode)'))
-            ->where('kode', 'like', 'MHS%')
-            ->first();
+        $count = $this->model->user()->where('kode', 'like', 'MHS%')->count();
         $date = date("ym");
-        $newcount = str_pad($count->count + 1, 5, '0', STR_PAD_LEFT);
+        $newcount = str_pad($count + 1, 5, '0', STR_PAD_LEFT);
         $kode = 'MHS/' . $date . "/" . $newcount;
         return $kode;
     }
     public function kodedsn()
     {
-        $count = DB::table('users')
-            ->select(DB::raw('count(kode)'))
-            ->where('kode', 'like', 'DSN%')
-            ->first();
+        $count = $this->model->user()->where('kode', 'like', 'DSN%')->count();
         $date = date("ym");
-        $newcount = str_pad($count->count + 1, 5, '0', STR_PAD_LEFT);
+        $newcount = str_pad($count + 1, 5, '0', STR_PAD_LEFT);
         $kode = 'DSN/' . $date . "/" . $newcount;
         return $kode;
     }
     public function kodeadm()
     {
-        $count = DB::table('users')
-            ->select(DB::raw('count(kode)'))
-            ->where('kode', 'like', 'ADM%')
-            ->first();
+        $count = $this->model->user()->where('kode', 'like', 'ADM%')->count();
         $date = date("ym");
-        $newcount = str_pad($count->count + 1, 5, '0', STR_PAD_LEFT);
+        $newcount = str_pad($count + 1, 5, '0', STR_PAD_LEFT);
         $kode = 'ADM/' . $date . "/" . $newcount;
         return $kode;
     }
