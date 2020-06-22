@@ -35,10 +35,9 @@
                                 <td>Kategori</td>
                                 <td>Penerbit</td>
                                 <td>Pengarang</td>
-                                <td>Dibuat Oleh</td>
-                                <td>Dibuat Di</td>
+                                <td>Created By</td>
+                                <td>Created At</td>
                                 <td>Name</td>
-                                <td>Desc</td>
                                 <td>Pinjam</td>
                                 <td>Aksi</td>
                             </tr>
@@ -54,7 +53,6 @@
                                 <td>{{ $element->mb_created_by }}</td>
                                 <td>{{ $element->mb_created_at }}</td>
                                 <td>{{ $element->mb_name }}</td>
-                                <td>{{ $element->mb_desc }}</td>
                                 <td>{{ $element->mb_pinjam }}</td>
                                 <td>
                                     <button class="btn btn-sm btn-info" onclick="edit('{{ $element->mb_id }}')"><i
@@ -85,7 +83,7 @@
     function edit(argument) {
         location.href = '{{ url('/') }}' + '/buku_edit?&id=' + argument;
     }
-
+    
     function hapus(argument) {
         Swal.fire({
             title: 'Yakin Menghapus Data?',

@@ -37,34 +37,48 @@
             </div>
             <div class="form-group">
               <label>Kategori</label>
+              <select name="kategori" class="form-control">
+              <option>- Pilih Kategori -</option>
+                @foreach ($kategoris as $kategori )
+                <option value="{{ $kategori->mk_id }}">{{ $kategori->mk_name }}</option>
+                @endforeach
+              </select>
             </div>
             <div class="form-group">
               <label>Penerbit</label>
-              <input type="text" class="form-control" name="kode">
+              <select name="penerbit" class="form-control">
+              <option>- Pilih Penerbit -</option>
+                @foreach ($penerbits as $penerbit )
+                <option value="{{ $penerbit->mpn_id }}">{{ $penerbit->mpn_name }}</option>
+                @endforeach
+              </select>
             </div>
             <div class="form-group">
               <label>Pengarang</label>
-              <input type="text" class="form-control" name="kode">
-            </div>
-            <div class="form-group">
-              <label>Created By</label>
-              <input type="text" class="form-control" name="kode">
-            </div>
-            <div class="form-group">
-              <label>Created At</label>
-              <input type="text" class="form-control" name="kode">
+              <select name="pengarang" class="form-control">
+              <option>- Pilih Pengarang -</option>
+                @foreach ($pengarangs as $pengarang )
+                <option value="{{ $pengarang->mpg_id }}">{{ $pengarang->mpg_name }}</option>
+                @endforeach
+              </select>
             </div>
             <div class="form-group">
               <label>Name</label>
-              <input type="text" class="form-control" name="kode">
+              <input type="text" class="form-control" name="name">
             </div>
             <div class="form-group">
               <label>Desc</label>
-              <input type="text" class="form-control" name="kode">
+              <textarea class="form-control" name="desc" rows="4"></textarea>
             </div>
             <div class="form-group">
-              <label>Pinjam</label>
-              <input type="text" class="form-control" name="kode">
+              <label>Pinjam </label>&nbsp&nbsp&nbsp&nbsp
+              <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="pinjam" id="exampleRadios1" value="Ya" checked>
+              <label class="form-check-label" for="ya"> Ya </label>
+              </div>
+              <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="pinjam" id="exampleRadios1" value="Tidak" checked>
+              <label class="form-check-label" for="tidak"> Tidak </label>
             </div>
         </div>
         <!-- /.card-body -->

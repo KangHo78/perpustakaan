@@ -51,4 +51,8 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\peminjaman', 'tpj_staff', 'id');
     }
+    public function created_by()
+    {
+        return $this->hasMany('App\buku', 'mb_created_by', 'id');
+    }
 }
