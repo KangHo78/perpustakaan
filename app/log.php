@@ -17,6 +17,7 @@ class log extends model
                             'log_id',
                             'log_name',
                             'log_kode',
+                            'log_user',
                             'log_feature',
                             'log_action',
                             'log_created_by',

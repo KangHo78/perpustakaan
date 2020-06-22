@@ -118,7 +118,7 @@ class transaksi_peminjamanController extends Controller
                     'log_feature'=>'PEMINJAMAN',
                     'log_action'=>'CREATE',
                     'log_created_by'=>Auth::user()->id,
-                    'log_user'=>Auth::user()->id,
+                    'log_user'=>$req->peminjam,
                     'log_created_at'=>date('Y-m-d h:i:s'),
                 ]);
             }
@@ -192,6 +192,7 @@ class transaksi_peminjamanController extends Controller
                     'log_id'=>$log_id,
                     'log_name'=>'PEMINJAMAN BUKU ATAS ISBN = '.$req->isbn[$i],
                     'log_kode'=>$req->isbn[$i],
+                    'log_user'=>$req->peminjam,
                     'log_feature'=>'PEMINJAMAN',
                     'log_action'=>'EDIT',
                     'log_created_by'=>Auth::user()->id,

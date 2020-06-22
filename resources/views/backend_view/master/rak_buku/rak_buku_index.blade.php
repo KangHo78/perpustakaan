@@ -1,4 +1,4 @@
-@extends('layouts_backend._main') @section('content')
+    @extends('layouts_backend._main') @section('content')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -47,7 +47,7 @@
                                 <td>{{ $element->mrb_lokasi_rak }}</td>
                                 <td>
                                     <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal_{{$element->mrb_id}}"> 
-                                    Modal</button>
+                                    Sub Rak</button>
 
                                     <div class="modal fade" id="exampleModal_{{$element->mrb_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
@@ -77,7 +77,9 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <input type="text" class="form-control" name="kode_dt">
+                                                <input type="hidden" class="form-control kode" value="{{ $element->mrb_kode }}" name="kode">
+                                                <input type="hidden" class="form-control id" value="{{ $element->mrb_id }}" name="id">
+                                                <input type="text" class="form-control angka" name="angka">
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -142,9 +144,12 @@
     }
     
     function tambah_dt (argument) {
+    var kode  = $('.kode').val();
+    var id    = $('.id').val();
+    var angka = $('.angka').val();
     $.ajax({
       url:'{{ route('rak_buku_dt_save') }}',
-      data:$('.form-save').serialize(),
+      data:{id:id,angka:angka,kode:kode},
       type:'get',      
       error:function(data){
         if(data.status == 422){

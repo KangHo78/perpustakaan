@@ -32,8 +32,12 @@
         <div class="card-body" style="display: block;">
           <form class="form-save">
             <div class="form-group">
+              <label>alphabet Kode Rak</label>
+              <input type="text" class="form-control rak_alphabet" name="rak_alphabet" style="text-transform:uppercase" onkeyup="kodes()" maxlength="2" >
+            </div>
+            <div class="form-group">
               <label>Kode</label>
-              <input type="text" class="form-control" name="kode">
+              <input type="text" class="form-control kode" name="kode" readonly="">
             </div>
             <div class="form-group">
               <label>Nama</label>
@@ -81,6 +85,17 @@
             location.href = '{{ route('rak_buku_index') }}';
              })
         }
+      }
+    });
+  }
+  function kodes(argument) {      
+    var alphabet = $('.rak_alphabet').val();
+    $.ajax({
+      url:'{{ route('rak_buku_get_kode') }}',
+      data:{alphabet:alphabet},
+      type:'get',      
+      success:function(data){
+        $('.kode').val(data);
       }
     });
   }

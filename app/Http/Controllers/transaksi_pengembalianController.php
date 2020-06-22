@@ -94,7 +94,7 @@ class transaksi_pengembalianController extends Controller
                     'log_feature'=>'pengembalian',
                     'log_action'=>'CREATE',
                     'log_created_by'=>Auth::user()->id,
-                    'log_user'=>Auth::user()->id,
+                    'log_user'=>$req->peminjam_id,
                     'log_created_at'=>date('Y-m-d h:i:s'),
                 ]);
             }

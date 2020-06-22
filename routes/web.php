@@ -88,9 +88,9 @@ Route::get('/rak_buku_save', 'rak_bukuController@save')->name('rak_buku_save');
 Route::get('/rak_buku_edit', 'rak_bukuController@edit')->name('rak_buku_edit');
 Route::get('/rak_buku_update', 'rak_bukuController@update')->name('rak_buku_update');
 Route::get('/rak_buku_hapus', 'rak_bukuController@hapus')->name('rak_buku_hapus');
+Route::get('/rak_buku_get_kode', 'rak_bukuController@get_kode')->name('rak_buku_get_kode');
 
-Route::get('/rak_buku_dt', 'rak_buku_dtController@index')->name('rak_buku_dt_index');
-Route::get('/rak_buku_dt_save', 'rak_buku_dtController@save')->name('rak_buku_dt_save');
+Route::get('/rak_buku_dt_save', 'rak_bukuController@save_dt')->name('rak_buku_dt_save');
 Route::get('/rak_buku_dt_hapus', 'rak_buku_dtController@hapus')->name('rak_buku_dt_hapus');
 
 

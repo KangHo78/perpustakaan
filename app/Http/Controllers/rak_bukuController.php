@@ -34,7 +34,8 @@ class rak_bukuController extends Controller
     }
     public function create()
     {
-        return view('backend_view.master.rak_buku.rak_buku_create');
+        
+        return view('backend_view.master.rak_buku.rak_buku_create',compact('kode'));
     }
     public function save(Request $req)
     {
@@ -55,6 +56,28 @@ class rak_bukuController extends Controller
         } else {
             return Response()->json(['status' => 'gagal']);
         }
+    }
+    public function get_kode(Request $req)
+    {
+        $rak_awal = 'RAK/'.strtoupper($req->alphabet);
+        $cek_data = $this->model->rak_buku()->where('mrb_kode','like','%'.$rak_awal.'%')->get();
+        $id = count($cek_data)+1;
+        return $kode = $rak_awal.'/'.str_pad($id, 3, '0', STR_PAD_LEFT);
+    }
+    public function save_dt(Request $req)
+    {
+        $dt = $this->model->rak_buku_dt()->where('mrbd_id',$req->id)->max('mrb_id') + 1;
+        $rak_awal = 'RAK/'.strtoupper($req->alphabet);
+        $cek_data = $this->model->rak_buku()->where('mrb_kode','like','%'.$rak_awal.'%')->get();
+        $id = count($cek_data)+1;
+        return $kode = $rak_awal.'/'.str_pad($id, 3, '0', STR_PAD_LEFT);
+        $user = $this->model->user()->get();
+        $this->model->rak_buku_dt()->create([
+                'mrbd_id' => $req->id,
+                'mrbd_dt' => $dt,
+                'mrbd_kode' => $req->kode,
+            ]);
+        return Response()->json(['status' => 'sukses']);
     }
     public function edit(Request $req)
     {
