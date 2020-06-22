@@ -47,10 +47,6 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Kode</label>
-                            <input type="text" class="form-control" value="{{ $data->kode }}" name="kode">
-                        </div>
-                        <div class="form-group">
                             <label>Alamat Universitas</label>
                             <input type="text" class="form-control" value="{{ $data->address_univ }}"
                                 name="addressuniv">

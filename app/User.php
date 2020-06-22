@@ -15,8 +15,9 @@ class User extends Authenticatable
      *
      * @var array
      */
+    public $timestamps = false;
     protected $fillable = [
-        'name', 'email', 'password', 'id', 'previleges', 'kode', 'address_univ', 'address', 'tlp', 'photo', 'registration_kode', 'username'
+        'name', 'email', 'password', 'id', 'previleges', 'kode', 'address_univ', 'address', 'tlp', 'photo', 'registration_kode', 'username', 'updated_at', 'created_at'
     ];
 
     /**
@@ -44,10 +45,10 @@ class User extends Authenticatable
     }
     public function peminjaman_anggota()
     {
-      return $this->hasMany('App\peminjaman', 'tpj_anggota', 'id');
+        return $this->hasMany('App\peminjaman', 'tpj_anggota', 'id');
     }
     public function peminjaman_staff()
-    { 
-      return $this->hasMany('App\peminjaman', 'tpj_staff', 'id');
+    {
+        return $this->hasMany('App\peminjaman', 'tpj_staff', 'id');
     }
 }

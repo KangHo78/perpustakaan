@@ -48,7 +48,15 @@
                         @endif</p>
                     <ul class="list-group list-group-unbordered mb-3">
                         <li class="list-group-item">
-                            <b>Status</b> <a class="float-right">Aktif</a>
+                            <b>Status</b> <a class="float-right">
+                                @if(Auth::user()->previleges == '3')
+                                Aktif
+                                @elseif(Auth::user()->previleges == '2')
+                                Aktif
+                                @else
+                                Administrator
+                                @endif
+                            </a>
                         </li>
                         <li class="list-group-item">
                             <b>Kode</b> <a class="float-right">{{ Auth::user()->kode }}</a>
@@ -67,6 +75,10 @@
                         </li>
                         <li class="list-group-item">
                             <b>Telepon</b> <a class="float-right">{{ Auth::user()->tlp }}</a>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Valid</b> <a
+                                class="float-right">{{ date("d-M-Y", strtotime(Auth::user()->updated_at)) }}</a>
                         </li>
                     </ul>
                     <button onclick="edit('{{ Auth::user()->id }}')" class="btn btn-primary btn-block"><b>Edit
