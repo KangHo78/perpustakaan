@@ -82,12 +82,16 @@
                                 </td>
                                 @if (Auth::user()->previleges == '1')
                                 <td>
-                                    <button class="btn btn-sm btn-info btn-block"
-                                        onclick="edit('{{ $element->tpj_id }}')"><i class="fas fa-pen"></i>
-                                        Edit</button>
-                                    <button class="btn btn-sm btn-danger btn-block"
-                                        onclick="hapus('{{ $element->tpj_id }}')"><i class="fas fa-trash"></i>
-                                        Hapus</button>
+                                    @if (count($element->pengembalian) == 0)
+                                        <button class="btn btn-sm btn-info btn-block"
+                                            onclick="edit('{{ $element->tpj_id }}')"><i class="fas fa-pen"></i>
+                                            Edit</button>
+                                        <button class="btn btn-sm btn-danger btn-block"
+                                            onclick="hapus('{{ $element->tpj_id }}')"><i class="fas fa-trash"></i>
+                                            Hapus</button>
+                                    @else
+                                        <span class="btn btn-sm btn-success">Sudah Dikembalikan</span>
+                                    @endif
                                 </td>
                                 @endif
                             </tr>

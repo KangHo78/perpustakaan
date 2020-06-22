@@ -29,7 +29,7 @@ class transaksi_peminjamanController extends Controller
      */
     public function index()
     {
-        $data = $this->model->peminjaman()->with(['peminjaman_dt','peminjaman_dt.buku_dt','peminjaman_dt.buku_dt.buku'])->get();
+        $data = $this->model->peminjaman()->with(['peminjaman_dt','peminjaman_dt.buku_dt','peminjaman_dt.buku_dt.buku','pengembalian'])->get();
         return view('backend_view.transaksi.peminjaman.peminjaman_index', compact('data'));
     }
     public function create()
@@ -118,6 +118,7 @@ class transaksi_peminjamanController extends Controller
                     'log_feature'=>'PEMINJAMAN',
                     'log_action'=>'CREATE',
                     'log_created_by'=>Auth::user()->id,
+                    'log_user'=>Auth::user()->id,
                     'log_created_at'=>date('Y-m-d h:i:s'),
                 ]);
             }

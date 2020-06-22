@@ -46,10 +46,15 @@ class transaksi_pengembalianController extends Controller
 
         return Response()->json(['status' => 'sukses','hasil'=>$peminjaman]);
     }
+    public function get_data_pengembalian(Request $req)
+    {
+        $data = $this->model->pengembalian()->with(['pengembalian_anggota','pengembalian_dt','pengembalian_dt.buku_dt','pengembalian_dt.buku_dt.buku'])->where('tpg_peminjaman', $req->id_peminjaman)->first();
+
+        return Response()->json(['status' => 'sukses','hasil'=>$data]);
+    }
     public function save(Request $req)
     {   
-        // dd($req->all());
-        
+
         DB::beginTransaction();
         try {
             $total_unique = array_unique($req->isbn);
@@ -58,13 +63,14 @@ class transaksi_pengembalianController extends Controller
             $this->model->pengembalian()->create([
                 'tpg_id'=>$id,
                 'tpg_kode' =>$req->kode,
-                'tpg_anggota'=>$req->peminjam,
+                'tpg_peminjaman' =>$req->kode_pinjam,
+                'tpg_anggota'=>$req->peminjam_id,
                 'tpg_staff'=>Auth::user()->id,
-                'tpg_date_pinjam' =>date('Y-m-d'),
-                'tpg_date_kembali' =>$date_kembali,
-                'tpg_created_by' =>Auth::user()->id,
+                'tpg_date_pinjam' =>$req->tgl_pinjam,
+                'tpg_date_kembali' =>date('Y-m-d',strtotime($req->tgl_kembali)),
+                'tpg_created_by' =>Auth::user()->username,
                 'tpg_created_at' =>date('Y-m-d'),
-                'tpg_date_tempo' =>$date_tempo,
+                'tpg_date_tempo' =>$req->tgl_tempo,
             ]);
             for ($i=0; $i <count($req->isbn) ; $i++) { 
                 $dt = $this->model->pengembalian_dt()->max('tpgdt_id')+1;
@@ -72,10 +78,12 @@ class transaksi_pengembalianController extends Controller
                     'tpgdt_id'  =>$id,
                     'tpgdt_dt'  =>$dt,
                     'tpgdt_isbn' =>$req->isbn[$i],
+                    'tpgdt_kondisi' =>$req->kondisi[$i],
                 ]);
 
                 $this->model->buku_dt()->where('mbdt_isbn',$req->isbn[$i])->update([
-                    'mbdt_status'=>'TERPINJAM',
+                    'mbdt_status'=>'TERSEDIA',
+                    'mbdt_kondisi'=>$req->kondisi[$i],
                 ]);
 
                 $log_id = $this->model->log()->max('log_id')+1;
@@ -86,6 +94,7 @@ class transaksi_pengembalianController extends Controller
                     'log_feature'=>'pengembalian',
                     'log_action'=>'CREATE',
                     'log_created_by'=>Auth::user()->id,
+                    'log_user'=>Auth::user()->id,
                     'log_created_at'=>date('Y-m-d h:i:s'),
                 ]);
             }
@@ -105,6 +114,16 @@ class transaksi_pengembalianController extends Controller
     public function edit(Request $req)
     {
         $data = $this->model->pengembalian()->with(['pengembalian_dt','pengembalian_dt.buku_dt','pengembalian_dt.buku_dt.buku'])->where('tpg_id', $req->id)->first();
+        $data_ex = $this->model->pengembalian()->select('tpg_peminjaman')->where('tpg_id','!=', $data->tpg_peminjaman)->get();
+        $dt_ex = [];
+        for ($i=0; $i < count($data_ex); $i++) { 
+            $dt_ex[] = $data_ex[$i]->tpg_peminjaman;
+        }
+        $peminjaman = $this->model->peminjaman()
+                ->whereHas('pengembalian', function($query) use ($data) {
+                  $query->where('tpg_peminjaman', $data->tpg_peminjaman);
+                })->with('peminjaman_anggota')->get();
+
         $user = $this->model->user()->get();
         $buku = $this->model->buku_dt()
                      ->where('mbdt_status','TERSEDIA')
@@ -112,73 +131,45 @@ class transaksi_pengembalianController extends Controller
                         return $q->where('mb_pinjam','YA');
                      }])
                      ->get();
-        return view('backend_view.transaksi.pengembalian.pengembalian_edit', compact('data','user','buku'));
+        return view('backend_view.transaksi.pengembalian.pengembalian_edit', compact('data','user','buku','peminjaman'));
     }
     public function update(Request $req)
     {
         DB::beginTransaction();
         try {
-            $total_unique = array_unique($req->isbn);
-            if (count($req->isbn) != count($total_unique)) {
-                return Response()->json(['status' => 'duplicate']);
-            }
-            $check_role_user = $user = $this->model->user()->where('id',$req->peminjam)->first();
-
-            if ($check_role_user->previleges == 4) {
-                $date_kembali = date('Y-m-d',strtotime('+21 day'));            
-                $date_tempo = date('Y-m-d',strtotime('+28 day'));            
-            }elseif($check_role_user->previleges == 5){
-                $date_kembali = date('Y-m-d',strtotime('+84 day'));            
-                $date_tempo = date('Y-m-d',strtotime('+98 day'));
-            }else{
-                return Response()->json(['status' => 'bukan_user']);
-            }
-
             $this->model->pengembalian()->where('tpg_id',$req->id)->update([
-                'tpg_anggota'=>$req->peminjam,
-                'tpg_staff'=>Auth::user()->id,
-                'tpg_date_pinjam' =>date('Y-m-d'),
-                'tpg_date_kembali' =>$date_kembali,
-                'tpg_created_by' =>Auth::user()->id,
-                'tpg_date_tempo' =>$date_tempo,
-            ]);
-            $this->model->pengembalian_dt()->where('tpgdt_id',$req->id)->delete();
-            for ($i=0; $i <count($req->isbn) ; $i++) { 
-                $this->model->pengembalian_dt()->create([
-                    'tpgdt_id'  =>$req->id,
-                    'tpgdt_dt'  =>$i+1,
-                    'tpgdt_isbn' =>$req->isbn[$i],
-                ]);
-
-                $this->model->buku_dt()->where('mbdt_isbn',$req->isbn[$i])->update([
-                    'mbdt_status'=>'TERPINJAM',
-                ]);
-
-                $log_id = $this->model->log()->max('log_id')+1;
-                $this->model->log()->create([
-                    'log_id'=>$log_id,
-                    'log_name'=>'pengembalian BUKU ATAS ISBN = '.$req->isbn[$i],
-                    'log_kode'=>$req->isbn[$i],
-                    'log_feature'=>'pengembalian',
-                    'log_action'=>'EDIT',
-                    'log_created_by'=>Auth::user()->id,
-                    'log_created_at'=>date('Y-m-d h:i:s'),
-                ]);
-            }
-
+                        'tpg_date_kembali'=>date('Y-m-d',strtotime($req->tgl_kembali)),
+                    ]);
             DB::commit();
             
             return Response()->json(['status' => 'sukses']);
 
+            // all good
         } catch (\Exception $e) {
             DB::rollback();
             // something went wrong
             return Response()->json(['status' => 'error']);
         }
+
     }
     public function hapus(Request $req)
     {
-        $data = $this->model->pengembalian()->where('mk_id', $req->id)->delete();
+        return $pengembalian = $this->model->pengembalian()->where('tpg_id', $req->id)->get();
+        $pengembalian_dt = $this->model->pengembalian_dt()->where('tpgdt_id', $req->id)->get();
+
+        // for ($i=0; $i <count($pengembalian_dt) ; $i++) { 
+        //     $detail[$i] = $this->model->buku_dt()->where('mbdt_isbn',$pengembalian_dt[$i]->tpjdt_isbn)
+        //         ->update([
+        //             'mbdt_status'=>'TERSEDIA',
+        //         ]);
+        // }
+
+        $peminjaman_dt = $this->model->pengembalian()->where('tpg_id', $pengembalian->tpg_peminjaman)->get();
+        $pengembalian_dt = $this->model->pengembalian_dt()->where('tpgdt_id', $pengembalian->tpg_peminjaman)->get();
+
+
+        $data = $this->model->pengembalian()->where('tpj_id', $req->id)->delete();
+        $data = $this->model->pengembalian_dt()->where('tpjdt_id', $req->id)->delete();
         return redirect()->back();
     }
 }
