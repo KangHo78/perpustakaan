@@ -38,13 +38,11 @@ mix.scripts([
 
 // Back End
 mix.styles([
-        'resources/css/backend/tempusdominus-bootstrap-4.min.css',
         'resources/css/backend/all.css',
-        'resources/css/backend/icheck-bootstrap.min.css',
         'resources/css/backend/OverlayScrollbars.min.css',
-        'resources/css/backend/daterangepicker.css',
         'resources/css/backend/select2.min.css',
         'resources/css/backend/select2-bootstrap4.min.css',
+        'resources/css/backend/bootstrap-datepicker.min.css',
         'resources/css/backend/dataTables.bootstrap4.min.css',
         'resources/css/backend/responsive.bootstrap4.min.css',
         'resources/css/backend/adminlte.min.css',
@@ -54,10 +52,9 @@ mix.styles([
 mix.scripts([
         'resources/js/backend/jquery.min.js',
         'resources/js/backend/bootstrap.bundle.min.js',
-        'resources/js/backend/moment.min.js',
-        'resources/js/backend/daterangepicker.js',
-        'resources/js/backend/tempusdominus-bootstrap-4.min.js',
         'resources/js/backend/fastclick.js',
+        'resources/js/backend/moment.min.js',
+        'resources/js/backend/bootstrap-datepicker.min.js',
         'resources/js/backend/bs-custom-file-input.min.js',
         'resources/js/backend/jquery.overlayScrollbars.min.js',
         'resources/js/backend/jquery.dataTables.min.js',
