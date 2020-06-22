@@ -60,8 +60,7 @@
                                 <td>{{ $element->tlp }}</td>
                                 <td>{{ $element->registration_kode }}</td>
                                 <td>{{ $element->email }}</td>
-                                <td>{{ date("d-M-Y", strtotime($element->updated_at)) }}
-                                </td>
+                                <td>{{ date("d-M-Y", strtotime($element->updated_at)) }}</td>
                                 <td>
                                     <button class="btn btn-sm btn-info btn-block"
                                         onclick="edit('{{ $element->id }}')"><i class="fas fa-pen"></i>
