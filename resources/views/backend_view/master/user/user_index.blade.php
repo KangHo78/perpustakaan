@@ -35,6 +35,8 @@
                                 <td>Nama</td>
                                 <td>Previleges</td>
                                 <td>Kode</td>
+                                <td>Fakultas</td>
+                                <td>Jurusan</td>
                                 <td>Alamat</td>
                                 <td>Telepon</td>
                                 <td>NBI</td>
@@ -56,6 +58,8 @@
                                 <td>Staff Perpustakaan</td>
                                 @endif
                                 <td>{{ $element->kode }}</td>
+                                <td>Fakultas</td>
+                                <td>Jurusan</td>
                                 <td>{{ $element->address }}</td>
                                 <td>{{ $element->tlp }}</td>
                                 <td>{{ $element->registration_kode }}</td>

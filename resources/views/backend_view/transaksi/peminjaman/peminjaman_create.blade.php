@@ -36,8 +36,7 @@
                 <!-- text input -->
                 <div class="form-group">
                   <label>Kode</label>
-                  <input readonly="" value="{{ $kode }}" name="kode" type="text" class="form-control"
-                    placeholder="Enter ...">
+                  <input readonly="" value="{{ $kode }}" name="kode" type="text" class="form-control">
                 </div>
               </div>
               <div class="col-sm-6">
@@ -96,7 +95,7 @@
   function save(argument) {     
     var peminjam = $('.peminjam').val();
     var isbn = $('.isbn').val();
-    if (peminjam == '' || peminjam == null || peminjam == undefined) {
+    if (peminjam == '- Pilih Peminjam -' || peminjam == null || peminjam == undefined) {
       Swal.fire({
         title: 'Peminjam kosong.',
         icon: 'warning',
