@@ -5,14 +5,14 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Master pengembalian</h1>
+                    <h1 class="m-0 text-dark">Master Pengembalian</h1>
                 </div>
                 <!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                        <li class="breadcrumb-item">Master</li>
-                        <li class="breadcrumb-item active">pengembalian</li>
+                        <li class="breadcrumb-item">Transaksi</li>
+                        <li class="breadcrumb-item active">Pengembalian</li>
                     </ol>
                 </div>
                 <!-- /.col -->
@@ -31,9 +31,9 @@
                         <thead>
                             <tr>
                                 <td>No</td>
-                                <td>kode</td>
+                                <td>Kode</td>
                                 <td>User</td>
-                                <td>tgl Kembali</td>
+                                <td>Tanggal Kembali</td>
                                 <td>Buku</td>
                                 <td>Aksi</td>
                             </tr>
@@ -68,7 +68,8 @@
                                         <tr>
                                             <td>{{ $element->pengembalian_staff->name }}</td>
                                         </tr>
-                                    </table></td>
+                                    </table>
+                                </td>
                                 <td>
                                     {{ date('d-M-Y',strtotime($element->tpg_date_kembali)) }}
                                 </td>
@@ -76,7 +77,7 @@
                                     <table>
                                         <tr>
                                             <th>Buku</th>
-                                            <th>Isbn</th>
+                                            <th>ISBN</th>
                                             <th>Kondisi</th>
                                         </tr>
                                         @foreach ($element->pengembalian_dt as $element1)
@@ -91,26 +92,20 @@
                                 <td>
                                     <button class="btn btn-sm btn-info" onclick="edit('{{ $element->tpg_id }}')"><i
                                             class="fas fa-pen"></i> Edit</button>
-                                    {{-- <button class="btn btn-sm btn-danger" onclick="hapus('{{ $element->tpg_id }}')"><i --}}
-                                            {{-- class="fas fa-trash"></i> Hapus</button> --}}
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                                    {{-- <button class="btn btn-sm btn-danger" onclick="hapus('{{ $element->tpg_id }}')"><i
+                                        --}} {{-- class="fas fa-trash"></i> Hapus</button> --}} </td> </tr> @endforeach
+                                        </tbody> </table> </div> <!-- /.card-body -->
                 </div>
-                <!-- /.card-body -->
+                <!-- /.row -->
             </div>
-            <!-- /.row -->
+            <!-- /.container-fluid -->
         </div>
-        <!-- /.container-fluid -->
+        <!-- /.content-header -->
     </div>
-    <!-- /.content-header -->
-</div>
-@endsection
+    @endsection
 
-<script type="text/javascript">
-    function tambah(argument) {
+    <script type="text/javascript">
+        function tambah(argument) {
         location.href = '{{ route('transaksi_pengembalian_create') }}';
     }
 
@@ -138,4 +133,4 @@
             }
         })
     }
-</script>
+    </script>
