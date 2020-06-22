@@ -35,7 +35,7 @@ class rak_bukuController extends Controller
     public function create()
     {
         
-        return view('backend_view.master.rak_buku.rak_buku_create',compact('kode'));
+        return view('backend_view.master.rak_buku.rak_buku_create');
     }
     public function save(Request $req)
     {
