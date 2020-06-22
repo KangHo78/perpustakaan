@@ -30,6 +30,10 @@ class buku extends model
   {
       return 'Y-m-d H:i:s';
   }
+  public function created_by()
+  {
+      return $this->belongsTo('App\User', 'mb_created_by', 'id');
+  }
   public function buku_dt()
   {
       return $this->hasMany('App\buku_dt', 'mbdt_id', 'mb_id');

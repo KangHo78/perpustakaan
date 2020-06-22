@@ -34,22 +34,35 @@ class bukuController extends Controller
     }
     public function create()
     {
-        return view('backend_view.master.buku.buku_create');
+        $kategoris = $this->model->kategori()->get();
+        $penerbits = $this->model->penerbit()->get();
+        $pengarangs = $this->model->pengarang()->get();
+        return view('backend_view.master.buku.buku_create', compact('kategoris', 'penerbits', 'pengarangs'));
     }
     public function save(Request $req)
     {
         $validasi = $this->validate($req, [
+            'kode' => 'required',
+            'kategori' => 'required',
+            'penerbit' => 'required',
+            'pengarang' => 'required',
             'name' => 'required',
-            'alamat' => 'required',
-            'tlp' => 'required',
+            'desc' => 'required',
+            'pinjam' => 'required',
         ]);
-        $id = $this->model->penerbit()->max('mpn_id') + 1;
+        $id = $this->model->buku()->max('mb_id') + 1;
         if ($validasi == true) {
-            $this->model->penerbit()->create([
-                'mpn_id' => $id,
-                'mpn_name' => $req->name,
-                'mpn_alamat' => $req->alamat,
-                'mpn_tlp' => $req->tlp,
+            $this->model->buku()->create([
+                'mb_id' => $id,
+                'mb_kode' => $req->kode,
+                'mb_kategori' => $req->kategori,
+                'mb_penerbit' => $req->penerbit,
+                'mb_pengarang' => $req->pengarang,
+                'mb_created_by'=>Auth::user()->id,
+                'mb_created_at' => date('Y-m-d H:i:s'),
+                'mb_name' => $req->name,
+                'mb_desc' => $req->desc,
+                'mb_pinjam' => $req->pinjam,
             ]);
             return Response()->json(['status' => 'sukses']);
         } else {
