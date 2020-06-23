@@ -27,4 +27,8 @@ class rak_buku_dt extends model
     {
       return $this->belongsTo('App\rak_buku', 'mrbd_id', 'mrb_id');
     }
+    public function buku()
+  {
+      return $this->hasMany('App\buku', 'mrbd_dt', 'mrbd_id');
+  }
 }

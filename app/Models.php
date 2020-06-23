@@ -47,7 +47,6 @@ class models extends model
       $buku_dt = new buku_dt(); 
 
       return $buku_dt;
-
     }
 
     public function penerbit()

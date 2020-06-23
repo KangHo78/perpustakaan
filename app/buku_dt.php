@@ -19,6 +19,7 @@ class buku_dt extends model
     'mbdt_isbn',
     'mbdt_status',
     'mbdt_rak_buku_dt',
+    'mbdt_kondisi',
   ];
 
   public function getDateFormat()
