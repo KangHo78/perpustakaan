@@ -91,7 +91,7 @@ Route::get('/rak_buku_hapus', 'rak_bukuController@hapus')->name('rak_buku_hapus'
 Route::get('/rak_buku_get_kode', 'rak_bukuController@get_kode')->name('rak_buku_get_kode');
 
 Route::get('/rak_buku_dt_save', 'rak_bukuController@save_dt')->name('rak_buku_dt_save');
-Route::get('/rak_buku_dt_hapus', 'rak_buku_dtController@hapus')->name('rak_buku_dt_hapus');
+Route::get('/rak_buku_dt_delete', 'rak_bukuController@deletes_dt')->name('rak_buku_dt_delete');
 
 
 // peminjaman

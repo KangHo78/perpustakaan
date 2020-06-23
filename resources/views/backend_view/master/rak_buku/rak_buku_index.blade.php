@@ -54,36 +54,43 @@
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalLabel">Sub Rak Buku</h5>
+                                                </div>
+
+                                                
+                                            <div class="modal-body">
                                                 <div class="card-body">
                                                     <table id="tables" class="table-bordered table-striped table" width="100%">
                                                     <thead>
                                                     <tr>
                                                         <td>No</td>
                                                         <td>Kode</td>
+                                                        <td>aksi</td>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
                                                     @foreach ($element->rak_buku_dt as $index2 => $element2)
-                                                    <tr>
-                                                        <td>{{ $index2+1 }}</td>
-                                                        <td>{{ $element2->mrbd_kode }}</td>
+                                                    <tr >
+                                                        <td class="remove_{{$element2->mrbd_dt}}">{{ $index2+1 }}</td>
+                                                        <td class="remove_{{$element2->mrbd_dt}}">{{ $element2->mrbd_kode }}</td>
+                                                        <td class="remove_{{$element2->mrbd_dt}}">
+                                                           <button type="button" class="btn btn-danger btn-sm" onclick="delete_dt('{{$element2->mrbd_id}}','{{$element2->mrbd_kode}}','{{$element2->mrbd_dt}}')">hapus</button>
+                                                        </td>
                                                     </tr>
                                                     @endforeach
                                                     </tbody>
                                                     </table>
-                                                    </div>
+                                                </div>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                                 </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <input type="hidden" class="form-control kode" value="{{ $element->mrb_kode }}" name="kode">
-                                                <input type="hidden" class="form-control id" value="{{ $element->mrb_id }}" name="id">
-                                                <input type="text" class="form-control angka" name="angka">
+
+                                                <input type="hidden" class="form-control kode_{{$element->mrb_id}}" value="{{ $element->mrb_kode }}" name="kode">
+                                                <input type="hidden" class="form-control id_{{$element->mrb_id}}" value="{{ $element->mrb_id }}" name="id">
+                                                <input type="text" class="form-control angka_{{$element->mrb_id}}" name="angka">
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary" onclick="tambah_dt()">Tambah</button>
+                                                <button type="button" class="btn btn-primary" onclick="tambah_dt('{{$element->mrb_id}}')">Tambah</button>
                                             </div>
                                             </form>
                                             </div>
@@ -144,35 +151,75 @@
     }
     
     function tambah_dt (argument) {
-    var kode  = $('.kode').val();
-    var id    = $('.id').val();
-    var angka = $('.angka').val();
-    $.ajax({
-      url:'{{ route('rak_buku_dt_save') }}',
-      data:{id:id,angka:angka,kode:kode},
-      type:'get',      
-      error:function(data){
-        if(data.status == 422){
-            Swal.fire({
-              title: 'Pastikan Data Tidak Kosong.',
-              icon: 'error',
-              confirmButtonText: 'Ok'
-            })
+        var kode  = $('.kode_'+argument).val();
+        var id    = $('.id_'+argument).val();
+        var angka = $('.angka_'+argument).val();
+        $.ajax({
+          url:'{{ route('rak_buku_dt_save') }}',
+          data:{id:id,angka:angka,kode:kode},
+          type:'get',      
+          error:function(data){
+            if(data.status == 422){
+                Swal.fire({
+                  title: 'Pastikan Data Tidak Kosong.',
+                  icon: 'error',
+                  confirmButtonText: 'Ok'
+                })
+              }
+            }, 
+          success:function(data){
+            if (data.status == 'sukses') {
+              Swal.fire({
+                title: 'Data Sudah Disimpan.',
+                icon: 'success',
+                confirmButtonText: 'Ok'
+              }).then(function(result){
+                location.href = '{{ route('rak_buku_index') }}';
+              })
+            }
           }
-        }, 
-      success:function(data){
-        if (data.status == 'sukses') {
-          Swal.fire({
-            title: 'Data Sudah Disimpan.',
-            icon: 'success',
-            confirmButtonText: 'Ok'
-          }).then(function(result){
-            location.href = '{{ route('rak_buku_index') }}';
-             })
-        }
-      }
+        });
+    }
 
-    });
+    function delete_dt (argument,argument1,argument2) {
+        Swal.fire({
+            title: 'Yakin Menghapus Data?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            if (result.value) {
+                Swal.fire({
+                title: 'Data Berhasil Di Hapus',
+                icon: 'success',
+                showConfirmButton: false,
+                }
+            )
+
+                var kode  = argument1;
+                var id  = argument;
+                var dt  = argument2;
+                $.ajax({
+                  url:'{{ route('rak_buku_dt_delete') }}',
+                  data:{kode:kode,id:id},
+                  type:'get',      
+                  success:function(data){
+                    if (data.status == 'sukses') {
+                      Swal.fire({
+                        title: 'Data Sudah Terhapus.',
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                      }).then(function(result){
+                        $('.remove_'+argument2).remove();
+                      })
+                    }
+                  }
+                });
+            }
+        })
+        
     }
 
 </script>
