@@ -25,7 +25,7 @@
             <div class="alert alert-info alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                 <h5><i class="icon fas fa-info"></i> Alert!</h5>
-                Ukuran Upload Foto Minimal 2MB, Lebih Baik Gunakan Ukuran Persegi.
+                Ukuran upload foto minimal 2MB, lebih baik gunakan ukuran persegi.
             </div>
             <div class="card card-default">
                 <div class="card-header">
@@ -104,7 +104,7 @@
         if(data.status == 422){
             Swal.fire({
               title: 'Error',
-              text: 'Pastikan Data Tidak Kosong Dan Ukuran Foto Minimal 2MB.',
+              text: 'Pastikan data tidak kosong dan foto memiliki ukuran minimal 2MB.',
               icon: 'error',
               confirmButtonText: 'Ok'
             })
@@ -113,7 +113,7 @@
         success:function(data){
           if (data.status == 'sukses') {
             Swal.fire({
-              title: 'Data Sudah Disimpan.',
+              title: 'Data sudah disimpan.',
               icon: 'success',
               confirmButtonText: 'Ok'
             }).then(function(result){

@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
 use App\models;
-use Response;
 
 class previlegesController extends Controller
 {
@@ -48,8 +46,6 @@ class previlegesController extends Controller
                 'mp_name' => $req->name,
             ]);
             return Response()->json(['status' => 'sukses']);
-        } else {
-            return Response()->json(['status' => 'gagal']);
         }
     }
     public function edit(Request $req)
@@ -67,13 +63,11 @@ class previlegesController extends Controller
                 'mp_name' => $req->name,
             ]);
             return Response()->json(['status' => 'sukses']);
-        } else {
-            return Response()->json(['status' => 'gagal']);
         }
     }
     public function hapus(Request $req)
     {
-        DB::table('m_previleges')->where('mp_id', $req->id)->delete();
+        $this->model->previleges()->where('mp_id', $req->id)->delete();
         return redirect()->back();
     }
 }

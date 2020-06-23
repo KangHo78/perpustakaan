@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
 use App\models;
-use Response;
 
 class penerbitController extends Controller
 {
@@ -52,8 +50,6 @@ class penerbitController extends Controller
                 'mpn_tlp' => $req->tlp,
             ]);
             return Response()->json(['status' => 'sukses']);
-        } else {
-            return Response()->json(['status' => 'gagal']);
         }
     }
     public function edit(Request $req)
@@ -75,8 +71,6 @@ class penerbitController extends Controller
                 'mpn_tlp' => $req->tlp,
             ]);
             return Response()->json(['status' => 'sukses']);
-        } else {
-            return Response()->json(['status' => 'gagal']);
         }
     }
     public function hapus(Request $req)

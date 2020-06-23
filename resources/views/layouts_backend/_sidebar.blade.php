@@ -27,7 +27,6 @@
             <i class="nav-icon fas fa-home"></i>
             <p>
               Homepage
-              {{-- <span class="right badge badge-danger"></span> --}}
             </p>
           </a>
         </li>
@@ -36,33 +35,10 @@
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
               Dashboard
-              {{-- <span class="right badge badge-danger"></span> --}}
             </p>
           </a>
         </li>
-        {{-- <li class="nav-item">
-            <a href="{{ route('latihan_crud') }}" class="nav-link">
-        <i class="nav-icon fas fa-tachometer-alt"></i>
-        <p>
-          Dashboard
-        </p>
-        </a>
-        </li> --}}
-        @if(Auth::user()->previleges == '3')
-        <li class="nav-header">TRANSAKSI</li>
-        <li class="nav-item">
-          <a href="https://adminlte.io/docs/3.0" class="nav-link">
-            <i class="nav-icon fas fa-book-reader"></i>
-            <p>Peminjaman</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="https://adminlte.io/docs/3.0" class="nav-link">
-            <i class="nav-icon fas fa-arrow-alt-circle-left"></i>
-            <p>Pengembalian</p>
-          </a>
-        </li>
-        @else
+        @if(Auth::user()->previleges == '1')
         <li class="nav-header">MASTER</li>
         <li class="nav-item has-treeview">
           <a href="#" class="nav-link">
@@ -109,7 +85,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="pages/mailbox/mailbox.html" class="nav-link">
+              <a href="{{ route('buku_index') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Buku</p>
               </a>
@@ -148,31 +124,26 @@
           </a>
         </li>
         <li class="nav-item">
+          <a href="{{ route('transaksi_pengembalian_index') }}" class="nav-link">
+            <i class="nav-icon fas fa-arrow-alt-circle-left"></i>
+            <p>Pengembalian</p>
+          </a>
+        </li>
+        @else
+        <li class="nav-header">TRANSAKSI</li>
+        <li class="nav-item">
+          <a href="{{ route('transaksi_peminjaman_index') }}" class="nav-link">
+            <i class="nav-icon fas fa-book-reader"></i>
+            <p>Peminjaman</p>
+          </a>
+        </li>
+        <li class="nav-item">
           <a href="https://adminlte.io/docs/3.0" class="nav-link">
             <i class="nav-icon fas fa-arrow-alt-circle-left"></i>
             <p>Pengembalian</p>
           </a>
         </li>
         @endif
-        {{-- <li class="nav-header">LABELS</li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon far fa-circle text-danger"></i>
-              <p class="text">Important</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon far fa-circle text-warning"></i>
-              <p>Warning</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon far fa-circle text-info"></i>
-              <p>Informational</p>
-            </a>
-          </li> --}}
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

@@ -33,7 +33,7 @@
           <form class="form-save">
             <div class="form-group">
               <label>Kode</label>
-              <input type="text" class="form-control" name="kode" value="{{ $data->mrb_kode }}">
+              <input type="text" readonly="" class="form-control" name="kode" value="{{ $data->mrb_kode }}">
               <input type="hidden" class="form-control" name="id" value="{{ $data->mrb_id }}">
             </div>
             <div class="form-group">

@@ -88,10 +88,10 @@ Route::get('/rak_buku_save', 'rak_bukuController@save')->name('rak_buku_save');
 Route::get('/rak_buku_edit', 'rak_bukuController@edit')->name('rak_buku_edit');
 Route::get('/rak_buku_update', 'rak_bukuController@update')->name('rak_buku_update');
 Route::get('/rak_buku_hapus', 'rak_bukuController@hapus')->name('rak_buku_hapus');
+Route::get('/rak_buku_get_kode', 'rak_bukuController@get_kode')->name('rak_buku_get_kode');
 
-Route::get('/rak_buku_dt', 'rak_buku_dtController@index')->name('rak_buku_dt_index');
-Route::get('/rak_buku_dt_save', 'rak_buku_dtController@save')->name('rak_buku_dt_save');
-Route::get('/rak_buku_dt_hapus', 'rak_buku_dtController@hapus')->name('rak_buku_dt_hapus');
+Route::get('/rak_buku_dt_save', 'rak_bukuController@save_dt')->name('rak_buku_dt_save');
+Route::get('/rak_buku_dt_delete', 'rak_bukuController@deletes_dt')->name('rak_buku_dt_delete');
 
 Route::get('/fakultas', 'fakultasController@index')->name('fakultas_index');
 Route::get('/fakultas_create', 'fakultasController@create')->name('fakultas_create');
@@ -110,3 +110,14 @@ Route::get('/transaksi_peminjaman_update', 'transaksi_peminjamanController@updat
 Route::get('/transaksi_peminjaman_hapus', 'transaksi_peminjamanController@hapus')->name('transaksi_peminjaman_hapus');
 Route::get('/transaksi_peminjaman_get_data_buku', 'transaksi_peminjamanController@get_data_buku')->name('transaksi_peminjaman_get_data_buku');
 Route::get('/transaksi_peminjaman_get_data_buku_remove', 'transaksi_peminjamanController@get_data_buku_remove')->name('transaksi_peminjaman_get_data_buku_remove');
+
+
+Route::get('/transaksi_pengembalian', 'transaksi_pengembalianController@index')->name('transaksi_pengembalian_index');
+Route::get('/transaksi_pengembalian_create', 'transaksi_pengembalianController@create')->name('transaksi_pengembalian_create');
+Route::get('/transaksi_pengembalian_save', 'transaksi_pengembalianController@save')->name('transaksi_pengembalian_save');
+Route::get('/transaksi_pengembalian_edit', 'transaksi_pengembalianController@edit')->name('transaksi_pengembalian_edit');
+Route::get('/transaksi_pengembalian_update', 'transaksi_pengembalianController@update')->name('transaksi_pengembalian_update');
+Route::get('/transaksi_pengembalian_hapus', 'transaksi_pengembalianController@hapus')->name('transaksi_pengembalian_hapus');
+Route::get('/transaksi_pengembalian_get_data_peminjaman', 'transaksi_pengembalianController@get_data_peminjaman')->name('transaksi_pengembalian_get_data_peminjaman');
+Route::get('/transaksi_pengembalian_get_data_pengembalian', 'transaksi_pengembalianController@get_data_pengembalian')->name('transaksi_pengembalian_get_data_pengembalian');
+

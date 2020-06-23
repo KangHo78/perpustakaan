@@ -11,8 +11,8 @@
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item">Master</li>
-            <li class="breadcrumb-item active">Create Kategori</li>
+            <li class="breadcrumb-item">Transaksi</li>
+            <li class="breadcrumb-item active">Create Peminjaman</li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -26,7 +26,7 @@
       <!-- FORM -->
       <div class="card card-default">
         <div class="card-header">
-          <h3 class="card-title">Create Kategori</h3>
+          <h3 class="card-title">Create Peminjaman</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body" style="display: block;">
@@ -36,7 +36,7 @@
                 <!-- text input -->
                 <div class="form-group">
                   <label>Kode</label>
-                  <input readonly="" value="{{ $kode }}" name="kode" type="text" class="form-control" placeholder="Enter ...">
+                  <input readonly="" value="{{ $kode }}" name="kode" type="text" class="form-control">
                 </div>
               </div>
               <div class="col-sm-6">
@@ -45,7 +45,7 @@
                   <select class="form-control select2 peminjam" name="peminjam">
                     <option>- Pilih Peminjam -</option>
                     @foreach ($user as $element)
-                      <option value="{{ $element->id }}">{{ $element->kode }} / {{ $element->name }}</option>
+                    <option value="{{ $element->id }}">{{ $element->kode }} / {{ $element->name }}</option>
                     @endforeach
                   </select>
                 </div>
@@ -59,9 +59,10 @@
                   <select class="form-control select2 pilih_buku" onchange="buku()">
                     <option>- Pilih Buku -</option>
                     @foreach ($buku as $element)
-                      @if ($element->buku != null)
-                        <option value="{{ $element->mbdt_isbn }}">{{ $element->buku->mb_kode }} / {{ $element->mbdt_isbn }} / {{ $element->buku->mb_name }}</option>
-                      @endif
+                    @if ($element->buku != null)
+                    <option value="{{ $element->mbdt_isbn }}">{{ $element->buku->mb_kode }} / {{ $element->mbdt_isbn }}
+                      / {{ $element->buku->mb_name }}</option>
+                    @endif
                     @endforeach
                   </select>
                 </div>
@@ -72,12 +73,10 @@
               <tr>
                 <th>Kode</th>
                 <th>Buku</th>
-                <th>Isbn</th>
-                <th>aksi</th>
+                <th>ISBN</th>
+                <th>Aksi</th>
               </tr>
             </table>
-
-
 
         </div>
         <!-- /.card-body -->
@@ -93,11 +92,10 @@
 @endsection
 
 <script type="text/javascript">
-
   function save(argument) {     
     var peminjam = $('.peminjam').val();
-    var isbn = $('.isbn').val();
-    if (peminjam == '' || peminjam == null || peminjam == undefined) {
+    var isbn = $('.pilih_buku').val();
+    if (peminjam == '- Pilih Peminjam -' || peminjam == null || peminjam == undefined) {
       Swal.fire({
         title: 'Peminjam kosong.',
         icon: 'warning',
@@ -107,7 +105,7 @@
     }
     if (isbn == '' || isbn == null || isbn == undefined) {
       Swal.fire({
-        title: 'buku belum dipilih.',
+        title: 'Buku belum dipilih.',
         icon: 'warning',
         confirmButtonText: 'Ok'
       })
@@ -164,7 +162,7 @@
               '<th>'+data.hasil.buku.mb_name+'</th>'+
               '<th>'+data.hasil.mbdt_isbn+'</th>'+
               '<th>'+
-                '<input type="hidden" name="isbn[]" value="'+data.hasil.mbdt_isbn+'">'+
+                '<input type="hidden" class="isbn" name="isbn[]" value="'+data.hasil.mbdt_isbn+'">'+
                 '<button type="button" class="btn btn-sm btn-danger" onclick="removed(\''+data.hasil.mbdt_isbn+'\')" ><i class="fas fa-trash"></i></button>'+
               '</th>'+
             '</tr>'

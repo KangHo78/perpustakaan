@@ -15,6 +15,8 @@ use App\buku_dt;
 use App\rak_buku;
 use App\peminjaman;
 use App\peminjaman_dt;
+use App\pengembalian;
+use App\pengembalian_dt;
 use App\rak_buku_dt;
 use App\log;
 
@@ -96,6 +98,18 @@ class models extends model
       $peminjaman_dt = new peminjaman_dt(); 
 
       return $peminjaman_dt;
+    }
+    public function pengembalian()
+    {
+      $pengembalian = new pengembalian(); 
+
+      return $pengembalian;
+    }
+    public function pengembalian_dt()
+    {
+      $pengembalian_dt = new pengembalian_dt(); 
+
+      return $pengembalian_dt;
     }
     public function log()
     {

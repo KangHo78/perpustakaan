@@ -35,6 +35,8 @@
                                 <td>Nama</td>
                                 <td>Previleges</td>
                                 <td>Kode</td>
+                                <td>Fakultas</td>
+                                <td>Jurusan</td>
                                 <td>Alamat</td>
                                 <td>Telepon</td>
                                 <td>NBI</td>
@@ -53,14 +55,16 @@
                                 @elseif($element->previleges == '2')
                                 <td>Dosen</td>
                                 @else
-                                <td>Administrator</td>
+                                <td>Staff Perpustakaan</td>
                                 @endif
                                 <td>{{ $element->kode }}</td>
+                                <td>Fakultas</td>
+                                <td>Jurusan</td>
                                 <td>{{ $element->address }}</td>
                                 <td>{{ $element->tlp }}</td>
                                 <td>{{ $element->registration_kode }}</td>
                                 <td>{{ $element->email }}</td>
-                                <td>{{ date("d-m-Y", strtotime($element->updated_at)) }}</td>
+                                <td>{{ date("d-M-Y", strtotime($element->updated_at)) }}</td>
                                 <td>
                                     <button class="btn btn-sm btn-info btn-block"
                                         onclick="edit('{{ $element->id }}')"><i class="fas fa-pen"></i>
@@ -90,7 +94,7 @@
 <script type="text/javascript">
     function perpanjang(argument) {
         Swal.fire({
-            title: 'Yakin Ingin Diperpanjang?',
+            title: 'Yakin ingin diperpanjang?',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -99,7 +103,7 @@
         }).then((result) => {
             if (result.value) {
                 Swal.fire({
-                title: 'Perpanjangan Berhasil',
+                title: 'Perpanjangan berhasil',
                 icon: 'success',
                 showConfirmButton: false,
                 }
@@ -119,7 +123,7 @@
 
     function hapus(argument) {
         Swal.fire({
-            title: 'Yakin Menghapus Data?',
+            title: 'Yakin menghapus data?',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -128,7 +132,7 @@
         }).then((result) => {
             if (result.value) {
                 Swal.fire({
-                title: 'Data Berhasil Di Hapus',
+                title: 'Data berhasil di hapus',
                 icon: 'success',
                 showConfirmButton: false,
                 }

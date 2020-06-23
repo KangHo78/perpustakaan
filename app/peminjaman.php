@@ -29,6 +29,10 @@ class peminjaman extends model
   {
     return 'Y-m-d H:i:s';
   }
+  public function pengembalian()
+  {
+      return $this->hasMany('App\pengembalian', 'tpg_peminjaman', 'tpj_id');
+  }
   public function peminjaman_anggota()
   {
       return $this->belongsTo('App\User', 'tpj_anggota', 'id');

@@ -19,9 +19,7 @@
   <div class="wrapper">
     @include('layouts_backend._nav')
     @include('layouts_backend._sidebar')
-
     @yield('content')
-
     <footer class="main-footer">
       <strong>Copyright &copy; 2020 <a href="javascript:void(0)">DRYAS</a>.</strong>
       All rights reserved.
@@ -29,11 +27,11 @@
         <b>Version</b> 1.0
       </div>
     </footer>
-
     <aside class="control-sidebar control-sidebar-dark">
     </aside>
   </div>
   @include('layouts_backend._script')
+  @yield('script')
 </body>
 
 </html>

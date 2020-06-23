@@ -26,7 +26,7 @@
       <div class="alert alert-info alert-dismissible">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
         <h5><i class="icon fas fa-info"></i> Alert!</h5>
-        Pastikan Password Memiliki Panjang Minimal 8
+        Pastikan password memiliki panjang minimal 8
       </div>
       <!-- FORM -->
       <div class="card card-default">
@@ -101,7 +101,7 @@
         if(data.status == 422){
             Swal.fire({
               title: 'Error',
-              text: 'Pastikan Data Tidak Kosong Dan Panjang Password Minimal 8.',
+              text: 'Pastikan data tidak kosong dan panjang password minimal 8.',
               icon: 'error',
               confirmButtonText: 'Ok'
             })
@@ -110,7 +110,7 @@
       success:function(data){
         if (data.status == 'sukses') {
           Swal.fire({
-            title: 'Data Sudah Disimpan.',
+            title: 'Data sudah disimpan.',
             icon: 'success',
             confirmButtonText: 'Ok'
           }).then(function(result){

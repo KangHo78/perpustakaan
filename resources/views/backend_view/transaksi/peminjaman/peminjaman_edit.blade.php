@@ -11,8 +11,8 @@
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item">Master</li>
-            <li class="breadcrumb-item active">Create Kategori</li>
+            <li class="breadcrumb-item">Transaksi</li>
+            <li class="breadcrumb-item active">Edit Peminjaman</li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -26,7 +26,7 @@
       <!-- FORM -->
       <div class="card card-default">
         <div class="card-header">
-          <h3 class="card-title">Create Kategori</h3>
+          <h3 class="card-title">Edit Peminjaman</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body" style="display: block;">
@@ -37,16 +37,18 @@
                 <div class="form-group">
                   <label>Kode</label>
                   <input type="hidden" name="id" value="{{ $data->tpj_id }}">
-                  <input readonly="" value="{{ $data->tpj_kode }}" name="kode" type="text" class="form-control" placeholder="Enter ...">
+                  <input readonly="" value="{{ $data->tpj_kode }}" name="kode" type="text" class="form-control"
+                    placeholder="Enter ...">
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="form-group">
                   <label>Peminjam</label>
-                  <select class="form-control select2 " name="peminjam">
+                  <select class="form-control select2 peminjam" name="peminjam">
                     <option>- Pilih Peminjam -</option>
                     @foreach ($user as $element)
-                      <option value="{{ $element->id }}" @if ($element->id == $data->tpj_anggota) selected="" @endif>{{ $element->kode }} / {{ $element->name }}</option>
+                    <option value="{{ $element->id }}" @if ($element->id == $data->tpj_anggota) selected=""
+                      @endif>{{ $element->kode }} / {{ $element->name }}</option>
                     @endforeach
                   </select>
                 </div>
@@ -60,9 +62,10 @@
                   <select class="form-control select2 pilih_buku drop_peminjaman" onchange="buku()">
                     <option>- Pilih Buku -</option>
                     @foreach ($buku as $element)
-                      @if ($element->buku != null)
-                        <option value="{{ $element->mbdt_isbn }}">{{ $element->buku->mb_kode }} / {{ $element->mbdt_isbn }} / {{ $element->buku->mb_name }}</option>
-                      @endif
+                    @if ($element->buku != null)
+                    <option value="{{ $element->mbdt_isbn }}">{{ $element->buku->mb_kode }} / {{ $element->mbdt_isbn }}
+                      / {{ $element->buku->mb_name }}</option>
+                    @endif
                     @endforeach
                   </select>
                 </div>
@@ -73,24 +76,22 @@
               <tr>
                 <th>Kode</th>
                 <th>Buku</th>
-                <th>Isbn</th>
-                <th>aksi</th>
+                <th>ISBN</th>
+                <th>Aksi</th>
               </tr>
               @foreach ($data->peminjaman_dt as $element)
-                <tr class="total_pinjam remove_{{ $element->tpjdt_isbn }}">
-                    <th>{{ $element->buku_dt->buku->mb_kode }}</th>
-                    <th>{{ $element->buku_dt->buku->mb_name }}</th>
-                    <th>{{ $element->buku_dt->mbdt_isbn }}</th>
-                    <th>
-                      <input type="hidden" name="isbn[]" value="{{ $element->buku_dt->mbdt_isbn }}">
-                      <button type="button" class="btn btn-sm btn-danger" onclick="removed('{{ $element->buku_dt->mbdt_isbn }}')" ><i class="fas fa-trash"></i></button>
-                    </th>
-                </tr>
+              <tr class="total_pinjam remove_{{ $element->tpjdt_isbn }}">
+                <th>{{ $element->buku_dt->buku->mb_kode }}</th>
+                <th>{{ $element->buku_dt->buku->mb_name }}</th>
+                <th>{{ $element->buku_dt->mbdt_isbn }}</th>
+                <th>
+                  <input type="hidden" name="isbn[]" value="{{ $element->buku_dt->mbdt_isbn }}">
+                  <button type="button" class="btn btn-sm btn-danger"
+                    onclick="removed('{{ $element->buku_dt->mbdt_isbn }}')"><i class="fas fa-trash"></i></button>
+                </th>
+              </tr>
               @endforeach
             </table>
-
-
-
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
@@ -105,11 +106,10 @@
 @endsection
 
 <script type="text/javascript">
-
   function save(argument) {      
     var peminjam = $('.peminjam').val();
-    var isbn = $('.isbn').val();
-    if (peminjam == '' || peminjam == null || peminjam == undefined) {
+    var buku = $('.pilih_buku').val();
+    if (peminjam == '- Pilih Peminjam -' || peminjam == null || peminjam == undefined) {
       Swal.fire({
         title: 'Peminjam kosong.',
         icon: 'warning',
@@ -117,7 +117,7 @@
       })
       return false;
     }
-    if (isbn == '' || isbn == null || isbn == undefined) {
+    if (buku == '' || buku == null || buku == undefined) {
       Swal.fire({
         title: 'buku belum dipilih.',
         icon: 'warning',
@@ -213,6 +213,4 @@
     })
     
   }
-
-  
 </script>

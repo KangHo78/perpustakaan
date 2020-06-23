@@ -19,7 +19,7 @@
         }
 
         .card {
-            width: 450px;
+            width: 470px;
             height: 250px;
             background-color: #fff;
             background: #f8f8f8;
@@ -36,7 +36,7 @@
 
         .card .additional {
             position: absolute;
-            width: 150px;
+            width: 200px;
             height: 100%;
             background: #dE685E;
             overflow: hidden;
@@ -44,7 +44,7 @@
         }
 
         .card .additional .user-card {
-            width: 150px;
+            width: 200px;
             height: 100%;
             position: relative;
             float: left;
@@ -115,7 +115,7 @@
                     @elseif(Auth::user()->previleges == '2')
                     Dosen
                     @else
-                    Administrator
+                    Staff Perpustakaan
                     @endif
                 </div>
                 <img class="center image" src="{{ public_path("storage/user/".Auth::user()->photo)}}">
@@ -138,7 +138,7 @@
                     Telepon : {{ Auth::user()->tlp }}
                 </div>
                 <div class="coords">
-                    Valid Until : {{ $date }}
+                    Valid Until : {{ date("d-m-Y", strtotime(Auth::user()->updated_at))}}
                 </div>
             </div>
         </div>

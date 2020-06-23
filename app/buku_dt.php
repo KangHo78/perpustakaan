@@ -14,11 +14,11 @@ class buku_dt extends model
   const CREATED_AT = 'created_at';
 
   protected $fillable = [
-    'mbdt_id'  ,
-    'mbdt_dt'  ,
-    'mbdt_status' ,
-    'mbdt_rak_buku_dt' ,
-    'mbdt_isbn' ,
+    'mbdt_id',
+    'mbdt_dt',
+    'mbdt_isbn',
+    'mbdt_status',
+    'mbdt_rak_buku_dt',
   ];
 
   public function getDateFormat()
@@ -28,6 +28,10 @@ class buku_dt extends model
   public function peminjaman_dt()
   {
       return $this->hasMany('App\peminjaman_dt', 'tpjdt_isbn', 'mbdt_id');
+  }
+  public function pengembalian_dt()
+  {
+      return $this->hasMany('App\pengembalian_dt', 'tpgdt_isbn', 'mbdt_id');
   }
   public function buku()
   {

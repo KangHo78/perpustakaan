@@ -11,7 +11,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                        <li class="breadcrumb-item">Master</li>
+                        <li class="breadcrumb-item">Transaksi</li>
                         <li class="breadcrumb-item active">Peminjaman</li>
                     </ol>
                 </div>
@@ -19,24 +19,28 @@
             </div>
 
             <div class="card card-info">
+                @if (Auth::user()->previleges == '1')
                 <div class="card-header">
                     <div class="float-right">
                         <button class="btn btn-sm btn-warning" onclick="tambah()"><i class="fas fa-plus"></i> Tambah
                         </button>
                     </div>
                 </div>
+                @endif
 
                 <div class="card-body">
                     <table id="tables" class="table-bordered table-striped table" width="100%">
                         <thead>
                             <tr>
                                 <td>No</td>
-                                <td>kode</td>
+                                <td>Kode</td>
                                 <td>Peminjam</td>
                                 <td>Pustakawan</td>
                                 <td>Tanggal</td>
                                 <td>Buku</td>
+                                @if (Auth::user()->previleges == '1')
                                 <td>Aksi</td>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -66,7 +70,7 @@
                                     <table>
                                         <tr>
                                             <th>Buku</th>
-                                            <th>Isbn</th>
+                                            <th>ISBN</th>
                                         </tr>
                                         @foreach ($element->peminjaman_dt as $element1)
                                         <tr>
@@ -76,12 +80,20 @@
                                         @endforeach
                                     </table>
                                 </td>
+                                @if (Auth::user()->previleges == '1')
                                 <td>
-                                    <button class="btn btn-sm btn-info" onclick="edit('{{ $element->tpj_id }}')"><i
-                                            class="fas fa-pen"></i> Edit</button>
-                                    <button class="btn btn-sm btn-danger" onclick="hapus('{{ $element->tpj_id }}')"><i
-                                            class="fas fa-trash"></i> Hapus</button>
+                                    @if (count($element->pengembalian) == 0)
+                                        <button class="btn btn-sm btn-info btn-block"
+                                            onclick="edit('{{ $element->tpj_id }}')"><i class="fas fa-pen"></i>
+                                            Edit</button>
+                                        <button class="btn btn-sm btn-danger btn-block"
+                                            onclick="hapus('{{ $element->tpj_id }}')"><i class="fas fa-trash"></i>
+                                            Hapus</button>
+                                    @else
+                                        <span class="btn btn-sm btn-success">Sudah Dikembalikan</span>
+                                    @endif
                                 </td>
+                                @endif
                             </tr>
                             @endforeach
                         </tbody>
@@ -122,7 +134,7 @@
                 showConfirmButton: false,
                 }
             )
-            location.href = '{{ url('/') }}' + '/kategori_hapus?&id=' + argument;
+            location.href = '{{ url('/') }}' + '/transaksi_peminjaman_hapus?&id=' + argument;
             }
         })
     }

@@ -8,7 +8,6 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use DB;
 use App\models;
 
 class RegisterController extends Controller
@@ -56,6 +55,9 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'reg' => ['required', 'string', 'max:255'],
+            'address' => ['required', 'string', 'max:255'],
+            'tlp' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -73,22 +75,16 @@ class RegisterController extends Controller
             'id' => $id,
             'name' => $data['name'],
             'email' => $data['email'],
+            'registration_kode' => $data['reg'],
+            'address' => $data['address'],
+            'tlp' => $data['tlp'],
             'password' => Hash::make($data['password']),
             'previleges' => '3',
-            'kode' => $this->calculatecode(),
+            'kode' => app('App\Http\Controllers\userController')->kodemhs(),
             'address_univ' => 'Jl. Semolowaru No.45',
             'photo' => 'default.svg',
+            'created_at' => date("Y-m-d H:i:s"),
+            'updated_at' => date("Y-m-d H:i:s", strtotime("+4 years")),
         ]);
-    }
-    public function calculatecode()
-    {
-        $count = DB::table('users')
-            ->select(DB::raw('count(kode)'))
-            ->where('kode', 'like', 'MHS%')
-            ->first();
-        $date = date("ym");
-        $newcount = str_pad($count->count + 1, 5, '0', STR_PAD_LEFT);
-        $kode = 'MHS/' . $date . "/" . $newcount;
-        return $kode;
     }
 }
