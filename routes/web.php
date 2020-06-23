@@ -93,6 +93,13 @@ Route::get('/rak_buku_get_kode', 'rak_bukuController@get_kode')->name('rak_buku_
 Route::get('/rak_buku_dt_save', 'rak_bukuController@save_dt')->name('rak_buku_dt_save');
 Route::get('/rak_buku_dt_delete', 'rak_bukuController@deletes_dt')->name('rak_buku_dt_delete');
 
+Route::get('/fakultas', 'fakultasController@index')->name('fakultas_index');
+Route::get('/fakultas_create', 'fakultasController@create')->name('fakultas_create');
+Route::get('/fakultas_save', 'fakultasController@save')->name('fakultas_save');
+Route::get('/fakultas_edit', 'fakultasController@edit')->name('fakultas_edit');
+Route::get('/fakultas_update', 'fakultasController@update')->name('fakultas_update');
+Route::get('/fakultas_hapus', 'fakultasController@hapus')->name('fakultas_hapus');
+
 
 // peminjaman
 Route::get('/transaksi_peminjaman', 'transaksi_peminjamanController@index')->name('transaksi_peminjaman_index');

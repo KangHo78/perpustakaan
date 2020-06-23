@@ -49,10 +49,10 @@
                     <ul class="list-group list-group-unbordered mb-3">
                         <li class="list-group-item">
                             <b>Status</b> <a class="float-right">
-                                @if(Auth::user()->previleges == '3')
+                                @if($user_aktif == 'A')
                                 Aktif
-                                @elseif(Auth::user()->previleges == '2')
-                                Aktif
+                                @elseif($user_aktif == 'T')
+                                Tidak Aktif
                                 @else
                                 Administrator
                                 @endif

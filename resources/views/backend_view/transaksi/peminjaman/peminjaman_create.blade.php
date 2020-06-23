@@ -94,7 +94,7 @@
 <script type="text/javascript">
   function save(argument) {     
     var peminjam = $('.peminjam').val();
-    var isbn = $('.isbn').val();
+    var isbn = $('.pilih_buku').val();
     if (peminjam == '- Pilih Peminjam -' || peminjam == null || peminjam == undefined) {
       Swal.fire({
         title: 'Peminjam kosong.',

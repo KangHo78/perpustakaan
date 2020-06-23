@@ -41,7 +41,7 @@
             </div>
             <div class="col-lg-4 col-sm-6">
                 <div class="premium-item">
-                    <img src="{{ asset('assets/img/avatar/default.svg') }}" alt="">
+                    <img src="{{ asset('assets/img/avatar/ah.jpg') }}" alt="">
                     <h4>Abdurrahman Hanif</h4>
                     <p>1461800175</p>
                 </div>
