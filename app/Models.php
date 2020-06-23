@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 use App\User;
+use App\fakultas;
 use App\previleges;
 use App\penerbit;
 use App\pengarang;
@@ -25,6 +26,13 @@ class models extends model
 
       return $user;
     }
+    
+    public function fakultas()
+    {
+      $fakultas = new fakultas(); 
+
+      return $fakultas;
+    }
 
     public function previleges()
     {
@@ -32,7 +40,6 @@ class models extends model
 
       return $previleges;
     }
-
 
     public function buku()
     {
