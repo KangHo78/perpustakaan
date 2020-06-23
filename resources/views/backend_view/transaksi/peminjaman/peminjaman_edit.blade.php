@@ -44,7 +44,7 @@
               <div class="col-sm-6">
                 <div class="form-group">
                   <label>Peminjam</label>
-                  <select class="form-control select2 " name="peminjam">
+                  <select class="form-control select2 peminjam" name="peminjam">
                     <option>- Pilih Peminjam -</option>
                     @foreach ($user as $element)
                     <option value="{{ $element->id }}" @if ($element->id == $data->tpj_anggota) selected=""
@@ -92,9 +92,6 @@
               </tr>
               @endforeach
             </table>
-
-
-
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
@@ -111,8 +108,8 @@
 <script type="text/javascript">
   function save(argument) {      
     var peminjam = $('.peminjam').val();
-    var isbn = $('.isbn').val();
-    if (peminjam == '' || peminjam == null || peminjam == undefined) {
+    var buku = $('.pilih_buku').val();
+    if (peminjam == '- Pilih Peminjam -' || peminjam == null || peminjam == undefined) {
       Swal.fire({
         title: 'Peminjam kosong.',
         icon: 'warning',
@@ -120,7 +117,7 @@
       })
       return false;
     }
-    if (isbn == '' || isbn == null || isbn == undefined) {
+    if (buku == '' || buku == null || buku == undefined) {
       Swal.fire({
         title: 'buku belum dipilih.',
         icon: 'warning',

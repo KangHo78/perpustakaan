@@ -97,6 +97,11 @@
             <h5><i class="fas fa-info"></i> Note:</h5>
             {{ $idcard }}
           </div>
+          @elseif($pengembalian != null)
+          <div class="callout callout-info col-12">
+            <h5><i class="fas fa-info"></i> Note:</h5>
+            {{ $pengembalian }}
+          </div>
           @endif
         </div>
       </div>

@@ -140,7 +140,8 @@ class userController extends Controller
     public function profile()
     {
         $data = $this->model->user()->get();
-        return view('backend_view.master.user.profile.profile_index', compact('data'));
+        $user_aktif = $this->useraktif();
+        return view('backend_view.master.user.profile.profile_index', compact('data', 'user_aktif'));
     }
     public function profileedit(Request $req)
     {
@@ -208,5 +209,19 @@ class userController extends Controller
         $newcount = str_pad($count + 1, 5, '0', STR_PAD_LEFT);
         $kode = 'ADM/' . $date . "/" . $newcount;
         return $kode;
+    }
+    public function useraktif()
+    {
+        $yearnow = date("Y");
+        $peminjaman =  $this->model->log()->where([
+            ['log_created_at', 'like', $yearnow . '%'],
+            ['log_user', 'like', Auth::user()->id],
+            ['log_feature', 'like', 'PEMINJAMAN']
+        ])->count();
+        if ($peminjaman >= 10) {
+            return 'A';
+        } else {
+            return 'T';
+        }
     }
 }
