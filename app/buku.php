@@ -56,6 +56,6 @@ class buku extends model
   }
   public function rak_buku_dt()
   {
-      return $this->belongsTo('App\rak_buku_dt', 'mb_pengarang', 'mpg_id');
+         return $this->belongsTo('App\rak_buku_dt', 'mrbd_dt', 'mrbd_id');
   }
 }
