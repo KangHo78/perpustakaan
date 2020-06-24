@@ -57,6 +57,8 @@
                                 @else
                                 <td>Staff Perpustakaan</td>
                                 @endif --}}
+                                <td>{{ $element->hak_akses->mp_name }}</td>
+                                
                                 <td>{{ $element->previleges }}</td>
                                 <td>{{ $element->kode }}</td>
                                 <td>{{ $element->fakultas }}</td>

@@ -31,7 +31,7 @@ class userController extends Controller
      */
     public function index()
     {
-        $data = $this->model->user()->get();
+        $data = $this->model->user()->with('hak_akses')->get();
         return view('backend_view.master.user.user_index', compact('data'));
     }
     public function create()
