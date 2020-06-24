@@ -30,7 +30,7 @@ Auth::routes();
 Route::get('/dashboard', 'HomeController@index')->name('home');
 
 // Profile
-Route::get('/profile', 'userController@profile')->name('profile_index')->middleware('roles');
+Route::get('/profile', 'userController@profile')->name('profile_index');
 Route::get('/profile_edit', 'userController@profileedit')->name('profile_edit');
 Route::post('/profile_update', 'userController@profileupdate')->name('profile_update');
 Route::get('/idcard_print', 'userController@profileprint')->name('profile_print');

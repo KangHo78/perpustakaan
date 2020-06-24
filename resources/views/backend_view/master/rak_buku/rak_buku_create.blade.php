@@ -32,8 +32,9 @@
         <div class="card-body" style="display: block;">
           <form class="form-save">
             <div class="form-group">
-              <label>alphabet Kode Rak</label>
-              <input type="text" class="form-control rak_alphabet" name="rak_alphabet" style="text-transform:uppercase" onkeyup="kodes()" maxlength="2" >
+              <label>Alphabet Kode Rak</label>
+              <input type="text" class="form-control rak_alphabet" name="rak_alphabet" style="text-transform:uppercase"
+                onkeyup="kodes()" maxlength="2">
             </div>
             <div class="form-group">
               <label>Kode</label>
