@@ -42,7 +42,7 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\fakultas', 'fakultas', 'mf_id');
     }
-    public function previleges()
+    public function hak_akses()
     {
         return $this->belongsTo('App\previleges', 'previleges', 'mp_id');
     }
