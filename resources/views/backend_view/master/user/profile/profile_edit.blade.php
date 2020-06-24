@@ -48,6 +48,22 @@
                             <input type="text" hidden class="form-control" name="id" value="{{ $data->id }}">
                         </div>
                         <div class="form-group">
+                            <label>Fakultas</label>
+                            <select name="fakultas" class="form-control">
+                                @foreach ($fakultas as $fakultass )
+                                <option value="{{ $fakultass->mf_id }}">{{ $fakultass->mf_name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Jurusan</label>
+                            <select name="jurusan" class="form-control">
+                                @foreach ($jurusan as $jurusans )
+                                <option value="{{ $jurusans->mj_id }}">{{ $jurusans->mj_name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label>Email</label>
                             <input type="email" class="form-control" value="{{ $data->email }}" name="email">
                         </div>

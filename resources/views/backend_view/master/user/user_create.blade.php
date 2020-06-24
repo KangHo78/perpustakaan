@@ -57,6 +57,24 @@
               </select>
             </div>
             <div class="form-group">
+              <label>Fakultas</label>
+              <select name="fakultas" class="form-control">
+                <option>- Pilih Fakultas -</option>
+                @foreach ($fakultas as $fakultass )
+                <option value="{{ $fakultass->mf_id }}">{{ $fakultass->mf_name }}</option>
+                @endforeach
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Jurusan</label>
+              <select name="jurusan" class="form-control">
+                <option>- Pilih Jurusan -</option>
+                @foreach ($jurusan as $jurusans )
+                <option value="{{ $jurusans->mj_id }}">{{ $jurusans->mj_name }}</option>
+                @endforeach
+              </select>
+            </div>
+            <div class="form-group">
               <label>Alamat</label>
               <input type="text" class="form-control" name="address">
             </div>

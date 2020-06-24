@@ -102,6 +102,11 @@
             <h5><i class="fas fa-info"></i> Note:</h5>
             {{ $pengembalian }}
           </div>
+          @elseif(Session::has('status'))
+          <div class="callout callout-info col-12">
+            <h5><i class="fas fa-info"></i> Note:</h5>
+            {{ Session::get('status') }}
+          </div>
           @endif
         </div>
       </div>
