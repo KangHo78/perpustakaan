@@ -1,4 +1,4 @@
-    @extends('layouts_backend._main') @section('content')
+@extends('layouts_backend._main') @section('content')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -34,7 +34,7 @@
                                 <td>Kode</td>
                                 <td>Nama</td>
                                 <td>Lokasi</td>
-                                <td>Modal</td>
+                                <td>Sub Rak</td>
                                 <td>Aksi</td>
                             </tr>
                         </thead>
@@ -46,57 +46,65 @@
                                 <td>{{ $element->mrb_name }}</td>
                                 <td>{{ $element->mrb_lokasi_rak }}</td>
                                 <td>
-                                    <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal_{{$element->mrb_id}}"> 
-                                    Sub Rak</button>
+                                    <button class="btn btn-primary btn-sm" data-toggle="modal"
+                                        data-target="#exampleModal_{{$element->mrb_id}}"><i class="fas fa-eye"></i>
+                                        Lihat</button>
 
-                                    <div class="modal fade" id="exampleModal_{{$element->mrb_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="exampleModal_{{$element->mrb_id}}" tabindex="-1"
+                                        role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Sub Rak Buku</h5>
+                                                    <h5 class="modal-title" id="exampleModalLabel">Sub Rak Buku</h5>
                                                 </div>
+                                                <div class="modal-body">
+                                                    <div class="card-body">
+                                                        <table id="tables" class="table-bordered table-striped table"
+                                                            width="100%">
+                                                            <thead>
+                                                                <tr>
+                                                                    <td>No</td>
+                                                                    <td>Kode</td>
+                                                                    <td>Aksi</td>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach ($element->rak_buku_dt as $index2 => $element2)
+                                                                <tr>
+                                                                    <td class="remove_{{$element2->mrbd_dt}}">
+                                                                        {{ $index2+1 }}</td>
+                                                                    <td class="remove_{{$element2->mrbd_dt}}">
+                                                                        {{ $element2->mrbd_kode }}</td>
+                                                                    <td class="remove_{{$element2->mrbd_dt}}">
+                                                                        <button type="button"
+                                                                            class="btn btn-danger btn-sm"
+                                                                            onclick="delete_dt('{{$element2->mrbd_id}}','{{$element2->mrbd_kode}}','{{$element2->mrbd_dt}}')"><i
+                                                                                class="fas fa-trash"></i> Hapus</button>
+                                                                    </td>
+                                                                </tr>
+                                                                @endforeach
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
 
-                                                
-                                            <div class="modal-body">
-                                                <div class="card-body">
-                                                    <table id="tables" class="table-bordered table-striped table" width="100%">
-                                                    <thead>
-                                                    <tr>
-                                                        <td>No</td>
-                                                        <td>Kode</td>
-                                                        <td>aksi</td>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    @foreach ($element->rak_buku_dt as $index2 => $element2)
-                                                    <tr >
-                                                        <td class="remove_{{$element2->mrbd_dt}}">{{ $index2+1 }}</td>
-                                                        <td class="remove_{{$element2->mrbd_dt}}">{{ $element2->mrbd_kode }}</td>
-                                                        <td class="remove_{{$element2->mrbd_dt}}">
-                                                           <button type="button" class="btn btn-danger btn-sm" onclick="delete_dt('{{$element2->mrbd_id}}','{{$element2->mrbd_kode}}','{{$element2->mrbd_dt}}')">hapus</button>
-                                                        </td>
-                                                    </tr>
-                                                    @endforeach
-                                                    </tbody>
-                                                    </table>
+                                                    <input type="hidden" class="form-control kode_{{$element->mrb_id}}"
+                                                        value="{{ $element->mrb_kode }}" name="kode">
+                                                    <input type="hidden" class="form-control id_{{$element->mrb_id}}"
+                                                        value="{{ $element->mrb_id }}" name="id">
+                                                    <input type="text" class="form-control angka_{{$element->mrb_id}}"
+                                                        name="angka">
                                                 </div>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                                </button>
-
-                                                <input type="hidden" class="form-control kode_{{$element->mrb_id}}" value="{{ $element->mrb_kode }}" name="kode">
-                                                <input type="hidden" class="form-control id_{{$element->mrb_id}}" value="{{ $element->mrb_id }}" name="id">
-                                                <input type="text" class="form-control angka_{{$element->mrb_id}}" name="angka">
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary" onclick="tambah_dt('{{$element->mrb_id}}')">Tambah</button>
-                                            </div>
-                                            </form>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-primary"
+                                                        onclick="tambah_dt('{{$element->mrb_id}}')">Tambah</button>
+                                                </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
-                                    </td>
+                                </td>
                                 <td>
                                     <button class="btn btn-sm btn-info btn-block"
                                         onclick="edit('{{ $element->mrb_id }}')"><i class="fas fa-pen"></i>

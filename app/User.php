@@ -38,8 +38,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-
-    public function previleges()
+    public function fakultas()
+    {
+        return $this->belongsTo('App\fakultas', 'fakultas', 'mf_id');
+    }
+    public function hak_akses()
     {
         return $this->belongsTo('App\previleges', 'previleges', 'mp_id');
     }

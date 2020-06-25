@@ -37,8 +37,8 @@ class bukuController extends Controller
     public function create()
     {
         $id = $this->model->buku()->max('mb_id') + 1;
-        $date = date('m').date('y');
-        $kode = 'BK/'.$date.'/'.str_pad($id, 5, '0', STR_PAD_LEFT);
+        $date = date('m') . date('y');
+        $kode = 'BK/' . $date . '/' . str_pad($id, 5, '0', STR_PAD_LEFT);
         $kategoris = $this->model->kategori()->get();
         $penerbits = $this->model->penerbit()->get();
         $pengarangs = $this->model->pengarang()->get();
@@ -55,30 +55,30 @@ class bukuController extends Controller
         // }
         // return count($req->isbn);
         $id = $this->model->buku()->max('mb_id') + 1;
-            $this->model->buku()->create([
-                'mb_id' => $id,
-                'mb_kode' => $req->kode,
-                'mb_kategori' => $req->kategori,
-                'mb_penerbit' => $req->penerbit,
-                'mb_pengarang' => $req->pengarang,
-                'mb_created_by'=>Auth::user()->id,
-                'mb_created_at' => date('Y-m-d H:i:s'),
-                'mb_name' => $req->name,
-                'mb_desc' => $req->desc,
-                'mb_pinjam' => $req->pinjam,
+        $this->model->buku()->create([
+            'mb_id' => $id,
+            'mb_kode' => $req->kode,
+            'mb_kategori' => $req->kategori,
+            'mb_penerbit' => $req->penerbit,
+            'mb_pengarang' => $req->pengarang,
+            'mb_created_by' => Auth::user()->id,
+            'mb_created_at' => date('Y-m-d H:i:s'),
+            'mb_name' => $req->name,
+            'mb_desc' => $req->desc,
+            'mb_pinjam' => $req->pinjam,
+        ]);
+        for ($i = 0; $i < count($req->isbn); $i++) {
+            $this->model->buku_dt()->create([
+                'mbdt_id'  => $id,
+                'mbdt_dt'  => $i + 1,
+                'mbdt_isbn' => $req->isbn[$i],
+                'mbdt_status' => $req->status[$i],
+                'mbdt_rak_buku_dt' => $req->kode_rak_dt[$i],
+                'mbdt_kondisi' => $req->kondisi[$i],
             ]);
-            for ($i=0; $i <count($req->isbn) ; $i++) { 
-                $this->model->buku_dt()->create([
-                    'mbdt_id'  =>$id,
-                    'mbdt_dt'  =>$i+1,
-                    'mbdt_isbn' => $req->isbn[$i],
-                    'mbdt_status' => $req->status[$i],
-                    'mbdt_rak_buku_dt' => $req->kode_rak_dt[$i],
-                    'mbdt_kondisi' => $req->kondisi[$i],
-                ]);
-            }
+        }
         //     DB::commit();
-            
+
         //     return Response()->json(['status' => 'sukses']);
 
         //     // all good
@@ -116,5 +116,4 @@ class bukuController extends Controller
         $this->model->buku()->where('mb_id', $req->id)->delete();
         return redirect()->back();
     }
-    
 }

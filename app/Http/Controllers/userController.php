@@ -31,28 +31,47 @@ class userController extends Controller
      */
     public function index()
     {
-        $data = $this->model->user()->get();
+        $data = $this->model->user()->with('hak_akses')->get();
         return view('backend_view.master.user.user_index', compact('data'));
     }
     public function create()
     {
         $previlege = $this->model->previleges()->get();
-        return view('backend_view.master.user.user_create', compact('previlege'));
+        $fakultas = $this->model->fakultas()->get();
+        $jurusan = $this->model->previleges()->get();
+        return view('backend_view.master.user.user_create', compact('previlege', 'fakultas', 'jurusan'));
     }
     public function save(Request $req)
     {
-        $validasi = $this->validate($req, [
-            'name' => 'required',
-            'email' => 'required',
-            'password' => ['required', 'min:8'],
-            'previleges' => 'required',
-            'address' => 'required',
-            'addressuniv' => 'required',
-            'reg' => 'required',
-            'tlp' => 'required',
-            'username' => 'required',
-        ]);
         $id = $this->model->user()->max('id') + 1;
+        if ($req->previleges != '1') {
+            $validasi = $this->validate($req, [
+                'name' => 'required',
+                'email' => 'required',
+                'password' => ['required', 'min:8'],
+                'previleges' => 'required',
+                'address' => 'required',
+                'addressuniv' => 'required',
+                'reg' => 'required',
+                'tlp' => 'required',
+                'username' => 'required',
+            ]);
+        } else {
+            $validasi = $this->validate($req, [
+                'name' => 'required',
+                'email' => 'required',
+                'password' => ['required', 'min:8'],
+                'previleges' => 'required',
+                'address' => 'required',
+                'addressuniv' => 'required',
+                'reg' => 'required',
+                'tlp' => 'required',
+                'username' => 'required',
+                'fakultas' => 'required',
+                'jurusan' => 'required',
+            ]);
+        }
+
         if ($req->previleges == '1') {
             $kode = $this->kodeadm();
         } else if ($req->previleges == '2') {
@@ -78,8 +97,6 @@ class userController extends Controller
                 'updated_at' => date("Y-m-d H:i:s", strtotime("+4 years")),
             ]);
             return Response()->json(['status' => 'sukses']);
-        } else {
-            return Response()->json(['status' => 'gagal']);
         }
     }
     public function edit(Request $req)
@@ -146,7 +163,9 @@ class userController extends Controller
     public function profileedit(Request $req)
     {
         $data = $this->model->user()->where('id', $req->id)->first();
-        return view('backend_view.master.user.profile.profile_edit', compact('data'));
+        $fakultas = $this->model->fakultas()->get();
+        $jurusan = $this->model->previleges()->get();
+        return view('backend_view.master.user.profile.profile_edit', compact('data', 'fakultas', 'jurusan'));
     }
     public function profileupdate(Request $req)
     {

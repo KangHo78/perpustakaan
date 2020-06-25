@@ -50,16 +50,19 @@
                             <tr>
                                 <td>{{ $index+1 }}</td>
                                 <td>{{ $element->name }}</td>
-                                @if($element->previleges == '3')
+                                {{-- @if($element->previleges == '3')
                                 <td>Mahasiswa</td>
                                 @elseif($element->previleges == '2')
                                 <td>Dosen</td>
                                 @else
                                 <td>Staff Perpustakaan</td>
-                                @endif
+                                @endif --}}
+                                <td>{{ $element->hak_akses->mp_name }}</td>
+                                
+                                <td>{{ $element->previleges }}</td>
                                 <td>{{ $element->kode }}</td>
-                                <td>Fakultas</td>
-                                <td>Jurusan</td>
+                                <td>{{ $element->fakultas }}</td>
+                                <td>{{ $element->jurusan }}</td>
                                 <td>{{ $element->address }}</td>
                                 <td>{{ $element->tlp }}</td>
                                 <td>{{ $element->registration_kode }}</td>

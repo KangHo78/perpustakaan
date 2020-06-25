@@ -18,7 +18,10 @@ class fakultas extends model
     'mf_kode',
     'mf_name',
   ];
-
+  public function user()
+  {
+    return $this->hasMany('App\User', 'fakultas', 'mf_id');
+  }
   public function getDateFormat()
   {
     return 'Y-m-d H:i:s';
