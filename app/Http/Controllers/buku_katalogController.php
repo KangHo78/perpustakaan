@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use App\models;
 use Response;
+use Auth;
+
+
 class buku_katalogController extends Controller
 {
     /**
@@ -12,7 +16,13 @@ class buku_katalogController extends Controller
      *
      * @return void
      */
+    protected $model;
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->model = new models();
+    }
 
     /**
      * Show the application dashboard.
@@ -20,46 +30,91 @@ class buku_katalogController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function buku_katalog()
-    {   
-        return view('frontend_view.katalog.buku_katalog');
+    {
+        $data = $this->model->buku_katalog()->get();
+        return view('frontend_view.katalog.buku_katalog', compact('data'));
     }
     public function create()
     {
-        return view('latihan_crud_create');
+        $id = $this->model->buku()->max('mb_id') + 1;
+        $date = date('m').date('y');
+        $kode = 'BK/'.$date.'/'.str_pad($id, 5, '0', STR_PAD_LEFT);
+        $kategoris = $this->model->kategori()->get();
+        $penerbits = $this->model->penerbit()->get();
+        $pengarangs = $this->model->pengarang()->get();
+        $rak_bukus = $this->model->rak_buku_dt()->get();
+        return view('backend_view.master.buku.buku_create', compact('kategoris', 'rak_bukus', 'penerbits', 'pengarangs', 'kode'));
     }
     public function save(Request $req)
     {
-        $simpan = DB::table('latihan_crud')->insert([
-                    'nama'=>$req->nama,
-                    'kelas'=>$req->kelas,
-                  ]);
-        if ($simpan == true) {
-            return Response()->json(['status'=>'sukses']);
-        }else{
-            return Response()->json(['status'=>'gagal']);
-        }
+        // DB::beginTransaction();
+        // try {
+        // $total_unique = array_unique($req->isbn);
+        // if (count($req->isbn) != count($total_unique)) {
+        //     return Response()->json(['status' => 'duplicate']);
+        // }
+        // return count($req->isbn);
+        $id = $this->model->buku()->max('mb_id') + 1;
+            $this->model->buku()->create([
+                'mb_id' => $id,
+                'mb_kode' => $req->kode,
+                'mb_kategori' => $req->kategori,
+                'mb_penerbit' => $req->penerbit,
+                'mb_pengarang' => $req->pengarang,
+                'mb_created_by'=>Auth::user()->id,
+                'mb_created_at' => date('Y-m-d H:i:s'),
+                'mb_name' => $req->name,
+                'mb_desc' => $req->desc,
+                'mb_pinjam' => $req->pinjam,
+            ]);
+            for ($i=0; $i <count($req->isbn) ; $i++) { 
+                $this->model->buku_dt()->create([
+                    'mbdt_id'  =>$id,
+                    'mbdt_dt'  =>$i+1,
+                    'mbdt_isbn' => $req->isbn[$i],
+                    'mbdt_status' => $req->status[$i],
+                    'mbdt_rak_buku_dt' => $req->kode_rak_dt[$i],
+                    'mbdt_kondisi' => $req->kondisi[$i],
+                ]);
+            }
+        //     DB::commit();
+            
+        //     return Response()->json(['status' => 'sukses']);
+
+        //     // all good
+        // } catch (\Exception $e)  {
+        //     DB::rollback();
+        //     // something went wrong
+        //     return Response()->json(['status' => 'error']);
+        // }
     }
     public function edit(Request $req)
     {
-        $data = DB::table('latihan_crud')->where('id',$req->id)->first();
-        return view('latihan_crud_edit',compact('data'));
+        $data = $this->model->penerbit()->where('mpn_id', $req->id)->first();
+        return view('backend_view.master.penerbit.penerbit_edit', compact('data'));
     }
     public function update(Request $req)
     {
-        $simpan = DB::table('latihan_crud')->where('id',$req->id)->update([
-                    'nama'=>$req->nama,
-                    'kelas'=>$req->kelas,
-                  ]);
-
-        if ($simpan == true) {
-            return Response()->json(['status'=>'sukses']);
-        }else{
-            return Response()->json(['status'=>'gagal']);
+        $validasi = $this->validate($req, [
+            'name' => 'required',
+            'alamat' => 'required',
+            'tlp' => 'required',
+        ]);
+        if ($validasi == true) {
+            $this->model->penerbit()->where('mpn_id', $req->id)->update([
+                'mpn_name' => $req->name,
+                'mpn_alamat' => $req->alamat,
+                'mpn_tlp' => $req->tlp,
+            ]);
+            return Response()->json(['status' => 'sukses']);
+        } else {
+            return Response()->json(['status' => 'gagal']);
         }
     }
     public function hapus(Request $req)
     {
-        $data = DB::table('latihan_crud')->where('id',$req->id)->delete();
+        $this->model->buku()->where('mb_id', $req->id)->delete();
         return redirect()->back();
     }
+    
 }

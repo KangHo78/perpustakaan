@@ -120,4 +120,3 @@ Route::get('/transaksi_pengembalian_update', 'transaksi_pengembalianController@u
 Route::get('/transaksi_pengembalian_hapus', 'transaksi_pengembalianController@hapus')->name('transaksi_pengembalian_hapus');
 Route::get('/transaksi_pengembalian_get_data_peminjaman', 'transaksi_pengembalianController@get_data_peminjaman')->name('transaksi_pengembalian_get_data_peminjaman');
 Route::get('/transaksi_pengembalian_get_data_pengembalian', 'transaksi_pengembalianController@get_data_pengembalian')->name('transaksi_pengembalian_get_data_pengembalian');
-

@@ -56,6 +56,13 @@ class models extends model
       return $buku_dt;
     }
 
+    public function buku_katalog()
+    {
+      $buku_katalog = new buku_katalog(); 
+
+      return $buku_katalog;
+    }
+
     public function penerbit()
     {
       $penerbit = new penerbit(); 

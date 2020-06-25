@@ -28,5 +28,9 @@ class pengarang extends model
     {
       return $this->hasMany('App\buku', 'mb_pengarang', 'mpg_id');
     }
+    public function buku_katalog()
+    {
+      return $this->hasMany('App\buku_katalog', 'mb_pengarang', 'mpg_id');
+    }
 
 }
