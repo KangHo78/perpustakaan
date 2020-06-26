@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\User;
 use App\fakultas;
+use App\jurusan;
 use App\previleges;
 use App\penerbit;
 use App\pengarang;
@@ -80,6 +81,12 @@ class models extends model
     $kategori = new kategori();
 
     return $kategori;
+  }
+  public function jurusan()
+  {
+    $jurusan = new jurusan();
+
+    return $jurusan;
   }
   public function rak_buku()
   {

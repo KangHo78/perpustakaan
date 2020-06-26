@@ -85,6 +85,7 @@ Route::group(['middleware' => 'roles'], function () {
     Route::get('/rak_buku_get_kode', 'rak_bukuController@get_kode')->name('rak_buku_get_kode');
     Route::get('/rak_buku_dt_save', 'rak_bukuController@save_dt')->name('rak_buku_dt_save');
     Route::get('/rak_buku_dt_delete', 'rak_bukuController@deletes_dt')->name('rak_buku_dt_delete');
+    
     // Fakultas
     Route::get('/fakultas', 'fakultasController@index')->name('fakultas_index');
     Route::get('/fakultas_create', 'fakultasController@create')->name('fakultas_create');
@@ -92,6 +93,15 @@ Route::group(['middleware' => 'roles'], function () {
     Route::get('/fakultas_edit', 'fakultasController@edit')->name('fakultas_edit');
     Route::get('/fakultas_update', 'fakultasController@update')->name('fakultas_update');
     Route::get('/fakultas_hapus', 'fakultasController@hapus')->name('fakultas_hapus');
+    
+    //Jurusan
+    Route::get('/jurusan', 'jurusanController@index')->name('jurusan_index');
+    Route::get('/jurusan_create', 'jurusanController@create')->name('jurusan_create');
+    Route::get('/jurusan_save', 'jurusanController@save')->name('jurusan_save');
+    Route::get('/jurusan_edit', 'jurusanController@edit')->name('jurusan_edit');
+    Route::get('/jurusan_update', 'jurusanController@update')->name('jurusan_update');
+    Route::get('/jurusan_hapus', 'jurusanController@hapus')->name('jurusan_hapus');
+
     // Buku
     Route::get('/buku', 'bukuController@index')->name('buku_index');
     Route::get('/buku_create', 'bukuController@create')->name('buku_create');
