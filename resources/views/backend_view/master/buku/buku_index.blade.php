@@ -39,6 +39,7 @@
                                 <td>Created At</td>
                                 <td>Name</td>
                                 <td>Pinjam</td>
+                                <td>Gambar</td>
                                 <td>Aksi</td>
                             </tr>
                         </thead>
@@ -85,6 +86,7 @@
     }
     
     function hapus(argument) {
+        var id = argument;
         Swal.fire({
             title: 'Yakin Menghapus Data?',
             icon: 'warning',
@@ -93,15 +95,28 @@
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes'
         }).then((result) => {
-            if (result.value) {
-                Swal.fire({
-                title: 'Data Berhasil Di Hapus',
-                icon: 'success',
-                showConfirmButton: false,
+            $.ajax({
+              url:'{{ url('/') }}' + '/buku_hapus',
+              data:{id:id},
+              type:'get',      
+              success:function(data){
+                if (data.status == 'sukses') {
+                  Swal.fire({
+                    title: 'Data Sudah Disimpan.',
+                    icon: 'success',
+                    confirmButtonText: 'Ok'
+                  }).then(function(result){
+                    location.reload();
+                  })
+                }else{
+                    Swal.fire({
+                    title: 'Salah satu buku sedang di pinjam.',
+                    icon: 'warning',
+                    confirmButtonText: 'Ok'
+                  })
                 }
-            )
-            location.href = '{{ url('/') }}' + '/buku_hapus?&id=' + argument;
-            }
+              }
+            })
         })
     }
 </script>
