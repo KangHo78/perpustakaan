@@ -176,13 +176,13 @@
               '<option>HILANG</option>'+
             '</select>'+
         '</th>'+
-        '<input type="hidden" class="status" name="status[]" value="'+remove+1'">'+
-        '<button type="button" class="btn btn-sm btn-danger" onclick="remove_tr(\''+remove+1+'\')"></button>'+
+        '<input type="hidden" class="status" name="status[]" value="'+(remove+1)+'">'+
+        '<th><button type="button" class="btn btn-sm btn-danger" onclick="remove_tr(\''+(remove+1)+'\')"><i class="fas fa-trash"></i></button></th>'+
       '</tr>'
     );
   }
   function remove_tr (argument) {
-    // body...
+    console.log(argument);
     $('.remove_'+argument).remove();
-  }
+  } 
 </script>

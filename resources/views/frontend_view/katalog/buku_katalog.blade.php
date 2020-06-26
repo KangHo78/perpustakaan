@@ -6,60 +6,28 @@
 		<div class="section-title">
 			<h2>Catalog</h2>
 		</div>
+		<div class="body">
 		<table id="tables" class="table-bordered table-striped table-hover table" width="100%">
 			<thead>
 				<tr>
 					<td>No</td>
-					<td>Nama</td>
+					<td>Judul</td>
+					<td>Pengarang</td>
+					<td>Deskripsi</td>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>1</td>
-					<td>dsadasd</td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>dsadasd</td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>dsadasd</td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>dsadasd</td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>dsadasd</td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>dsadasd</td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>dsadasd</td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>dsadasd</td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>dsadasd</td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>dsadasd</td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>dsadasd</td>
-				</tr>
-			</tbody>
+                @foreach ($data as $index => $element)
+                    <tr>
+                        <td>{{ $index+1 }}</td>
+                        <td>{{ $element->mb_name }}</td>
+                        <td>{{ $element->pengarang->mpg_name }}</td>
+                        <td>{{ $element->mb_desc }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
 		</table>
+		</div>
 	</div>
 </section>
 @endsection
