@@ -33,7 +33,7 @@
           <form class="form-save">
             <div class="form-group">
               <label>Kode</label>
-              <input type="text" class="form-control" name="kode">
+              <input type="text" value="{{ $kode }}" class="form-control" name="kode" readonly="">
             </div>
             <div class="form-group">
               <label>Nama</label>

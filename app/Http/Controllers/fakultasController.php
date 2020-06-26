@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use DB;
 use App\models;
 use Response;
+use Auth;
 
 class fakultasController extends Controller
 {
@@ -30,11 +31,16 @@ class fakultasController extends Controller
     public function index()
     {
         $data = $this->model->fakultas()->get();
+
         return view('backend_view.master.fakultas.fakultas_index', compact('data'));
     }
     public function create()
     {
-        return view('backend_view.master.fakultas.fakultas_create');
+        
+        $id = $this->model->fakultas()->max('mf_id') + 1;
+        $date = date('m').date('y');
+        $kode = 'FK/'.$date.'/'.str_pad($id, 5, '0', STR_PAD_LEFT);
+        return view('backend_view.master.fakultas.fakultas_create', compact('kode'));
     }
     public function save(Request $req)
     {
@@ -58,8 +64,11 @@ class fakultasController extends Controller
     }
     public function edit(Request $req)
     {
+        $id = $this->model->fakultas()->max('mf_id') + 1;
+        $date = date('m').date('y');
+        $kode = 'FK/'.$date.'/'.str_pad($id, 5, '0', STR_PAD_LEFT);
         $data = $this->model->fakultas()->where('mf_id', $req->id)->first();
-        return view('backend_view.master.fakultas.fakultas_edit', compact('data'));
+        return view('backend_view.master.fakultas.fakultas_edit', compact('data', 'kode'));
     }
     public function update(Request $req)
     {
