@@ -33,7 +33,7 @@ Route::get('/profile', 'userController@profile')->name('profile_index');
 Route::get('/profile_edit', 'userController@profileedit')->name('profile_edit');
 Route::post('/profile_update', 'userController@profileupdate')->name('profile_update');
 Route::get('/idcard_print', 'userController@profileprint')->name('profile_print');
-// Profile
+// Profile Password
 Route::get('/forgot_password', 'Auth\ForgotPasswordController@index')->name('forgot_password_index');
 Route::get('/change_password', 'Auth\ForgotPasswordController@changepassword')->name('forgot_password');
 Route::get('/password_reset', 'Auth\ForgotPasswordController@logout')->name('password_reset');

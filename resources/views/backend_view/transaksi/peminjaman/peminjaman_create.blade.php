@@ -103,7 +103,7 @@
       })
       return false;
     }
-    if (isbn == '' || isbn == null || isbn == undefined) {
+    if (isbn == '- Pilih Buku -' || isbn == null || isbn == undefined) {
       Swal.fire({
         title: 'Buku belum dipilih.',
         icon: 'warning',
