@@ -14,6 +14,7 @@
 					<td>Judul</td>
 					<td>Pengarang</td>
 					<td>Deskripsi</td>
+					<td>Gambar</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -23,6 +24,7 @@
                         <td>{{ $element->mb_name }}</td>
                         <td>{{ $element->pengarang->mpg_name }}</td>
                         <td>{{ $element->mb_desc }}</td>
+                        <td><img src="{{ asset('storage/buku/'.$element->mb_image) }}"></td>
                     </tr>
                 @endforeach
             </tbody>

@@ -54,6 +54,7 @@ class bukuController extends Controller
         if ($req->hasFile('gambar')) {
             $imagePath = $req->file('gambar');
             $fileName =  '/public/buku/buku_'.$id . '.' . $imagePath->getClientOriginalExtension();
+            $fileNames =  'buku/buku_'.$req->id . '.' . $imagePath->getClientOriginalExtension();
             // Storage::put($fileName,file_get_contents($req->file('gambar')));
               $imagePath->move(public_path('storage/buku'), $fileName);
         }else{
@@ -69,7 +70,7 @@ class bukuController extends Controller
             'mb_created_by' => Auth::user()->id,
             'mb_created_at' => date('Y-m-d H:i:s'),
             'mb_name' => $req->name,
-            'mb_image' => $fileName,
+            'mb_image' => $fileNames,
             'mb_desc' => $req->desc,
             'mb_pinjam' => $req->pinjam,
         ]);
@@ -112,6 +113,7 @@ class bukuController extends Controller
         if ($req->hasFile('gambar')) {
             $imagePath = $req->file('gambar');
             $fileName =  '/public/buku/buku_'.$req->id . '.' . $imagePath->getClientOriginalExtension();
+            $fileNames =  'buku/buku_'.$req->id . '.' . $imagePath->getClientOriginalExtension();
             Storage::put($fileName,file_get_contents($req->file('gambar')));
             // $imagePath->move(public_path('storage/buku'), $fileName);
 
@@ -126,7 +128,7 @@ class bukuController extends Controller
             'mb_created_by' => Auth::user()->id,
             'mb_created_at' => date('Y-m-d H:i:s'),
             'mb_name' => $req->name,
-            'mb_image' => $fileName,
+            'mb_image' => $fileNames,
             'mb_desc' => $req->desc,
             'mb_pinjam' => $req->pinjam,
         ]);
