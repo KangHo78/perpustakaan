@@ -39,10 +39,10 @@
     $(document).ready(function () {    
   bsCustomFileInput.init();
   $('.select2').select2();
-  $("table.table").DataTable({
+  $("#tables.table").DataTable({
       "responsive": true,
       "autoWidth": true,
-    });                
+    });              
   $('.datepicker').datepicker({
   	format: 'dd-MM-yyyy',
   	autoclose: true,
