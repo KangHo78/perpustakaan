@@ -11,6 +11,6 @@
         "pageLength": 25,
         "ordering": false,
         "info":     false,
-      });            
+      });       
     });
 </script>
