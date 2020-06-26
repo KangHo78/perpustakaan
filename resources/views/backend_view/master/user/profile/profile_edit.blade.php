@@ -47,22 +47,26 @@
                             <input type="text" class="form-control" value="{{ $data->name }}" name="name">
                             <input type="text" hidden class="form-control" name="id" value="{{ $data->id }}">
                         </div>
-                        <div class="form-group">
+                        @if(Auth::user()->previleges != '1')
+                        <div class="form-group fakultas-form">
                             <label>Fakultas</label>
                             <select name="fakultas" class="form-control fakultas">
+                                <option>- Pilih Fakultas -</option>
                                 @foreach ($fakultas as $fakultass )
                                 <option value="{{ $fakultass->mf_id }}">{{ $fakultass->mf_name }}</option>
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" id="jurusan">
                             <label>Jurusan</label>
                             <select name="jurusan" class="form-control jurusan">
+                                <option>- Pilih Jurusan -</option>
                                 @foreach ($jurusan as $jurusans )
                                 <option value="{{ $jurusans->mj_id }}">{{ $jurusans->mj_name }}</option>
                                 @endforeach
                             </select>
                         </div>
+                        @endif
                         <div class="form-group">
                             <label>Email</label>
                             <input type="email" class="form-control" value="{{ $data->email }}" name="email">
@@ -107,7 +111,7 @@
     formdata = new FormData(form[0]);
     var fakultas = $('.fakultas').val();
     var jurusan = $('.jurusan').val();
-    if (previleges != '1' && fakultas == '- Pilih Fakultas -') {
+    if (fakultas == '- Pilih Fakultas -') {
       Swal.fire({
         title: 'Error',
         text: 'Fakultas tidak boleh dikosongkan.',
@@ -115,7 +119,7 @@
         confirmButtonText: 'Ok'
           })
       return false;
-    }else if (previleges != '1' && jurusan == '- Pilih Jurusan -') {
+    }else if (jurusan == '- Pilih Jurusan -') {
       Swal.fire({
         title: 'Error',
         text: 'Jurusan tidak boleh dikosongkan.',
