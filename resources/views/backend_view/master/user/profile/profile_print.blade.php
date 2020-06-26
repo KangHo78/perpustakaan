@@ -110,13 +110,7 @@
         <div class="additional">
             <div class="user-card">
                 <div class="level center">
-                    @if(Auth::user()->previleges == '3')
-                    Mahasiswa
-                    @elseif(Auth::user()->previleges == '2')
-                    Dosen
-                    @else
-                    Staff Perpustakaan
-                    @endif
+                    {{ Auth::user()->hak_akses->mp_name }}
                 </div>
                 <img class="center image" src="{{ public_path("storage/user/".Auth::user()->photo)}}">
                 <div class="points center">
@@ -137,9 +131,11 @@
                 <div class="coords">
                     Telepon : {{ Auth::user()->tlp }}
                 </div>
+                @if (Auth::user()->previleges != '1')
                 <div class="coords">
                     Valid Until : {{ date("d-m-Y", strtotime(Auth::user()->updated_at))}}
                 </div>
+                @endif
             </div>
         </div>
     </div>

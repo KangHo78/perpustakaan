@@ -17,7 +17,10 @@ class User extends Authenticatable
      */
     public $timestamps = false;
     protected $fillable = [
-        'name', 'email', 'password', 'id', 'previleges', 'kode', 'address_univ', 'address', 'tlp', 'photo', 'registration_kode', 'username', 'updated_at', 'created_at'
+        'name', 'email', 'password', 'id', 'previleges', 'kode',
+        'address_univ', 'address', 'tlp', 'photo', 'registration_kode',
+        'username', 'updated_at',
+        'created_at', 'fakultas', 'jurusan'
     ];
 
     /**
@@ -38,7 +41,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function fakultas()
+    public function fakultasuser()
     {
         return $this->belongsTo('App\fakultas', 'fakultas', 'mf_id');
     }

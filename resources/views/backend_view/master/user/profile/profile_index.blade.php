@@ -39,14 +39,9 @@
                     </div>
                     <h3 class="profile-username text-center">{{ Auth::user()->name }}</h3>
                     <p class="text-muted text-center">
-                        @if(Auth::user()->previleges == '3')
-                        Mahasiswa
-                        @elseif(Auth::user()->previleges == '2')
-                        Dosen
-                        @else
-                        Staff Perpustakaan
-                        @endif</p>
+                        {{ Auth::user()->hak_akses->mp_name }}</p>
                     <ul class="list-group list-group-unbordered mb-3">
+                        @if (Auth::user()->previleges != '1')
                         <li class="list-group-item">
                             <b>Status</b> <a class="float-right">
                                 @if($user_aktif == 'A')
@@ -58,15 +53,42 @@
                                 @endif
                             </a>
                         </li>
+                        @endif
                         <li class="list-group-item">
                             <b>Kode</b> <a class="float-right">{{ Auth::user()->kode }}</a>
                         </li>
                         <li class="list-group-item">
-                            <b>Username</b> <a class="float-right">{{ Auth::user()->username }}</a>
+                            <b>Username</b> <a class="float-right">
+                                @if (Auth::user()->username != null)
+                                {{ Auth::user()->username }}
+                                @else
+                                Tidak ada
+                                @endif
+                            </a>
                         </li>
+                        @if (Auth::user()->previleges != '1')
                         <li class="list-group-item">
                             <b>NBI</b> <a class="float-right">{{ Auth::user()->registration_kode }}</a>
                         </li>
+                        <li class="list-group-item">
+                            <b>Fakultas</b> <a class="float-right">
+                                @if (Auth::user()->fakutas != null)
+                                {{ Auth::user()->fakultasuser->mf_name }}
+                                @else
+                                Tidak ada
+                                @endif
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Jurusan</b> <a class="float-right">
+                                @if (Auth::user()->jurusan != null)
+                                {{ Auth::user()->jurusanuser->mj_name }}
+                                @else
+                                Tidak ada
+                                @endif
+                            </a>
+                        </li>
+                        @endif
                         <li class="list-group-item">
                             <b>Email</b> <a class="float-right">{{ Auth::user()->email }}</a>
                         </li>
@@ -76,10 +98,12 @@
                         <li class="list-group-item">
                             <b>Telepon</b> <a class="float-right">{{ Auth::user()->tlp }}</a>
                         </li>
+                        @if (Auth::user()->previleges != '1')
                         <li class="list-group-item">
                             <b>Valid</b> <a
                                 class="float-right">{{ date("d-M-Y", strtotime(Auth::user()->updated_at)) }}</a>
                         </li>
+                        @endif
                     </ul>
                     <button onclick="edit('{{ Auth::user()->id }}')" class="btn btn-primary btn-block"><b>Edit
                             Data</b></button>

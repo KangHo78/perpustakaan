@@ -49,7 +49,7 @@
                         </div>
                         <div class="form-group">
                             <label>Fakultas</label>
-                            <select name="fakultas" class="form-control">
+                            <select name="fakultas" class="form-control fakultas">
                                 @foreach ($fakultas as $fakultass )
                                 <option value="{{ $fakultass->mf_id }}">{{ $fakultass->mf_name }}</option>
                                 @endforeach
@@ -57,7 +57,7 @@
                         </div>
                         <div class="form-group">
                             <label>Jurusan</label>
-                            <select name="jurusan" class="form-control">
+                            <select name="jurusan" class="form-control jurusan">
                                 @foreach ($jurusan as $jurusans )
                                 <option value="{{ $jurusans->mj_id }}">{{ $jurusans->mj_name }}</option>
                                 @endforeach
@@ -102,9 +102,28 @@
 @endsection
 
 <script type="text/javascript">
-    function save(argument) {    
+    function save(argument) {
     var form   = $('.form-save');
     formdata = new FormData(form[0]);
+    var fakultas = $('.fakultas').val();
+    var jurusan = $('.jurusan').val();
+    if (previleges != '1' && fakultas == '- Pilih Fakultas -') {
+      Swal.fire({
+        title: 'Error',
+        text: 'Fakultas tidak boleh dikosongkan.',
+        icon: 'error',
+        confirmButtonText: 'Ok'
+          })
+      return false;
+    }else if (previleges != '1' && jurusan == '- Pilih Jurusan -') {
+      Swal.fire({
+        title: 'Error',
+        text: 'Jurusan tidak boleh dikosongkan.',
+        icon: 'error',
+        confirmButtonText: 'Ok'
+          })
+      return false;
+    }    
     $.ajaxSetup({
         headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

@@ -58,9 +58,8 @@
                                                     <h5 class="modal-title" id="exampleModalLabel">Sub Rak Buku</h5>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <div class="card-body">
-                                                        <table id="tables" class="table-bordered table-striped table"
-                                                            width="100%">
+                                                    <div class="card-body table-responsive p-0">
+                                                        <table class="table-hover text-nowrap" width="100%">
                                                             <thead>
                                                                 <tr>
                                                                     <td>No</td>

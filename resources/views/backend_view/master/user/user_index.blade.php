@@ -19,73 +19,118 @@
             </div>
 
             <!-- Main content -->
-            <div class="card card-info">
-                <div class="card-header">
-                    <div class="float-right">
-                        <button class="btn btn-sm btn-warning" onclick="tambah()"><i class="fas fa-plus"></i> Tambah
-                        </button>
+            <section class="content">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card card-info">
+                            <div class="card-header">
+                                <div class="float-right">
+                                    <button class="btn btn-sm btn-warning" onclick="tambah()"><i
+                                            class="fas fa-plus"></i>
+                                        Tambah
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table id="tables" class="table-bordered table-striped table" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <td>No</td>
+                                            <td>Nama</td>
+                                            <td>Previleges</td>
+                                            <td>Kode</td>
+                                            <td>Fakultas</td>
+                                            <td>Jurusan</td>
+                                            <td>Alamat</td>
+                                            <td>Telepon</td>
+                                            <td>NBI</td>
+                                            <td>Email</td>
+                                            <td>Valid</td>
+                                            <td>Aksi</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($data as $index => $element)
+                                        <tr>
+                                            <td>{{ $index+1 }}</td>
+                                            <td>{{ $element->name }}</td>
+                                            <td>{{ $element->hak_akses->mp_name }}</td>
+                                            <td>{{ $element->kode }}</td>
+                                            @if ($element->fakultas != null)
+                                            <td>{{ $element->fakultasuser->mf_name }}</td>
+                                            @else
+                                            <td>Tidak ada data</td>
+                                            @endif
+                                            <td>{{ $element->jurusan }}</td>
+                                            <td>{{ $element->address }}</td>
+                                            <td>{{ $element->tlp }}</td>
+                                            <td>{{ $element->registration_kode }}</td>
+                                            <td>{{ $element->email }}</td>
+                                            <td>{{ date("d-M-Y", strtotime($element->updated_at)) }}</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-info btn-block"
+                                                    onclick="edit('{{ $element->id }}')"><i class="fas fa-pen"></i>
+                                                    Edit</button>
+                                                <button class="btn btn-sm btn-danger btn-block"
+                                                    onclick="hapus('{{ $element->id }}')"><i class="fas fa-trash"></i>
+                                                    Hapus</button>
+                                                <button class="btn btn-sm btn-secondary btn-block"
+                                                    onclick="perpanjang('{{ $element->id }}')"><i
+                                                        class="fas fa-plus"></i>
+                                                    Perpanjang</button>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <div class="card card-info">
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table id="tables" class="table-bordered table-striped table" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <td>No</td>
+                                            <td>Nama</td>
+                                            <td>Previleges</td>
+                                            <td>Kode</td>
+                                            <td>Alamat</td>
+                                            <td>Telepon</td>
+                                            <td>Email</td>
+                                            <td>Aksi</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($datas as $index => $element)
+                                        <tr>
+                                            <td>{{ $index+1 }}</td>
+                                            <td>{{ $element->name }}</td>
+                                            <td>{{ $element->hak_akses->mp_name }}</td>
+                                            <td>{{ $element->kode }}</td>
+                                            <td>{{ $element->address }}</td>
+                                            <td>{{ $element->tlp }}</td>
+                                            <td>{{ $element->email }}</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-info btn-block"
+                                                    onclick="edit('{{ $element->id }}')"><i class="fas fa-pen"></i>
+                                                    Edit</button>
+                                                <button class="btn btn-sm btn-danger btn-block"
+                                                    onclick="hapus('{{ $element->id }}')"><i class="fas fa-trash"></i>
+                                                    Hapus</button>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
                     </div>
                 </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                    <table id="tables" class="table-bordered table-striped table" width="100%">
-                        <thead>
-                            <tr>
-                                <td>No</td>
-                                <td>Nama</td>
-                                <td>Previleges</td>
-                                <td>Kode</td>
-                                <td>Fakultas</td>
-                                <td>Jurusan</td>
-                                <td>Alamat</td>
-                                <td>Telepon</td>
-                                <td>NBI</td>
-                                <td>Email</td>
-                                <td>Valid</td>
-                                <td>Aksi</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($data as $index => $element)
-                            <tr>
-                                <td>{{ $index+1 }}</td>
-                                <td>{{ $element->name }}</td>
-                                {{-- @if($element->previleges == '3')
-                                <td>Mahasiswa</td>
-                                @elseif($element->previleges == '2')
-                                <td>Dosen</td>
-                                @else
-                                <td>Staff Perpustakaan</td>
-                                @endif --}}
-                                <td>{{ $element->hak_akses->mp_name }}</td>
-                                
-                                <td>{{ $element->previleges }}</td>
-                                <td>{{ $element->kode }}</td>
-                                <td>{{ $element->fakultas }}</td>
-                                <td>{{ $element->jurusan }}</td>
-                                <td>{{ $element->address }}</td>
-                                <td>{{ $element->tlp }}</td>
-                                <td>{{ $element->registration_kode }}</td>
-                                <td>{{ $element->email }}</td>
-                                <td>{{ date("d-M-Y", strtotime($element->updated_at)) }}</td>
-                                <td>
-                                    <button class="btn btn-sm btn-info btn-block"
-                                        onclick="edit('{{ $element->id }}')"><i class="fas fa-pen"></i>
-                                        Edit</button>
-                                    <button class="btn btn-sm btn-danger btn-block"
-                                        onclick="hapus('{{ $element->id }}')"><i class="fas fa-trash"></i>
-                                        Hapus</button>
-                                    <button class="btn btn-sm btn-secondary btn-block"
-                                        onclick="perpanjang('{{ $element->id }}')"><i class="fas fa-plus"></i>
-                                        Perpanjang</button>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-                <!-- /.card-body -->
-            </div>
+            </section>
             <!-- /.row -->
         </div>
         <!-- /.container-fluid -->

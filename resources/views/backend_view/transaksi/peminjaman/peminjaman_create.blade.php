@@ -90,7 +90,7 @@
   </section>
 </div>
 @endsection
-
+@section('script')
 <script type="text/javascript">
   function save(argument) {     
     var peminjam = $('.peminjam').val();
@@ -177,3 +177,4 @@
     $('.remove_'+argument).remove();
   }
 </script>
+@endsection
