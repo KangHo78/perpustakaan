@@ -40,7 +40,7 @@
                         </div>
                         <div class="form-group">
                             <label>Previleges</label>
-                            <select name="previleges" class="form-control">
+                            <select name="previleges" class="form-control previleges">
                                 @foreach ($previlege as $previleges )
                                 <option value="{{ $previleges->mp_id }}">{{ $previleges->mp_name }}</option>
                                 @endforeach
@@ -48,8 +48,8 @@
                         </div>
                         <div class="form-group">
                             <label>Fakultas</label>
-                            <select name="fakultas" class="form-control">
-                                <option value="0">- Pilih Fakultas -</option>
+                            <select name="fakultas" class="form-control fakultas">
+                                <option>- Pilih Fakultas -</option>
                                 @foreach ($fakultas as $fakultass )
                                 <option value="{{ $fakultass->mf_id }}">{{ $fakultass->mf_name }}</option>
                                 @endforeach
@@ -57,8 +57,8 @@
                         </div>
                         <div class="form-group">
                             <label>Jurusan</label>
-                            <select name="jurusan" class="form-control">
-                                <option value="0">- Pilih Jurusan -</option>
+                            <select name="jurusan" class="form-control jurusan">
+                                <option>- Pilih Jurusan -</option>
                                 @foreach ($jurusan as $jurusans )
                                 <option value="{{ $jurusans->mj_id }}">{{ $jurusans->mj_name }}</option>
                                 @endforeach
@@ -104,7 +104,27 @@
 @endsection
 
 <script type="text/javascript">
-    function save(argument) {      
+    function save(argument) {  
+    var previleges = $('.previleges').val();
+    var fakultas = $('.fakultas').val();
+    var jurusan = $('.jurusan').val();
+    if (previleges == '1' || fakultas != '- Pilih Fakultas -' || jurusan == '- Pilih Fakultas -') {
+      Swal.fire({
+        title: 'Error',
+        text: 'Kosongkan fakultas dan jurusan karena staff perpustakaan bukan termasuk user.',
+        icon: 'error',
+        confirmButtonText: 'Ok'
+          })
+      return false;
+    }else if (previleges != '1' || fakultas == '- Pilih Fakultas -' || jurusan == '- Pilih Fakultas -') {
+      Swal.fire({
+        title: 'Error',
+        text: 'Fakultas dan jurusan tidak boleh dikosongkan.',
+        icon: 'error',
+        confirmButtonText: 'Ok'
+          })
+      return false;
+    }    
       $.ajax({
         url:'{{ route('user_update') }}',
         data:$('.form-save').serialize(),

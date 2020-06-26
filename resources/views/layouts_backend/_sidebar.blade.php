@@ -62,7 +62,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/mailbox/read-mail.html" class="nav-link">
+              <a href="{{ route('jurusan_index') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Jurusan</p>
               </a>

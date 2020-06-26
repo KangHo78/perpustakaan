@@ -114,8 +114,7 @@
     var previleges = $('.previleges').val();
     var fakultas = $('.fakultas').val();
     var jurusan = $('.jurusan').val();
-    // if (previleges == '1' && (fakultas != '- Pilih Fakultas -' || jurusan != '- Pilih Fakultas -')) {
-    if (previleges == '1' && fakultas != '- Pilih Fakultas -') {
+    if (previleges == '1' || fakultas != '- Pilih Fakultas -' || jurusan == '- Pilih Fakultas -') {
       Swal.fire({
         title: 'Error',
         text: 'Kosongkan fakultas dan jurusan karena staff perpustakaan bukan termasuk user.',
@@ -123,7 +122,7 @@
         confirmButtonText: 'Ok'
           })
       return false;
-    }else if (previleges != '1' && (fakultas == '- Pilih Fakultas -' || jurusan == '- Pilih Fakultas -')) {
+    }else if (previleges != '1' || fakultas == '- Pilih Fakultas -' || jurusan == '- Pilih Fakultas -') {
       Swal.fire({
         title: 'Error',
         text: 'Fakultas dan jurusan tidak boleh dikosongkan.',
