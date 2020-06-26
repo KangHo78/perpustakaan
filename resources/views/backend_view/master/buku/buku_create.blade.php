@@ -59,7 +59,7 @@
                 @endforeach
               </select>
             </div>
-            </div>
+            </div>  
             <div class="col-sm-6">
             <div class="form-group">
               <label>Pengarang</label>
@@ -75,22 +75,31 @@
               <label>Name</label>
               <input type="text" class="form-control" name="name">
             </div>
+             <div class="row">
             <div class="col-sm-6">
-            <div class="form-group">
               <div class="form-group">
               <label>Desc</label>
               <textarea class="form-control" name="desc" rows="4"></textarea>
             </div>
+            </div>
+            <div class="col-sm-6">
             <div class="form-group">
               <label>Pinjam </label>
               <select name="pinjam" class="form-control">
               <option>YA</option>
               <option>TIDAK</option>
               </select>
+              <br>
+              <input type="file" name="gambar" class="form-control">
             </div>
             </div>
             </div>
+            </div>
+            <div class="col-sm-1">
+              
             <button type="button" class="btn btn-sm btn-warning" onclick="add_item()">Add item</button>
+            </div>
+            <br>
             <table class="table  table-bordered table-stripped">
                 <tr>
                   <th>Isbn</th>
