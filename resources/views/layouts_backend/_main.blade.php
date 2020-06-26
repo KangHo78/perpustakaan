@@ -12,7 +12,10 @@
   <link href='{{ asset('assets/android-icon-192x192.png') }}' rel='icon' sizes='192x192' />
   <link href='{{ asset('assets/apple-icon-180x180.png') }}' rel='apple-touch-icon' sizes='180x180' />
   <meta content='{{ asset('assets/apple-icon-114x114.png') }}' name='msapplication-TileImage' />
-  @include('layouts_backend._css')
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="{{ asset('css/back.css') }}" />
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -30,7 +33,24 @@
     <aside class="control-sidebar control-sidebar-dark">
     </aside>
   </div>
-  @include('layouts_backend._script')
+  <!-- Javascript -->
+  <script src="{{ asset('js/back.js') }}"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {    
+  bsCustomFileInput.init();
+  $('.select2').select2();
+  $("table.table").DataTable({
+      "responsive": true,
+      "autoWidth": true,
+    });                
+  $('.datepicker').datepicker({
+  	format: 'dd-MM-yyyy',
+  	autoclose: true,
+    todayHighlight:true,
+    orientation: 'bottom',
+  });
+  });
+  </script>
   @yield('script')
 </body>
 

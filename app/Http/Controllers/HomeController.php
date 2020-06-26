@@ -2,11 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use DB;
-
 use App\models;
-
 use Auth;
 
 class HomeController extends Controller
@@ -36,7 +32,7 @@ class HomeController extends Controller
     {
         $idcard = $this->calculateid();
         $pengembalian = $this->calculatepengembalian();
-        $total_user = $this->model->user()->count();
+        $total_user = $this->model->user()->where('previleges', '!=', '1')->count();
         $total_buku = $this->model->buku_dt()->count();
         $total_buku_dipinjam = $this->model->buku_dt()->where('mbdt_status', 'TERPINJAM')->count();
         $total_buku_terpinjam = $this->model->log()->where('log_feature', 'PEMINJAMAN')->where('log_action', 'CREATE')->count();

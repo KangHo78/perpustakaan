@@ -75,6 +75,16 @@ Route::group(['middleware' => 'roles'], function () {
     Route::get('/penerbit_edit', 'penerbitController@edit')->name('penerbit_edit');
     Route::get('/penerbit_update', 'penerbitController@update')->name('penerbit_update');
     Route::get('/penerbit_hapus', 'penerbitController@hapus')->name('penerbit_hapus');
+    // Rak Buku
+    Route::get('/rak_buku', 'rak_bukuController@index')->name('rak_buku_index');
+    Route::get('/rak_buku_create', 'rak_bukuController@create')->name('rak_buku_create');
+    Route::get('/rak_buku_save', 'rak_bukuController@save')->name('rak_buku_save');
+    Route::get('/rak_buku_edit', 'rak_bukuController@edit')->name('rak_buku_edit');
+    Route::get('/rak_buku_update', 'rak_bukuController@update')->name('rak_buku_update');
+    Route::get('/rak_buku_hapus', 'rak_bukuController@hapus')->name('rak_buku_hapus');
+    Route::get('/rak_buku_get_kode', 'rak_bukuController@get_kode')->name('rak_buku_get_kode');
+    Route::get('/rak_buku_dt_save', 'rak_bukuController@save_dt')->name('rak_buku_dt_save');
+    Route::get('/rak_buku_dt_delete', 'rak_bukuController@deletes_dt')->name('rak_buku_dt_delete');
 });
 
 Route::get('/buku', 'bukuController@index')->name('buku_index');
@@ -83,18 +93,6 @@ Route::get('/buku_save', 'bukuController@save')->name('buku_save');
 Route::get('/buku_edit', 'bukuController@edit')->name('buku_edit');
 Route::get('/buku_update', 'bukuController@update')->name('buku_update');
 Route::get('/buku_hapus', 'bukuController@hapus')->name('buku_hapus');
-
-
-Route::get('/rak_buku', 'rak_bukuController@index')->name('rak_buku_index');
-Route::get('/rak_buku_create', 'rak_bukuController@create')->name('rak_buku_create');
-Route::get('/rak_buku_save', 'rak_bukuController@save')->name('rak_buku_save');
-Route::get('/rak_buku_edit', 'rak_bukuController@edit')->name('rak_buku_edit');
-Route::get('/rak_buku_update', 'rak_bukuController@update')->name('rak_buku_update');
-Route::get('/rak_buku_hapus', 'rak_bukuController@hapus')->name('rak_buku_hapus');
-Route::get('/rak_buku_get_kode', 'rak_bukuController@get_kode')->name('rak_buku_get_kode');
-
-Route::get('/rak_buku_dt_save', 'rak_bukuController@save_dt')->name('rak_buku_dt_save');
-Route::get('/rak_buku_dt_delete', 'rak_bukuController@deletes_dt')->name('rak_buku_dt_delete');
 
 Route::get('/fakultas', 'fakultasController@index')->name('fakultas_index');
 Route::get('/fakultas_create', 'fakultasController@create')->name('fakultas_create');

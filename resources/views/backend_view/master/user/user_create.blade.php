@@ -50,7 +50,7 @@
             </div>
             <div class="form-group">
               <label>Previleges</label>
-              <select name="previleges" class="form-control">
+              <select name="previleges" class="form-control previleges">
                 @foreach ($previlege as $previleges )
                 <option value="{{ $previleges->mp_id }}">{{ $previleges->mp_name }}</option>
                 @endforeach
@@ -58,7 +58,7 @@
             </div>
             <div class="form-group">
               <label>Fakultas</label>
-              <select name="fakultas" class="form-control">
+              <select name="fakultas" class="form-control fakultas">
                 <option>- Pilih Fakultas -</option>
                 @foreach ($fakultas as $fakultass )
                 <option value="{{ $fakultass->mf_id }}">{{ $fakultass->mf_name }}</option>
@@ -67,7 +67,7 @@
             </div>
             <div class="form-group">
               <label>Jurusan</label>
-              <select name="jurusan" class="form-control">
+              <select name="jurusan" class="form-control jurusan">
                 <option>- Pilih Jurusan -</option>
                 @foreach ($jurusan as $jurusans )
                 <option value="{{ $jurusans->mj_id }}">{{ $jurusans->mj_name }}</option>
@@ -111,6 +111,27 @@
 
 <script type="text/javascript">
   function save(argument) {      
+    var previleges = $('.previleges').val();
+    var fakultas = $('.fakultas').val();
+    var jurusan = $('.jurusan').val();
+    // if (previleges == '1' && (fakultas != '- Pilih Fakultas -' || jurusan != '- Pilih Fakultas -')) {
+    if (previleges == '1' && fakultas != '- Pilih Fakultas -') {
+      Swal.fire({
+        title: 'Error',
+        text: 'Kosongkan fakultas dan jurusan karena staff perpustakaan bukan termasuk user.',
+        icon: 'error',
+        confirmButtonText: 'Ok'
+          })
+      return false;
+    }else if (previleges != '1' && (fakultas == '- Pilih Fakultas -' || jurusan == '- Pilih Fakultas -')) {
+      Swal.fire({
+        title: 'Error',
+        text: 'Fakultas dan jurusan tidak boleh dikosongkan.',
+        icon: 'error',
+        confirmButtonText: 'Ok'
+          })
+      return false;
+    }
     $.ajax({
       url:'{{ route('user_save') }}',
       data:$('.form-save').serialize(),
@@ -119,7 +140,7 @@
         if(data.status == 422){
             Swal.fire({
               title: 'Error',
-              text: 'Pastikan data tidak kosong dan panjang password minimal 8.',
+              text: 'Pastikan data benar, tidak kosong dan panjang password minimal 8.',
               icon: 'error',
               confirmButtonText: 'Ok'
             })
@@ -134,6 +155,13 @@
           }).then(function(result){
             location.href = '{{ route('user_index') }}';
              })
+        }if (data.status == 'admin') {
+          Swal.fire({
+            title: 'Error',
+            text: 'Kosongkan fakultas dan jurusan karena staff perpustakaan bukan termasuk user.',
+            icon: 'error',
+            confirmButtonText: 'Ok'
+          })
         }
       }
     });

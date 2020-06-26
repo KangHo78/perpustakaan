@@ -8,6 +8,7 @@ use App\models;
 use Illuminate\Support\Facades\Auth;
 use PDF;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class userController extends Controller
 {
@@ -31,8 +32,9 @@ class userController extends Controller
      */
     public function index()
     {
-        $data = $this->model->user()->with('hak_akses')->get();
-        return view('backend_view.master.user.user_index', compact('data'));
+        $data = $this->model->user()->where('previleges', '!=', '1')->with('hak_akses', 'fakultasuser')->get();
+        $datas = $this->model->user()->where('previleges', '=', '1')->get();
+        return view('backend_view.master.user.user_index', compact('data', 'datas'));
     }
     public function create()
     {
@@ -44,41 +46,28 @@ class userController extends Controller
     public function save(Request $req)
     {
         $id = $this->model->user()->max('id') + 1;
-        if ($req->previleges != '1') {
-            $validasi = $this->validate($req, [
-                'name' => 'required',
-                'email' => 'required',
-                'password' => ['required', 'min:8'],
-                'previleges' => 'required',
-                'address' => 'required',
-                'addressuniv' => 'required',
-                'reg' => 'required',
-                'tlp' => 'required',
-                'username' => 'required',
-            ]);
-        } else {
-            $validasi = $this->validate($req, [
-                'name' => 'required',
-                'email' => 'required',
-                'password' => ['required', 'min:8'],
-                'previleges' => 'required',
-                'address' => 'required',
-                'addressuniv' => 'required',
-                'reg' => 'required',
-                'tlp' => 'required',
-                'username' => 'required',
-                'fakultas' => 'required',
-                'jurusan' => 'required',
-            ]);
+        $validasi = $this->validate($req, [
+            'name' => 'required',
+            'email' => ['required', 'email'],
+            'password' => ['required', 'min:8'],
+            'previleges' => 'required',
+            'address' => 'required',
+            'addressuniv' => 'required',
+            'reg' => 'required',
+            'tlp' => 'required',
+            'username' => 'required',
+            'fakultas' => Rule::requiredIf($req->previleges != '1'),
+            // 'jurusan' => 'required',
+        ]);
+        // if ($req->fakultas = '- Pilih Fakultas -' && $req->jurusan = '- Pilih Fakultas -') {
+        if ($req->fakultas = '- Pilih Fakultas -') {
+            $req->fakultas = null;
+            $req->jurusan = null;
         }
-
-        if ($req->previleges == '1') {
-            $kode = $this->kodeadm();
-        } else if ($req->previleges == '2') {
-            $kode =  $this->kodedsn();
-        } else {
-            $kode =  $this->kodemhs();
-        }
+        $req->previleges == '1' ? $kode = $this->kodeadm()
+            : ($req->previleges == '2'
+                ? $kode =  $this->kodedsn()
+                :  $kode =  $this->kodemhs());
         if ($validasi == true) {
             $this->model->user()->create([
                 'id' => $id,
@@ -93,6 +82,7 @@ class userController extends Controller
                 'tlp' => $req->tlp,
                 'username' => $req->username,
                 'photo' => 'default.svg',
+                'fakultas' => $req->fakultas,
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s", strtotime("+4 years")),
             ]);
@@ -103,7 +93,9 @@ class userController extends Controller
     {
         $data = $this->model->user()->where('id', $req->id)->first();
         $previlege = $this->model->previleges()->get();
-        return view('backend_view.master.user.user_edit', compact('data', 'previlege'));
+        $fakultas = $this->model->fakultas()->get();
+        $jurusan = $this->model->previleges()->get();
+        return view('backend_view.master.user.user_edit', compact('data', 'previlege', 'fakultas', 'jurusan'));
     }
     public function update(Request $req)
     {
