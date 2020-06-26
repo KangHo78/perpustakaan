@@ -7,6 +7,7 @@
 			<h2>Catalog</h2>
 		</div>
 		<div class="body">
+
 		<table id="tables" class="table-bordered table-striped table-hover table" width="100%">
 			<thead>
 				<tr>
@@ -29,6 +30,7 @@
                 @endforeach
             </tbody>
 		</table>
+
 		</div>
 	</div>
 </section>
