@@ -53,6 +53,7 @@ class bukuController extends Controller
         // if (count($req->isbn) != count($total_unique)) {
         //     return Response()->json(['status' => 'duplicate']);
         // }
+        dd($req->all());
         // return count($req->isbn);
         $id = $this->model->buku()->max('mb_id') + 1;
         $this->model->buku()->create([
