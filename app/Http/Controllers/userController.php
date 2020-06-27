@@ -40,7 +40,7 @@ class userController extends Controller
     {
         $previlege = $this->model->previleges()->get();
         $fakultas = $this->model->fakultas()->get();
-        $jurusan = $this->model->previleges()->get();
+        $jurusan = $this->model->jurusan()->get();
         return view('backend_view.master.user.user_create', compact('previlege', 'fakultas', 'jurusan'));
     }
     public function save(Request $req)
@@ -56,11 +56,8 @@ class userController extends Controller
             'reg' => 'required',
             'tlp' => 'required',
             'username' => 'required',
-            'fakultas' => Rule::requiredIf($req->previleges != '1'),
-            // 'jurusan' => 'required',
         ]);
-        // if ($req->fakultas = '- Pilih Fakultas -' && $req->jurusan = '- Pilih Fakultas -') {
-        if ($req->fakultas = '- Pilih Fakultas -') {
+        if ($req->fakultas = '- Pilih Fakultas -' && $req->jurusan = '- Pilih Fakultas -') {
             $req->fakultas = null;
             $req->jurusan = null;
         }
@@ -83,6 +80,7 @@ class userController extends Controller
                 'username' => $req->username,
                 'photo' => 'default.svg',
                 'fakultas' => $req->fakultas,
+                'jurusan' => $req->jurusan,
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s", strtotime("+4 years")),
             ]);
@@ -94,14 +92,14 @@ class userController extends Controller
         $data = $this->model->user()->where('id', $req->id)->first();
         $previlege = $this->model->previleges()->get();
         $fakultas = $this->model->fakultas()->get();
-        $jurusan = $this->model->previleges()->get();
+        $jurusan = $this->model->jurusan()->get();
         return view('backend_view.master.user.user_edit', compact('data', 'previlege', 'fakultas', 'jurusan'));
     }
     public function update(Request $req)
     {
         $validasi = $this->validate($req, [
             'name' => 'required',
-            'email' => 'required',
+            'email' => ['required', 'email'],
             'previleges' => 'required',
             'addressuniv' => 'required',
             'address' => 'required',
@@ -109,13 +107,14 @@ class userController extends Controller
             'reg' => 'required',
             'username' => 'required',
         ]);
-        if ($req->previleges == '1') {
-            $kode = $this->kodeadm();
-        } else if ($req->previleges == '2') {
-            $kode =  $this->kodedsn();
-        } else {
-            $kode =  $this->kodemhs();
+        if ($req->fakultas = '- Pilih Fakultas -' && $req->jurusan = '- Pilih Fakultas -') {
+            $req->fakultas = null;
+            $req->jurusan = null;
         }
+        $req->previleges == '1' ? $kode = $this->kodeadm()
+            : ($req->previleges == '2'
+                ? $kode =  $this->kodedsn()
+                :  $kode =  $this->kodemhs());
         if ($validasi == true) {
             $this->model->user()->where('id', $req->id)->update([
                 'name' => $req->name,
@@ -127,10 +126,10 @@ class userController extends Controller
                 'tlp' => $req->tlp,
                 'registration_kode' => $req->reg,
                 'username' => $req->username,
+                'fakultas' => $req->fakultas,
+                'jurusan' => $req->jurusan,
             ]);
             return Response()->json(['status' => 'sukses']);
-        } else {
-            return Response()->json(['status' => 'gagal']);
         }
     }
     public function hapus(Request $req)
@@ -156,15 +155,15 @@ class userController extends Controller
     {
         $data = $this->model->user()->where('id', $req->id)->first();
         $fakultas = $this->model->fakultas()->get();
-        $jurusan = $this->model->previleges()->get();
+        $jurusan = $this->model->jurusan()->get();
         return view('backend_view.master.user.profile.profile_edit', compact('data', 'fakultas', 'jurusan'));
     }
     public function profileupdate(Request $req)
     {
         $validasi = $this->validate($req, [
-            'photo' => 'required|image|mimes:jpeg,png,jpg,svg|max:2000',
+            'photo' => 'image|mimes:jpeg,png,jpg,svg|max:2000',
             'name' => 'required',
-            'email' => 'required',
+            'email' => ['required', 'email'],
             'address' => 'required',
             'tlp' => 'required',
             'reg' => 'required',
@@ -174,6 +173,8 @@ class userController extends Controller
             $imagePath = $req->file('photo');
             $fileName =  $req->id . '.' . $imagePath->getClientOriginalExtension();
             $imagePath->move(public_path('storage/user'), $fileName);
+        } else {
+            $fileName =  'default.svg';
         }
         if ($validasi == true) {
             $this->model->user()->where('id', $req->id)->update([

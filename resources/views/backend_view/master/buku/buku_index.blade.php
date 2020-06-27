@@ -55,8 +55,9 @@
                                 <td>{{ $element->mb_created_at }}</td>
                                 <td>{{ $element->mb_name }}</td>
                                 <td>{{ $element->mb_pinjam }}</td>
+                                <td><img src="{{ asset('storage/buku/'.$element->mb_image) }}"></td>
                                 <td>
-                                    <button class="btn btn-sm btn-info" onclick="edit('{{ $element->mb_id }}')"><i
+                                    <button class=" btn btn-sm btn-info" onclick="edit('{{ $element->mb_id }}')"><i
                                             class="fas fa-pen"></i> Edit</button>
                                     <button class="btn btn-sm btn-danger" onclick="hapus('{{ $element->mb_id }}')"><i
                                             class="fas fa-trash"></i> Hapus</button>

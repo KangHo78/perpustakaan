@@ -132,7 +132,8 @@
         error:function(data){
         if(data.status == 422){
             Swal.fire({
-              title: 'Pastikan data tidak kosong.',
+              title: 'Error',
+              text: 'Pastikan data benar, tidak kosong dan panjang password minimal 8.',
               icon: 'error',
               confirmButtonText: 'Ok'
             })
