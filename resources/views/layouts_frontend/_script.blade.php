@@ -3,7 +3,8 @@
 <script type="text/javascript">
   $(document).ready(function () {    
     $('.image-link').magnificPopup({
-      type: 'image'
+      type: 'image',
+      preloader: true,
     });
     $("#tables").DataTable({
         "responsive": true,

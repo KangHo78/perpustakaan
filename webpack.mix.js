@@ -15,10 +15,11 @@ const mix = require('laravel-mix');
 mix.styles([
         'resources/css/frontend/bootstrap.min.css',
         'resources/css/frontend/font-awesome.min.css',
-        'resources/css/frontend/magnific-popup.css',
         'resources/css/frontend/owl.carousel.min.css',
         'resources/css/frontend/customdataTables.css',
+        'resources/css/backend/responsive.bootstrap4.min.css',
         'resources/css/frontend/slicknav.min.css',
+        'resources/css/frontend/magnific-popup.css',
         'resources/css/frontend/style.css',
     ],
     'public/css/front.css');
