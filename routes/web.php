@@ -105,9 +105,9 @@ Route::group(['middleware' => 'roles'], function () {
     // Buku
     Route::get('/buku', 'bukuController@index')->name('buku_index');
     Route::get('/buku_create', 'bukuController@create')->name('buku_create');
-    Route::get('/buku_save', 'bukuController@save')->name('buku_save');
+    Route::post('/buku_save', 'bukuController@save')->name('buku_save');
     Route::get('/buku_edit', 'bukuController@edit')->name('buku_edit');
-    Route::get('/buku_update', 'bukuController@update')->name('buku_update');
+    Route::post('/buku_update', 'bukuController@update')->name('buku_update');
     Route::get('/buku_hapus', 'bukuController@hapus')->name('buku_hapus');
     // Peminjaman
     Route::get('/transaksi_peminjaman', 'transaksi_peminjamanController@index')

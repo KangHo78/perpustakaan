@@ -39,17 +39,21 @@
               <div class="col-sm-6">
                 <div class="form-group">
                   <label>Kode</label>
-                  <input type="text" value="{{ $kode }}" class="form-control" name="kode" readonly="">
+                  <input type="hidden" name="id" value="{{ $data->mb_id }}">
+                  <input type="hidden" name="gambar_old" value="{{ $data->mb_image }}">
+                  <input type="text" value="{{ $data->mb_kode }}" readonly="" class="form-control" name="kode" readonly="">
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label>Kategori</label>
                     <select name="kategori" class="form-control">
-                @foreach ($kategoris as $kategori )
-                
-                      <option value="{{ $kategori->mk_id }}">{{ $kategori->mk_name }}</option>
-                @endforeach
+                    @foreach ($kategoris as $kategori )
+                          <option value="{{ $kategori->mk_id }}" 
+                          @if ($kategori->mk_id == $data->mb_kategori)
+                            selected="" 
+                          @endif>{{ $kategori->mk_name }}</option>
+                    @endforeach
               
                     </select>
                   </div>
@@ -62,7 +66,10 @@
                     <select name="penerbit" class="form-control">
                 @foreach ($penerbits as $penerbit )
                 
-                      <option value="{{ $penerbit->mpn_id }}">{{ $penerbit->mpn_name }}</option>
+                      <option value="{{ $penerbit->mpn_id }}"
+                          @if ($penerbit->mpn_id == $data->mb_penerbit)
+                            selected="" 
+                          @endif>{{ $penerbit->mpn_name }}</option>
                 @endforeach
               
                     </select>
@@ -74,7 +81,11 @@
                     <select name="pengarang" class="form-control">
                 @foreach ($pengarangs as $pengarang )
                 
-                      <option value="{{ $pengarang->mpg_id }}">{{ $pengarang->mpg_name }}</option>
+                      <option value="{{ $pengarang->mpg_id }}"
+                        @if ($pengarang->mpg_id == $data->mb_pengarang)
+                            selected="" 
+                          @endif
+                      >{{ $pengarang->mpg_name }}</option>
                 @endforeach
               
                     </select>
@@ -83,22 +94,26 @@
               </div>
               <div class="form-group">
                 <label>Name</label>
-                <input type="text" class="form-control" name="name">
+                <input type="text" class="form-control" name="name" value="{{ $data->mb_name }}">
               </div>
                 
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label>Desc</label>
-                    <textarea class="form-control" name="desc" rows="4"></textarea>
+                    <textarea class="form-control" name="desc" rows="4">{{ $data->mb_desc }}</textarea>
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label>Pinjam </label>
                     <select name="pinjam" class="form-control">
-                      <option>YA</option>
-                      <option>TIDAK</option>
+                      <option @if ($data->mb_pinjam == 'YA')
+                            selected="" 
+                          @endif>YA</option>
+                      <option @if ($data->mb_pinjam == 'TIDAK')
+                            selected="" 
+                          @endif>TIDAK</option>
                     </select>
                     <br>
                       <input type="file" name="gambar" class="form-control" id="file">
@@ -118,7 +133,55 @@
                         <th>Kondisi</th>
                         <th>Aksi</th>
                       </tr>
-                      <tbody class="drop"></tbody>
+                      <tbody class="drop">
+                        @foreach ($data->buku_dt as $index => $element)
+                        <tr class="remove_exist_{{ $index }}">
+                          <th>
+                            <input class="form-control"  @if($element->mbdt_status == 'TERPINJAM') style="pointer-events: none" readonly="" @endif value="{{ $element->mbdt_isbn }}" name="isbn[]">
+                            </th>
+                            <th>
+                              <select name="kode_rak_dt[]" class="form-control" @if($element->mbdt_status == 'TERPINJAM') readonly="" @endif>
+                                 @foreach ($rak_bukus as $rak_buku )
+                                    <option value="{{ $rak_buku->mrbd_kode }}"
+                                      @if ($rak_buku->mrbd_kode == $element->mbdt_rak_buku_dt)
+                                      selected="" 
+                                      @endif
+                                    >{{ $rak_buku->mrbd_kode }}</option>
+                                  @endforeach
+                              </select>
+                            </th>
+                            <th>
+                              <select  name="status[]" class="form-control" 
+                              @if($element->mbdt_status == 'TERPINJAM')
+                                    style="pointer-events: none" readonly
+                                  @endif>
+                                <option @if($element->mbdt_status == 'TERSEDIA')
+                                    selected="" 
+                                  @endif>TERSEDIA</option>
+                                        <option @if($element->mbdt_status == 'TERPINJAM')
+                                    selected="" 
+                                  @endif>TERPINJAM</option>
+                              </select>
+                            </th>
+                            <th>
+                              <select name="kondisi[]" class="form-control" @if($element->mbdt_status == 'TERPINJAM') style="pointer-events: none" readonly="" @endif>
+                                <option @if($element->mbdt_kondisi == 'BAIK') selected="" @endif>BAIK</option>
+                                <option @if($element->mbdt_kondisi == 'RUSAK') selected="" @endif>RUSAK</option>
+                                <option @if($element->mbdt_kondisi == 'HILANG') selected="" @endif>HILANG</option>
+                              </select>
+                            </th>
+                            <th>
+                              @if($element->mbdt_status == 'TERSEDIA')
+                              <button type="button" class="btn btn-sm btn-danger" onclick="remove_tr_exist('{{ $index }}')">
+                                <i class="fas fa-trash"></i>
+                              </button>
+                              @else
+                              <span class="btn btn-sm btn-warning">Terpinjam</span>
+                              @endif
+                            </th>
+                          </tr>
+                        @endforeach
+                      </tbody>
                     </table>
                   <!-- /.card-body -->
                   <div class="card-footer">
@@ -135,6 +198,7 @@
 @endsection
 
 <script type="text/javascript">
+
   function save(argument) {
     var form = $('.form-save');
     formdata = new FormData(form[0]);
@@ -146,7 +210,7 @@
       });
 
     $.ajax({
-      url:'{{ route('buku_save') }}',
+      url:'{{ route('buku_update') }}',
       data:formdata ? formdata : form.serialize(),
       type:'post',      
       processData: false,
@@ -202,5 +266,9 @@
   function remove_tr (argument) {
     console.log(argument);
     $('.remove_'+argument).remove();
+  }
+  function remove_tr_exist (argument) {
+    console.log(argument);
+    $('.remove_exist_'+argument).remove();
   } 
 </script>

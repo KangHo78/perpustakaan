@@ -7,7 +7,7 @@ use DB;
 use App\models;
 use Response;
 use Auth;
-
+use Storage;
 
 class bukuController extends Controller
 {
@@ -47,15 +47,20 @@ class bukuController extends Controller
     }
     public function save(Request $req)
     {
-        // DB::beginTransaction();
-        // try {
-        // $total_unique = array_unique($req->isbn);
-        // if (count($req->isbn) != count($total_unique)) {
-        //     return Response()->json(['status' => 'duplicate']);
-        // }
-        dd($req->all());
-        // return count($req->isbn);
+        DB::beginTransaction();
+        try {
+        // dd($req->all());
         $id = $this->model->buku()->max('mb_id') + 1;
+        if ($req->hasFile('gambar')) {
+            $imagePath = $req->file('gambar');
+            $fileName =  '/public/buku/buku_'.$id . '.' . $imagePath->getClientOriginalExtension();
+            $fileNames =  'buku/buku_'.$req->id . '.' . $imagePath->getClientOriginalExtension();
+            // Storage::put($fileName,file_get_contents($req->file('gambar')));
+              $imagePath->move(public_path('storage/buku'), $fileName);
+        }else{
+            $fileName ='';
+        }
+
         $this->model->buku()->create([
             'mb_id' => $id,
             'mb_kode' => $req->kode,
@@ -65,6 +70,7 @@ class bukuController extends Controller
             'mb_created_by' => Auth::user()->id,
             'mb_created_at' => date('Y-m-d H:i:s'),
             'mb_name' => $req->name,
+            'mb_image' => $fileNames,
             'mb_desc' => $req->desc,
             'mb_pinjam' => $req->pinjam,
         ]);
@@ -78,43 +84,93 @@ class bukuController extends Controller
                 'mbdt_kondisi' => $req->kondisi[$i],
             ]);
         }
-        //     DB::commit();
+            DB::commit();
 
-        //     return Response()->json(['status' => 'sukses']);
+            return Response()->json(['status' => 'sukses']);
 
-        //     // all good
-        // } catch (\Exception $e)  {
-        //     DB::rollback();
-        //     // something went wrong
-        //     return Response()->json(['status' => 'error']);
-        // }
+            // all good
+        } catch (\Exception $e)  {
+            DB::rollback();
+            // something went wrong
+            return Response()->json(['status' => 'error']);
+        }
     }
     public function edit(Request $req)
     {
-        $data = $this->model->penerbit()->where('mpn_id', $req->id)->first();
-        return view('backend_view.master.penerbit.penerbit_edit', compact('data'));
+        $data = $this->model->buku()->with('buku_dt')->where('mb_id',$req->id)->first();
+        $kategoris = $this->model->kategori()->get();
+        $penerbits = $this->model->penerbit()->get();
+        $pengarangs = $this->model->pengarang()->get();
+        $rak_bukus = $this->model->rak_buku_dt()->get();
+        return view('backend_view.master.buku.buku_edit', compact('kategoris', 'rak_bukus', 'penerbits', 'pengarangs', 'data'));
     }
     public function update(Request $req)
     {
-        $validasi = $this->validate($req, [
-            'name' => 'required',
-            'alamat' => 'required',
-            'tlp' => 'required',
+        // dd($req->all());
+
+        DB::beginTransaction();
+        try {
+        if ($req->hasFile('gambar')) {
+            $imagePath = $req->file('gambar');
+            $fileName =  '/public/buku/buku_'.$req->id . '.' . $imagePath->getClientOriginalExtension();
+            $fileNames =  'buku/buku_'.$req->id . '.' . $imagePath->getClientOriginalExtension();
+            Storage::put($fileName,file_get_contents($req->file('gambar')));
+            // $imagePath->move(public_path('storage/buku'), $fileName);
+
+        }else{
+            $fileName = $req->gambar_old;
+        }
+
+        $this->model->buku()->where('mb_id',$req->id)->update([
+            'mb_kategori' => $req->kategori,
+            'mb_penerbit' => $req->penerbit,
+            'mb_pengarang' => $req->pengarang,
+            'mb_created_by' => Auth::user()->id,
+            'mb_created_at' => date('Y-m-d H:i:s'),
+            'mb_name' => $req->name,
+            'mb_image' => $fileNames,
+            'mb_desc' => $req->desc,
+            'mb_pinjam' => $req->pinjam,
         ]);
-        if ($validasi == true) {
-            $this->model->penerbit()->where('mpn_id', $req->id)->update([
-                'mpn_name' => $req->name,
-                'mpn_alamat' => $req->alamat,
-                'mpn_tlp' => $req->tlp,
-            ]);
+        for ($i = 0; $i < count($req->isbn); $i++) {
+            $this->model->buku_dt()->where('mbdt_status','TERSEDIA')->where('mbdt_id',$req->id)->delete();
+        }
+        for ($i = 0; $i < count($req->isbn); $i++) {
+            if ($req->status[$i] == 'TERSEDIA') {
+                $dt = $this->model->buku_dt()->where('mbdt_id',$req->id)->max('mbdt_dt') + 1;
+                $this->model->buku_dt()->create([
+                    'mbdt_id'  => $req->id,
+                    'mbdt_dt'  => $dt,
+                    'mbdt_isbn' => $req->isbn[$i],
+                    'mbdt_status' => $req->status[$i],
+                    'mbdt_rak_buku_dt' => $req->kode_rak_dt[$i],
+                    'mbdt_kondisi' => $req->kondisi[$i],
+                ]);
+            }
+        }
+            DB::commit();
+
             return Response()->json(['status' => 'sukses']);
-        } else {
-            return Response()->json(['status' => 'gagal']);
+
+            // all good
+        } catch (\Exception $e)  {
+            DB::rollback();
+            // something went wrong
+            return Response()->json(['status' => 'error']);
         }
     }
     public function hapus(Request $req)
     {
+        $dt = $this->model->buku_dt()->where('mbdt_id', $req->id)->get();
+        $d = 0;
+        for ($i=0; $i <count($dt) ; $i++) { 
+            if ($dt[$i]->mbdt_status == 'TERPINJAM') {
+                $d += 1;
+            }
+        }
+        return $d;
         $this->model->buku()->where('mb_id', $req->id)->delete();
+        $this->model->buku_dt()->where('mbdt_id', $req->id)->delete();
         return redirect()->back();
     }
 }

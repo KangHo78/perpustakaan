@@ -21,6 +21,7 @@ class buku extends model
     'mb_pengarang' ,
     'mb_created_by' ,
     'mb_created_at' ,
+    'mb_image' ,
     'mb_name' ,
     'mb_desc' ,
     'mb_pinjam' ,
