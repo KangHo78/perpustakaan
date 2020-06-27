@@ -106,7 +106,6 @@ class bukuController extends Controller
     public function update(Request $req)
     {
         // dd($req->all());
-        return  ;
         DB::beginTransaction();
         try {
             if ($req->hasFile('gambar')) {
