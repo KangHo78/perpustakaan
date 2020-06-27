@@ -53,6 +53,7 @@ class bukuController extends Controller
             $id = $this->model->buku()->max('mb_id') + 1;
             if ($req->hasFile('gambar')) {
                 $imagePath = $req->file('gambar');
+                $fileName =  '/public/buku/buku_' . $id . '.' . $imagePath->getClientOriginalExtension();
                 $fileNames =  'buku/buku_' . $req->id . '.' . $imagePath->getClientOriginalExtension();
                 // Storage::put($fileName,file_get_contents($req->file('gambar')));
                 $imagePath->move(public_path('storage/buku'), $fileName);
