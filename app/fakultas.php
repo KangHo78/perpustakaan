@@ -26,8 +26,8 @@ class fakultas extends model
   {
     return 'Y-m-d H:i:s';
   }
-  public function jurusan()
+  public function jurusanuser()
   {
-      return $this->belongsTo('App\jurusan', 'mj_fakultas', 'mf_id');
+    return $this->belongsTo('App\jurusan', 'mj_fakultas', 'mf_id');
   }
 }

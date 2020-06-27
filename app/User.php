@@ -45,6 +45,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\fakultas', 'fakultas', 'mf_id');
     }
+    public function jurusanuser()
+    {
+        return $this->belongsTo('App\jurusan', 'jurusan', 'mj_id');
+    }
     public function hak_akses()
     {
         return $this->belongsTo('App\previleges', 'previleges', 'mp_id');
