@@ -1,11 +1,14 @@
 <!-- Javascript -->
 <script src="{{ asset('js/front.js') }}"></script>
 <script type="text/javascript">
-  $(document).ready(function () {    
-    $('.image-link').magnificPopup({
+  $('.image-link').magnificPopup({
       type: 'image',
       preloader: true,
+      fixedBgPos: true,
+      fixedContentPos: true,
     });
+  $(document).ready(function () {    
+    
     $("#tables").DataTable({
         "responsive": true,
         "autoWidth": true,
