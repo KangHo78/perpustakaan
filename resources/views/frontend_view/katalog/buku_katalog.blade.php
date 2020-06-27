@@ -14,6 +14,7 @@
 						<td>Judul</td>
 						<td>Pengarang</td>
 						<td>Deskripsi</td>
+						<td>Gambar</td>
 					</tr>
 				</thead>
 				<tbody>
@@ -23,6 +24,8 @@
 						<td>{{ $element->mb_name }}</td>
 						<td>{{ $element->pengarang->mpg_name }}</td>
 						<td>{{ $element->mb_desc }}</td>
+						<td><a href="#" class="btn btn-sm btn-info btn-block image-link"><i class="fa fa-eye"></i>
+								Lihat</a></td>
 					</tr>
 					@endforeach
 				</tbody>

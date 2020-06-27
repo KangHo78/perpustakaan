@@ -15,6 +15,7 @@ const mix = require('laravel-mix');
 mix.styles([
         'resources/css/frontend/bootstrap.min.css',
         'resources/css/frontend/font-awesome.min.css',
+        'resources/css/frontend/magnific-popup.css',
         'resources/css/frontend/owl.carousel.min.css',
         'resources/css/frontend/customdataTables.css',
         'resources/css/frontend/slicknav.min.css',
@@ -26,6 +27,7 @@ mix.scripts([
         'resources/js/frontend/jquery-3.2.1.min.js',
         'resources/js/frontend/bootstrap.min.js',
         'resources/js/frontend/owl.carousel.min.js',
+        'resources/js/frontend/jquery.magnific-popup.min',
         'resources/js/frontend/jquery.slicknav.min.js',
         'resources/js/backend/jquery.dataTables.min.js',
         'resources/js/backend/dataTables.bootstrap4.min.js',
