@@ -49,7 +49,7 @@
                                 <td>{{ $element->kategori->mk_name }}</td>
                                 <td>{{ $element->penerbit->mpn_name }}</td>
                                 <td>{{ $element->pengarang->mpg_name }}</td>
-                                <td>{{ $element->mb_created_at }}</td>
+                                <td>{{ date("d-M-Y", strtotime($element->mb_created_at)) }}</td>
                                 <td>{{ $element->mb_name }}</td>
                                 <td>{{ $element->mb_pinjam }}</td>
                                 <td>

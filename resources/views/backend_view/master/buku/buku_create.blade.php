@@ -112,7 +112,7 @@
             <br>
             <table class="table  table-bordered table-stripped">
               <tr>
-                <th>Isbn</th>
+                <th>ISBN</th>
                 <th>Rak</th>
                 <th>Status</th>
                 <th>Kondisi</th>
@@ -177,7 +177,7 @@
     // console.log(remove);
     $('.drop').append(
       '<tr class="remove remove_'+(remove+1)+'">'+
-        '<th><input class="form-control" name="isbn[]"></th>'+
+        '<th><input class="form-control" type="number" name="isbn[]"></th>'+
         '<th>'+
             '<select name="kode_rak_dt[]" class="form-control">'+
               @foreach ($rak_bukus as $rak_buku )
