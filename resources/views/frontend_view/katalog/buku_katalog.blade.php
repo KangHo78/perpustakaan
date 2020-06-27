@@ -24,7 +24,7 @@
 						<td>{{ $element->mb_name }}</td>
 						<td>{{ $element->pengarang->mpg_name }}</td>
 						<td>{{ $element->mb_desc }}</td>
-						<td><a href="{{ asset('storage/buku/'.$element->mb_image) }}" class=" btn btn-sm btn-info
+						<td><a href="{{ asset('storage/buku/'.$element->mb_image) }}" class="btn btn-sm btn-info
 								btn-block image-link"><i class="fa fa-eye"></i>
 								Lihat</a></td>
 					</tr>
