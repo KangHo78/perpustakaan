@@ -84,7 +84,7 @@
               <div class="col-sm-6">
                 <div class="form-group">
                   <label>Desc</label>
-                  <textarea class="form-control" name="desc" rows="4"></textarea>
+                  <textarea class="form-control" name="desc" rows="5"></textarea>
                 </div>
               </div>
               <div class="col-sm-6">
@@ -94,7 +94,9 @@
                     <option>YA</option>
                     <option>TIDAK</option>
                   </select>
-                  <br>
+                </div>
+                <div class="form-group">
+                  <label>Gambar </label>
                   <div class="custom-file">
                     <input type="file" name="gambar" class="custom-file-input" id="file" accept="image/*">
                     <label class="custom-file-label">Choose file</label>

@@ -35,7 +35,6 @@
                                 <td>Kategori</td>
                                 <td>Penerbit</td>
                                 <td>Pengarang</td>
-                                <td>Created By</td>
                                 <td>Created At</td>
                                 <td>Name</td>
                                 <td>Pinjam</td>
@@ -50,7 +49,6 @@
                                 <td>{{ $element->kategori->mk_name }}</td>
                                 <td>{{ $element->penerbit->mpn_name }}</td>
                                 <td>{{ $element->pengarang->mpg_name }}</td>
-                                <td>{{ $element->mb_created_by }}</td>
                                 <td>{{ $element->mb_created_at }}</td>
                                 <td>{{ $element->mb_name }}</td>
                                 <td>{{ $element->mb_pinjam }}</td>
