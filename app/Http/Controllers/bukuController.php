@@ -51,14 +51,13 @@ class bukuController extends Controller
         try {
             // dd($req->all());
             $id = $this->model->buku()->max('mb_id') + 1;
-            if ($req->hasFile('gambar')) {
+            if (filesize($req->file('gambar')) > 2000) {
+                return Response()->json(['status' => 'big_image']);
+            }else{
                 $imagePath = $req->file('gambar');
                 $fileName =  '/public/buku/buku_' . $id . '.' . $imagePath->getClientOriginalExtension();
-                $fileNames =  'buku_' . $req->id . '.' . $imagePath->getClientOriginalExtension();
-                // Storage::put($fileName,file_get_contents($req->file('gambar')));
-                $imagePath->move(public_path('storage/buku'), $fileName);
-            } else {
-                $fileName = '';
+                $fileNames =  'buku_' . $id . '.' . $imagePath->getClientOriginalExtension();
+                Storage::put($fileName, file_get_contents($req->file('gambar')));
             }
 
             $this->model->buku()->create([
@@ -107,15 +106,18 @@ class bukuController extends Controller
     public function update(Request $req)
     {
         // dd($req->all());
-
+        return  ;
         DB::beginTransaction();
         try {
             if ($req->hasFile('gambar')) {
-                $imagePath = $req->file('gambar');
-                $fileName =  '/public/buku/buku_' . $req->id . '.' . $imagePath->getClientOriginalExtension();
-                $fileNames =  'buku_' . $req->id . '.' . $imagePath->getClientOriginalExtension();
-                Storage::put($fileName, file_get_contents($req->file('gambar')));
-                // $imagePath->move(public_path('storage/buku'), $fileName);
+                if (filesize($req->file('gambar')) > 2000) {
+                    return Response()->json(['status' => 'big_image']);
+                }else{
+                    $imagePath = $req->file('gambar');
+                    $fileName =  '/public/buku/buku_' . $req->id . '.' . $imagePath->getClientOriginalExtension();
+                    $fileNames =  'buku_' . $req->id . '.' . $imagePath->getClientOriginalExtension();
+                    Storage::put($fileName, file_get_contents($req->file('gambar')));
+                }
 
             } else {
                 $fileName = $req->gambar_old;

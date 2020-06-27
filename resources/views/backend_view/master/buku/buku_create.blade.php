@@ -157,6 +157,13 @@
           }).then(function(result){
             location.href = '{{ route('buku_index') }}';
              })
+        }else{
+          Swal.fire({
+            title: 'Gambar Melebihi 2mb.',
+            icon: 'warning',
+            confirmButtonText: 'Ok'
+          })
+          return false;
         }
       }
     });
