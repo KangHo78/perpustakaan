@@ -109,7 +109,7 @@ class bukuController extends Controller
         DB::beginTransaction();
         try {
             if ($req->hasFile('gambar')) {
-                if (filesize($req->file('gambar')) > 2000) {
+                if (filesize($req->file('gambar')) > 20000) {
                     return Response()->json(['status' => 'big_image']);
                 }else{
                     $imagePath = $req->file('gambar');
