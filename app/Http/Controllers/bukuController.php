@@ -47,11 +47,12 @@ class bukuController extends Controller
     }
     public function save(Request $req)
     {
+        // return filesize($req->file('gambar'));
         DB::beginTransaction();
         try {
             // dd($req->all());
             $id = $this->model->buku()->max('mb_id') + 1;
-            if (filesize($req->file('gambar')) > 2000) {
+            if (filesize($req->file('gambar')) > 2000000) {
                 return Response()->json(['status' => 'big_image']);
             }else{
                 $imagePath = $req->file('gambar');
@@ -109,7 +110,7 @@ class bukuController extends Controller
         DB::beginTransaction();
         try {
             if ($req->hasFile('gambar')) {
-                if (filesize($req->file('gambar')) > 20000) {
+                if (filesize($req->file('gambar')) > 2000000) {
                     return Response()->json(['status' => 'big_image']);
                 }else{
                     $imagePath = $req->file('gambar');
