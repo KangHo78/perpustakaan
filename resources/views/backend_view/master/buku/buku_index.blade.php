@@ -39,7 +39,6 @@
                                 <td>Created At</td>
                                 <td>Name</td>
                                 <td>Pinjam</td>
-                                <td>Gambar</td>
                                 <td>Aksi</td>
                             </tr>
                         </thead>
@@ -55,12 +54,15 @@
                                 <td>{{ $element->mb_created_at }}</td>
                                 <td>{{ $element->mb_name }}</td>
                                 <td>{{ $element->mb_pinjam }}</td>
-                                <td><img src="{{ asset('storage/buku/'.$element->mb_image) }}"></td>
                                 <td>
-                                    <button class=" btn btn-sm btn-info" onclick="edit('{{ $element->mb_id }}')"><i
-                                            class="fas fa-pen"></i> Edit</button>
-                                    <button class="btn btn-sm btn-danger" onclick="hapus('{{ $element->mb_id }}')"><i
-                                            class="fas fa-trash"></i> Hapus</button>
+                                    <button class=" btn btn-sm btn-info btn-block"
+                                        onclick="edit('{{ $element->mb_id }}')"><i class="fas fa-pen"></i> Edit</button>
+                                    <button class="btn btn-sm btn-danger btn-block"
+                                        onclick="hapus('{{ $element->mb_id }}')"><i class="fas fa-trash"></i>
+                                        Hapus</button>
+                                    <a href="{{ asset('storage/buku/'.$element->mb_image) }}" class=" btn btn-sm btn-info
+                                                btn-block image-link"><i class="fa fa-eye"></i>
+                                        Lihat Gambar</a>
                                 </td>
                             </tr>
                             @endforeach

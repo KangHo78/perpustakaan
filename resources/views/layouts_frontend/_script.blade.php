@@ -12,7 +12,7 @@
         "ordering": false,
         "info":     false,
       });
-    $('.image-link').magnificPopup({
+      $('.image-link').magnificPopup({
       type: 'image'
     });       
     });
