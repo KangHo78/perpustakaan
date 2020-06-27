@@ -21,11 +21,11 @@ class jurusan extends model
   ];
   public function user()
   {
-    return $this->hasMany('App\User', 'fakultas', 'mf_id');
+    return $this->hasMany('App\User', 'jurusan', 'mf_id');
   }
   public function fakultas()
   {
-      return $this->belongsTo('App\fakultas', 'mj_fakultas', 'mf_id');
+    return $this->belongsTo('App\fakultas', 'mj_fakultas', 'mf_id');
   }
   public function getDateFormat()
   {

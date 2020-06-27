@@ -62,7 +62,11 @@
                                             @else
                                             <td>Tidak ada data</td>
                                             @endif
-                                            <td>{{ $element->jurusan }}</td>
+                                            @if ($element->jurusan != null)
+                                            <td>{{ $element->jurusanuser->mj_name }}</td>
+                                            @else
+                                            <td>Tidak ada data</td>
+                                            @endif
                                             <td>{{ $element->address }}</td>
                                             <td>{{ $element->tlp }}</td>
                                             <td>{{ $element->registration_kode }}</td>
