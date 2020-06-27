@@ -59,7 +59,7 @@
                                         onclick="hapus('{{ $element->mb_id }}')"><i class="fas fa-trash"></i>
                                         Hapus</button>
                                     <a href="{{ asset('storage/buku/'.$element->mb_image) }}" class="btn btn-sm btn-info
-                                                btn-block image-link"><i class="fa fa-eye"></i>
+                                                btn-block" data-toggle="lightbox"><i class="fa fa-eye"></i>
                                         Lihat Gambar</a>
                                 </td>
                             </tr>

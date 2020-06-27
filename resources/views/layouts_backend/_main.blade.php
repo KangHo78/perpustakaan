@@ -37,10 +37,11 @@
   <!-- Javascript -->
   <script src="{{ asset('js/back.js') }}"></script>
   <script type="text/javascript">
-    $(document).ready(function () {
-      $('.image-link').magnificPopup({
-      type: 'image'
-    });    
+    $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+                event.preventDefault();
+                $(this).ekkoLightbox();
+            });
+$(document).ready(function () {    
   bsCustomFileInput.init();
   $('.select2').select2();
   $("#tables.table").DataTable({
