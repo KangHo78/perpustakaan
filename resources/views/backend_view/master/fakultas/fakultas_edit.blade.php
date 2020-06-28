@@ -33,7 +33,7 @@
           <form class="form-save">
             <div class="form-group">
               <label>Kode</label>
-              <input type="text" class="form-control" name="kode" value="{{ $data->mf_kode }}"  readonly="">
+              <input type="text" class="form-control" name="kode" value="{{ $data->mf_kode }}" readonly="">
               <input type="hidden" class="form-control" name="id" value="{{ $data->mf_id }}">
             </div>
             <div class="form-group">
@@ -62,7 +62,7 @@
       error:function(data){
         if(data.status == 422){
             Swal.fire({
-              title: 'Pastikan Data Tidak Kosong.',
+              title: 'Pastikan data tidak kosong.',
               icon: 'error',
               confirmButtonText: 'Ok'
             })
@@ -71,7 +71,7 @@
       success:function(data){
         if (data.status == 'sukses') {
           Swal.fire({
-            title: 'Data Sudah Disimpan.',
+            title: 'Data sudah disimpan.',
             icon: 'success',
             confirmButtonText: 'Ok'
           }).then(function(result){

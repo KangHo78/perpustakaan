@@ -89,7 +89,7 @@
     function hapus(argument) {
         var id = argument;
         Swal.fire({
-            title: 'Yakin Menghapus Data?',
+            title: 'Yakin menghapus data?',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -103,7 +103,7 @@
               success:function(data){
                 if (data.status == 'sukses') {
                   Swal.fire({
-                    title: 'Data Sudah Disimpan.',
+                    title: 'Data sudah disimpan.',
                     icon: 'success',
                     confirmButtonText: 'Ok'
                   }).then(function(result){

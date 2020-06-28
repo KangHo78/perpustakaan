@@ -206,6 +206,17 @@
 
 <script type="text/javascript">
   function save(argument) {
+    var name = $('input[name ="name"]').val();
+    var desc = $('textarea[name ="desc"]').val();
+    if (name == '' || desc == '') {
+      Swal.fire({
+        title: 'Error',
+        text: 'Pastikan data tidak ada yang kosong.',
+        icon: 'error',
+        confirmButtonText: 'Ok'
+          })
+      return false;
+    }
     var form = $('.form-save');
     formdata = new FormData(form[0]);
 
@@ -224,7 +235,7 @@
       success:function(data){
         if (data.status == 'sukses') {
           Swal.fire({
-            title: 'Data Sudah Disimpan.',
+            title: 'Data sudah disimpan.',
             icon: 'success',
             confirmButtonText: 'Ok'
           }).then(function(result){
@@ -232,7 +243,7 @@
              })
         }else{
           Swal.fire({
-            title: 'Gambar Melebihi 2mb.',
+            title: 'Gambar melebihi 2mb.',
             icon: 'warning',
             confirmButtonText: 'Ok'
           })

@@ -54,11 +54,14 @@ class bukuController extends Controller
             $id = $this->model->buku()->max('mb_id') + 1;
             if (filesize($req->file('gambar')) > 2000000) {
                 return Response()->json(['status' => 'big_image']);
-            }else{
+            } elseif ($req->hasFile('gambar')) {
                 $imagePath = $req->file('gambar');
-                $fileName =  '/public/buku/buku_' . $id . '.' . $imagePath->getClientOriginalExtension();
+                // $fileName =  '/public/buku/buku_' . $id . '.' . $imagePath->getClientOriginalExtension();
                 $fileNames =  'buku_' . $id . '.' . $imagePath->getClientOriginalExtension();
-                Storage::put($fileName, file_get_contents($req->file('gambar')));
+                // Storage::put($fileName, file_get_contents($req->file('gambar')));
+                $imagePath->move(public_path('storage/buku'), $fileNames);
+            } else {
+                $fileNames = 'default.svg';
             }
 
             $this->model->buku()->create([
@@ -109,18 +112,28 @@ class bukuController extends Controller
         // dd($req->all());
         DB::beginTransaction();
         try {
-            if ($req->hasFile('gambar')) {
-                if (filesize($req->file('gambar')) > 2000000) {
-                    return Response()->json(['status' => 'big_image']);
-                }else{
-                    $imagePath = $req->file('gambar');
-                    $fileName =  '/public/buku/buku_' . $req->id . '.' . $imagePath->getClientOriginalExtension();
-                    $fileNames =  'buku_' . $req->id . '.' . $imagePath->getClientOriginalExtension();
-                    Storage::put($fileName, file_get_contents($req->file('gambar')));
-                }
-
+            // if ($req->hasFile('gambar')) {
+            //     if (filesize($req->file('gambar')) > 2000000) {
+            //         return Response()->json(['status' => 'big_image']);
+            //     } else {
+            //         $imagePath = $req->file('gambar');
+            //         $fileName =  '/public/buku/buku_' . $req->id . '.' . $imagePath->getClientOriginalExtension();
+            //         $fileNames =  'buku_' . $req->id . '.' . $imagePath->getClientOriginalExtension();
+            //         Storage::put($fileName, file_get_contents($req->file('gambar')));
+            //     }
+            // } else {
+            //     $fileName = $req->gambar_old;
+            // }
+            if (filesize($req->file('gambar')) > 2000000) {
+                return Response()->json(['status' => 'big_image']);
+            } elseif ($req->hasFile('gambar')) {
+                $imagePath = $req->file('gambar');
+                // $fileName =  '/public/buku/buku_' . $id . '.' . $imagePath->getClientOriginalExtension();
+                $fileNames =  'buku_' . $req->id . '.' . $imagePath->getClientOriginalExtension();
+                // Storage::put($fileName, file_get_contents($req->file('gambar')));
+                $imagePath->move(public_path('storage/buku'), $fileNames);
             } else {
-                $fileName = $req->gambar_old;
+                $fileNames = 'default.svg';
             }
 
             $this->model->buku()->where('mb_id', $req->id)->update([

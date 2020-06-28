@@ -110,7 +110,7 @@
                 Tambah ISBN</button>
             </div>
             <br>
-            <table class="table  table-bordered table-stripped">
+            <table class="table table-bordered table-stripped">
               <tr>
                 <th>ISBN</th>
                 <th>Rak</th>
@@ -136,7 +136,17 @@
 
 <script type="text/javascript">
   function save(argument) {
-
+    var name = $('input[name ="name"]').val();
+    var desc = $('textarea[name ="desc"]').val();
+    if (name == '' || desc == '') {
+      Swal.fire({
+        title: 'Error',
+        text: 'Pastikan data tidak ada yang kosong.',
+        icon: 'error',
+        confirmButtonText: 'Ok'
+          })
+      return false;
+    }
     var form = $('.form-save');
     formdata = new FormData(form[0]);
     $.ajaxSetup({
@@ -153,7 +163,7 @@
       success:function(data){
         if (data.status == 'sukses') {
           Swal.fire({
-            title: 'Data Sudah Disimpan.',
+            title: 'Data sudah disimpan.',
             icon: 'success',
             confirmButtonText: 'Ok'
           }).then(function(result){
@@ -161,7 +171,7 @@
              })
         }else{
           Swal.fire({
-            title: 'Gambar Melebihi 2mb.',
+            title: 'Gambar melebihi 2MB.',
             icon: 'warning',
             confirmButtonText: 'Ok'
           })
@@ -177,7 +187,7 @@
     // console.log(remove);
     $('.drop').append(
       '<tr class="remove remove_'+(remove+1)+'">'+
-        '<th><input class="form-control" type="number" name="isbn[]"></th>'+
+        '<th><input class="form-control isbnadd" type="number" name="isbn[]"></th>'+
         '<th>'+
             '<select name="kode_rak_dt[]" class="form-control">'+
               @foreach ($rak_bukus as $rak_buku )
