@@ -49,7 +49,7 @@
                         <div class="form-group">
                             <label>Fakultas</label>
                             <select name="fakultas" class="form-control fakultas">
-                                <option>- Pilih Fakultas -</option>
+                                <option value="">- Pilih Fakultas -</option>
                                 @foreach ($fakultas as $fakultass )
                                 <option value="{{ $fakultass->mf_id }}">{{ $fakultass->mf_name }}</option>
                                 @endforeach
@@ -58,7 +58,7 @@
                         <div class="form-group">
                             <label>Jurusan</label>
                             <select name="jurusan" class="form-control jurusan">
-                                <option>- Pilih Jurusan -</option>
+                                <option value="">- Pilih Jurusan -</option>
                                 @foreach ($jurusan as $jurusans )
                                 <option value="{{ $jurusans->mj_id }}">{{ $jurusans->mj_name }}</option>
                                 @endforeach
@@ -108,7 +108,9 @@
     var previleges = $('.previleges').val();
     var fakultas = $('.fakultas').val();
     var jurusan = $('.jurusan').val();
-    if (previleges == '1' || fakultas != '- Pilih Fakultas -' || jurusan == '- Pilih Fakultas -') {
+    var admin = fakultas != "" || jurusan != "";
+    var user = fakultas == "" || jurusan == "";
+    if (previleges == "1" && admin) {
       Swal.fire({
         title: 'Error',
         text: 'Kosongkan fakultas dan jurusan karena staff perpustakaan bukan termasuk user.',
@@ -116,7 +118,7 @@
         confirmButtonText: 'Ok'
           })
       return false;
-    }else if (previleges != '1' || fakultas == '- Pilih Fakultas -' || jurusan == '- Pilih Fakultas -') {
+    }else if (previleges != '1' && user) {
       Swal.fire({
         title: 'Error',
         text: 'Fakultas dan jurusan tidak boleh dikosongkan.',
