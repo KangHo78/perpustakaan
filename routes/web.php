@@ -37,6 +37,11 @@ Route::get('/idcard_print', 'userController@profileprint')->name('profile_print'
 Route::get('/forgot_password', 'Auth\ForgotPasswordController@index')->name('forgot_password_index');
 Route::get('/change_password', 'Auth\ForgotPasswordController@changepassword')->name('forgot_password');
 Route::get('/password_reset', 'Auth\ForgotPasswordController@logout')->name('password_reset');
+// Transaksi
+Route::get('/transaksi_peminjaman', 'transaksi_peminjamanController@index')
+    ->name('transaksi_peminjaman_index');
+Route::get('/transaksi_pengembalian', 'transaksi_pengembalianController@index')
+    ->name('transaksi_pengembalian_index');
 
 Route::group(['middleware' => 'roles'], function () {
     // User
@@ -85,7 +90,6 @@ Route::group(['middleware' => 'roles'], function () {
     Route::get('/rak_buku_get_kode', 'rak_bukuController@get_kode')->name('rak_buku_get_kode');
     Route::get('/rak_buku_dt_save', 'rak_bukuController@save_dt')->name('rak_buku_dt_save');
     Route::get('/rak_buku_dt_delete', 'rak_bukuController@deletes_dt')->name('rak_buku_dt_delete');
-    
     // Fakultas
     Route::get('/fakultas', 'fakultasController@index')->name('fakultas_index');
     Route::get('/fakultas_create', 'fakultasController@create')->name('fakultas_create');
@@ -93,7 +97,6 @@ Route::group(['middleware' => 'roles'], function () {
     Route::get('/fakultas_edit', 'fakultasController@edit')->name('fakultas_edit');
     Route::get('/fakultas_update', 'fakultasController@update')->name('fakultas_update');
     Route::get('/fakultas_hapus', 'fakultasController@hapus')->name('fakultas_hapus');
-    
     //Jurusan
     Route::get('/jurusan', 'jurusanController@index')->name('jurusan_index');
     Route::get('/jurusan_create', 'jurusanController@create')->name('jurusan_create');
@@ -101,7 +104,6 @@ Route::group(['middleware' => 'roles'], function () {
     Route::get('/jurusan_edit', 'jurusanController@edit')->name('jurusan_edit');
     Route::get('/jurusan_update', 'jurusanController@update')->name('jurusan_update');
     Route::get('/jurusan_hapus', 'jurusanController@hapus')->name('jurusan_hapus');
-
     // Buku
     Route::get('/buku', 'bukuController@index')->name('buku_index');
     Route::get('/buku_create', 'bukuController@create')->name('buku_create');
@@ -110,8 +112,6 @@ Route::group(['middleware' => 'roles'], function () {
     Route::post('/buku_update', 'bukuController@update')->name('buku_update');
     Route::get('/buku_hapus', 'bukuController@hapus')->name('buku_hapus');
     // Peminjaman
-    Route::get('/transaksi_peminjaman', 'transaksi_peminjamanController@index')
-        ->name('transaksi_peminjaman_index');
     Route::get('/transaksi_peminjaman_create', 'transaksi_peminjamanController@create')
         ->name('transaksi_peminjaman_create');
     Route::get('/transaksi_peminjaman_save', 'transaksi_peminjamanController@save')
@@ -127,8 +127,6 @@ Route::group(['middleware' => 'roles'], function () {
     Route::get('/transaksi_peminjaman_get_data_buku_remove', 'transaksi_peminjamanController@get_data_buku_remove')
         ->name('transaksi_peminjaman_get_data_buku_remove');
     // Pengembalian
-    Route::get('/transaksi_pengembalian', 'transaksi_pengembalianController@index')
-        ->name('transaksi_pengembalian_index');
     Route::get('/transaksi_pengembalian_create', 'transaksi_pengembalianController@create')
         ->name('transaksi_pengembalian_create');
     Route::get('/transaksi_pengembalian_save', 'transaksi_pengembalianController@save')

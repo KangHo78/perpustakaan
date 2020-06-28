@@ -56,10 +56,10 @@ class userController extends Controller
             'tlp' => 'required',
             'username' => 'required',
         ]);
-        if ($req->fakultas = '- Pilih Fakultas -' && $req->jurusan = '- Pilih Fakultas -') {
-            $req->fakultas = null;
-            $req->jurusan = null;
-        }
+        // if ($req->fakultas = '' && $req->jurusan = '') {
+        //     $req->fakultas = null;
+        //     $req->jurusan = null;
+        // }
         $req->previleges == '1' ? $kode = $this->kodeadm()
             : ($req->previleges == '2'
                 ? $kode =  $this->kodedsn()
@@ -106,10 +106,10 @@ class userController extends Controller
             'reg' => 'required',
             'username' => 'required',
         ]);
-        if ($req->fakultas = '- Pilih Fakultas -' && $req->jurusan = '- Pilih Fakultas -') {
-            $req->fakultas = null;
-            $req->jurusan = null;
-        }
+        // if ($req->fakultas = '- Pilih Fakultas -' && $req->jurusan = '- Pilih Fakultas -') {
+        //     $req->fakultas = null;
+        //     $req->jurusan = null;
+        // }
         $req->previleges == '1' ? $kode = $this->kodeadm()
             : ($req->previleges == '2'
                 ? $kode =  $this->kodedsn()
@@ -184,6 +184,8 @@ class userController extends Controller
                 'tlp' => $req->tlp,
                 'registration_kode' => $req->reg,
                 'username' => $req->username,
+                'fakultas' => $req->fakultas,
+                'jurusan' => $req->jurusan,
             ]);
             return Response()->json(['status' => 'sukses']);
         }
