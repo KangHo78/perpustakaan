@@ -131,11 +131,9 @@
                 <div class="coords">
                     Telepon : {{ Auth::user()->tlp }}
                 </div>
-                @if (Auth::user()->previleges != '1')
                 <div class="coords">
                     Valid Until : {{ date("d-m-Y", strtotime(Auth::user()->updated_at))}}
                 </div>
-                @endif
             </div>
         </div>
     </div>

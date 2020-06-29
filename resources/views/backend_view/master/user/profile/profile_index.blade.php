@@ -107,9 +107,11 @@
                     </ul>
                     <button onclick="edit('{{ Auth::user()->id }}')" class="btn btn-primary btn-block"><b>Edit
                             Data</b></button>
+                    @if (Auth::user()->previleges != '1')
                     <a href="{{ route('profile_print') }}" class="btn btn-primary btn-block"><b>Print
                             Kartu
                             Anggota</b></a>
+                    @endif
                 </div>
                 <!-- /.card-body -->
             </div>
